@@ -1,0 +1,38 @@
+﻿# Build & dependencies
+node_modules/
+dist/
+build/
+.astro/
+.cache/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# OS files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+.DS_Store
+*.stackdump
+
+# Editor & IDE
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Temp and backup files
+*.bak
+*.old
+*.tmp
+*.temp
+
+# Large video files
+*.avi
+*.mp4
+*.mov
