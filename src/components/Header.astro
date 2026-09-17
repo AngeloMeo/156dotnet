@@ -27,7 +27,32 @@ const isActive = (href: string) => {
 ---
 
 <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-white/90 dark:bg-alfa-metal-950/90 border-b border-alfa-metal-200 dark:border-alfa-metal-800/80 transition-colors duration-200">
+  <!-- Top Notice Warning Banner -->
+  <div class="w-full bg-gradient-to-r from-alfa-metal-950 via-alfa-red-950/80 to-alfa-metal-950 border-b border-alfa-red-600/40 px-4 py-2 text-white shadow-xs">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1.5 text-center sm:text-left text-xs">
+      <div class="flex items-center justify-center sm:justify-start space-x-2">
+        <span class="flex h-2 w-2 relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+        </span>
+        <span class="font-display font-bold tracking-wide text-amber-400 uppercase text-[11px]">
+          <span class="lang-it">Attenzione!</span>
+          <span class="lang-en">Notice!</span>
+        </span>
+        <span class="text-alfa-silver-200 font-medium">
+          <span class="lang-it">Sito di nuovissima costruzione e in continuo aggiornamento.</span>
+          <span class="lang-en">Brand new website under active continuous development.</span>
+        </span>
+      </div>
+      <span class="text-[10px] font-mono text-alfa-silver-400 hidden lg:inline-block">
+        <span class="lang-it">Nuovi contenuti e restauri tecnici aggiunti quotidianamente</span>
+        <span class="lang-en">New guides and archive restorations added daily</span>
+      </span>
+    </div>
+  </div>
+
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
     <div class="flex items-center justify-between h-20">
       
       <!-- Brand Logo -->
