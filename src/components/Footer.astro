@@ -1,0 +1,170 @@
+---
+// Footer.astro
+---
+
+<footer class="bg-alfa-metal-100 dark:bg-alfa-metal-950 border-t border-alfa-metal-200 dark:border-alfa-metal-800 text-alfa-metal-600 dark:text-alfa-metal-400 text-sm transition-colors duration-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      
+      <!-- Column 1: Brand & Heritage -->
+      <div class="space-y-4">
+        <div class="flex items-center space-x-3">
+          <div class="w-8 h-9 flex-shrink-0">
+            <svg viewBox="0 0 100 120" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M50 116 C40 100, 4 60, 4 10 L50 2 L96 10 C96 60, 60 100, 50 116 Z" fill="#14151a" stroke="#990000" stroke-width="6" />
+              <path d="M50 105 C42 90, 12 55, 12 16 L50 10 L88 16 C88 55, 58 90, 50 105 Z" fill="#990000" />
+            </svg>
+          </div>
+          <span class="font-display font-bold text-xl text-alfa-metal-900 dark:text-white">
+            156<span class="text-alfa-red-600">dotnet</span>
+          </span>
+        </div>
+        <p class="text-xs leading-relaxed text-alfa-metal-600 dark:text-alfa-metal-400">
+          <span class="lang-it">
+            La casa digitale per gli appassionati di Alfa Romeo 156. Preservazione dell'archivio storico originale di <em>alfa156.net</em> creato da Anders e Jeff, con oltre 4.400 documenti, guide passo-passo e dati tecnici.
+          </span>
+          <span class="lang-en">
+            The digital home for Alfa Romeo 156 enthusiasts worldwide. Preservation of the original historical archive from <em>alfa156.net</em> created by Anders and Jeff, with over 4,400 documents, step-by-step guides, and technical specifications.
+          </span>
+        </p>
+        <div class="pt-2 flex items-center space-x-2 text-xs text-alfa-red-600 dark:text-alfa-red-400 font-semibold">
+          <span class="inline-block w-2 h-2 rounded-full bg-alfa-red-600 animate-pulse"></span>
+          <span class="lang-it">Cuore Sportivo dal 1997</span>
+          <span class="lang-en">Cuore Sportivo since 1997</span>
+        </div>
+      </div>
+
+      <!-- Column 2: Navigazione -->
+      <div>
+        <h3 class="font-display font-semibold text-sm uppercase tracking-wider text-alfa-metal-900 dark:text-white mb-4">
+          <span class="lang-it">Navigazione</span>
+          <span class="lang-en">Navigation</span>
+        </h3>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a href="/" class="hover:text-alfa-red-600 dark:hover:text-white transition-colors">
+              <span class="lang-it">Home Page</span>
+              <span class="lang-en">Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="/techtips" class="hover:text-alfa-red-600 dark:hover:text-white transition-colors">
+              <span class="lang-it">TechTips & Guide</span>
+              <span class="lang-en">TechTips & Guides</span>
+            </a>
+          </li>
+          <li>
+            <a href="/modifiche" class="hover:text-alfa-red-600 dark:hover:text-white transition-colors">
+              <span class="lang-it">Modifiche & Assetto</span>
+              <span class="lang-en">Modifications & Tuning</span>
+            </a>
+          </li>
+          <li>
+            <a href="/storia" class="hover:text-alfa-red-600 dark:hover:text-white transition-colors">
+              <span class="lang-it">Storia & Design</span>
+              <span class="lang-en">History & Design</span>
+            </a>
+          </li>
+          <li>
+            <a href="/download" class="hover:text-alfa-red-600 dark:hover:text-white transition-colors">
+              <span class="lang-it">Download & Cataloghi</span>
+              <span class="lang-en">Downloads & Catalogues</span>
+            </a>
+          </li>
+          <li>
+            <a href="/about" class="hover:text-alfa-red-600 dark:hover:text-white transition-colors">
+              <span class="lang-it">About & Crediti</span>
+              <span class="lang-en">About & Credits</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Column 3: TechTips Popolari -->
+      <div>
+        <h3 class="font-display font-semibold text-sm uppercase tracking-wider text-alfa-metal-900 dark:text-white mb-4">
+          <span class="lang-it">Guide Tecniche Top</span>
+          <span class="lang-en">Top Tech Guides</span>
+        </h3>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a href="/techtips/fari-anteriori" class="hover:text-alfa-red-600 dark:hover:text-white transition-colors flex items-center space-x-1.5">
+              <span class="text-alfa-red-600">›</span>
+              <span class="lang-it">Sostituzione Fari Anteriori</span>
+              <span class="lang-en">Headlight Replacement</span>
+            </a>
+          </li>
+          <li>
+            <a href="/techtips/candele-v6-busso" class="hover:text-alfa-red-600 dark:hover:text-white transition-colors flex items-center space-x-1.5">
+              <span class="text-alfa-red-600">›</span>
+              <span class="lang-it">Candele Busso V6 24V</span>
+              <span class="lang-en">Busso V6 Spark Plugs</span>
+            </a>
+          </li>
+          <li>
+            <a href="/techtips/airbox-filtro-aria" class="hover:text-alfa-red-600 dark:hover:text-white transition-colors flex items-center space-x-1.5">
+              <span class="text-alfa-red-600">›</span>
+              <span class="lang-it">Fix Bulloni Airbox Inox</span>
+              <span class="lang-en">Airbox Seized Bolts Fix</span>
+            </a>
+          </li>
+          <li>
+            <a href="/techtips/pulizia-debimetro-maf" class="hover:text-alfa-red-600 dark:hover:text-white transition-colors flex items-center space-x-1.5">
+              <span class="text-alfa-red-600">›</span>
+              <span class="lang-it">Pulizia Debimetro MAF</span>
+              <span class="lang-en">Bosch MAF Cleaning</span>
+            </a>
+          </li>
+          <li>
+            <a href="/techtips/maniglia-porta-bloccata" class="hover:text-alfa-red-600 dark:hover:text-white transition-colors flex items-center space-x-1.5">
+              <span class="text-alfa-red-600">›</span>
+              <span class="lang-it">Pulsante Maniglia Bloccato</span>
+              <span class="lang-en">Sticky Door Handle Button</span>
+            </a>
+          </li>
+          <li>
+            <a href="/techtips/termostato-vaschetta-refrigerante" class="hover:text-alfa-red-600 dark:hover:text-white transition-colors flex items-center space-x-1.5">
+              <span class="text-alfa-red-600">›</span>
+              <span class="lang-it">Termostato 90°C & Vaschetta</span>
+              <span class="lang-en">Coolant Tank & Thermostat</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Archivio & Hosting -->
+      <div>
+        <h3 class="font-display font-semibold text-sm uppercase tracking-wider text-alfa-metal-900 dark:text-white mb-4">
+          <span class="lang-it">Infrastruttura & Deploy</span>
+          <span class="lang-en">Infrastructure & Deploy</span>
+        </h3>
+        <p class="text-xs leading-relaxed text-alfa-metal-600 dark:text-alfa-metal-400 mb-4">
+          <span class="lang-it">
+            Costruito con <strong>Astro</strong> e <strong>Tailwind CSS</strong>, distribuito globalmente su edge network <strong>Cloudflare Pages</strong> ad alte prestazioni e zero JavaScript non necessario.
+          </span>
+          <span class="lang-en">
+            Built with <strong>Astro</strong> and <strong>Tailwind CSS</strong>, globally deployed on <strong>Cloudflare Pages</strong> edge network for maximum performance and zero unnecessary JS.
+          </span>
+        </p>
+        <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-alfa-metal-200/70 dark:bg-alfa-metal-900 border border-alfa-metal-300 dark:border-alfa-metal-800 text-xs font-mono">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span>Cloudflare Pages Ready</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="mt-12 pt-8 border-t border-alfa-metal-200 dark:border-alfa-metal-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-alfa-metal-500">
+      <div>
+        &copy; 1997 - {new Date().getFullYear()} 156dotnet Community Archive.
+        <span class="lang-it">Tutti i diritti riservati ai rispettivi autori.</span>
+        <span class="lang-en">All rights reserved to respective authors.</span>
+      </div>
+      <div class="text-center sm:text-right">
+        <span class="lang-it">Sito indipendente senza fini di lucro. Alfa Romeo, 156, GTA, Busso e i relativi loghi sono marchi registrati di Stellantis N.V.</span>
+        <span class="lang-en">Non-profit independent community site. Alfa Romeo, 156, GTA, Busso and related emblems are registered trademarks of Stellantis N.V.</span>
+      </div>
+    </div>
+  </div>
+</footer>

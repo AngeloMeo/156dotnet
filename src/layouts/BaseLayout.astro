@@ -1,0 +1,84 @@
+---
+// BaseLayout.astro
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = 'Alfa Romeo 156 – Cuore Sportivo & Technical Archive (156dotnet)',
+  description = 'Archivio tecnico completo e portale storico per appassionati di Alfa Romeo 156 (1997-2007). Guide fotografiche passo-passo, diagnosi, V6 Busso, Twin Spark, download PDF e storia.',
+  image = '/images/techtips/v6sparks/p1.jpg',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://156dotnet.pages.dev');
+---
+
+<!doctype html>
+<html lang="it" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, canonicalURL)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, canonicalURL)} />
+
+    <!-- Theme & Language Initialization Script (Prevents flash of theme or wrong language) -->
+    <script is:inline>
+      (function () {
+        // Theme init
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme === 'light') {
+          document.documentElement.classList.remove('dark');
+        } else if (storedTheme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+
+        // Language init
+        const storedLang = localStorage.getItem('lang') || 'it';
+        document.documentElement.setAttribute('data-lang', storedLang);
+        document.documentElement.setAttribute('lang', storedLang);
+      })();
+    </script>
+
+  </head>
+  <body class="min-h-screen flex flex-col bg-alfa-metal-50 dark:bg-alfa-metal-950 text-alfa-metal-900 dark:text-alfa-metal-100 selection:bg-alfa-red-600 selection:text-white">
+    <!-- Header Navigation -->
+    <Header />
+
+    <!-- Main Content Container -->
+    <main class="flex-1 w-full">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <Footer />
+  </body>
+</html>

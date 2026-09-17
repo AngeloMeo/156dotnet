@@ -1,0 +1,222 @@
+---
+// LightboxGallery.astro
+interface GalleryItem {
+  src: string;
+  caption: string;
+  caption_en?: string;
+}
+
+interface Props {
+  images: GalleryItem[];
+  title?: string;
+  title_en?: string;
+}
+
+const {
+  images,
+  title = 'Galleria Fotografica Passo-Passo',
+  title_en = 'Step-by-Step Photo Gallery',
+} = Astro.props;
+---
+
+<div class="my-10">
+  <div class="flex items-center justify-between mb-6 pb-2 border-b border-alfa-metal-200 dark:border-alfa-metal-800">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-2.5 h-2.5 rounded-full bg-alfa-red-600"></div>
+      <h3 class="font-display font-bold text-xl text-alfa-metal-900 dark:text-white">
+        <span class="lang-it">{title}</span>
+        <span class="lang-en">{title_en}</span>
+      </h3>
+    </div>
+    <span class="text-xs text-alfa-metal-500 font-medium">
+      <span class="lang-it">{images.length} foto disponibili • Clicca per ingrandire</span>
+      <span class="lang-en">{images.length} photos available • Click to enlarge</span>
+    </span>
+  </div>
+
+  <!-- Thumbnails Grid -->
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3.5" id="gallery-grid">
+    {images.map((item, index) => (
+      <button
+        type="button"
+        class="lightbox-trigger group relative rounded-xl overflow-hidden bg-alfa-metal-950 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-600 focus:outline-none focus:ring-2 focus:ring-alfa-red-600/50 aspect-video text-left transition-all duration-200"
+        data-index={index}
+        data-src={item.src}
+        data-caption={item.caption}
+        data-caption-en={item.caption_en || item.caption}
+      >
+        <img
+          src={item.src}
+          alt={item.caption}
+          loading="lazy"
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+        />
+        <!-- Step badge -->
+        <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/70 backdrop-blur-sm text-[10px] font-mono font-bold text-white">
+          #{index + 1}
+        </span>
+        <!-- Hover zoom icon -->
+        <div class="absolute inset-0 bg-alfa-metal-950/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+          <svg class="w-6 h-6 text-white drop-shadow-md" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+          </svg>
+        </div>
+        <!-- Caption overlay on hover -->
+        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 to-transparent p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+          <p class="text-[11px] text-white truncate">
+            <span class="lang-it">{item.caption}</span>
+            <span class="lang-en">{item.caption_en || item.caption}</span>
+          </p>
+        </div>
+      </button>
+    ))}
+  </div>
+</div>
+
+<!-- Lightbox Modal Dialog -->
+<div
+  id="lightbox-modal"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/95 backdrop-blur-md transition-opacity duration-200"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Visualizzatore immagini a schermo intero / Fullscreen Image Viewer"
+>
+  <!-- Close Button -->
+  <button
+    id="lightbox-close"
+    type="button"
+    class="absolute top-4 right-4 z-50 p-2.5 rounded-full bg-white/10 hover:bg-alfa-red-600 text-white transition-colors focus:outline-none"
+    aria-label="Chiudi visualizzatore"
+  >
+    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+
+  <!-- Previous Button -->
+  <button
+    id="lightbox-prev"
+    type="button"
+    class="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-white/10 hover:bg-alfa-red-600 text-white transition-colors focus:outline-none"
+    aria-label="Immagine precedente"
+  >
+    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+
+  <!-- Next Button -->
+  <button
+    id="lightbox-next"
+    type="button"
+    class="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-white/10 hover:bg-alfa-red-600 text-white transition-colors focus:outline-none"
+    aria-label="Immagine successiva"
+  >
+    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+
+  <!-- Main Image & Caption Container -->
+  <div class="relative max-w-5xl max-h-[85vh] mx-auto p-4 flex flex-col items-center justify-center">
+    <div class="relative overflow-hidden rounded-xl border border-white/10 bg-black/50 shadow-2xl flex items-center justify-center max-h-[75vh]">
+      <img
+        id="lightbox-img"
+        src=""
+        alt=""
+        class="max-w-full max-h-[72vh] object-contain transition-transform duration-200"
+      />
+    </div>
+
+    <!-- Caption & Counter -->
+    <div class="mt-3 flex items-center justify-between w-full max-w-3xl px-2 text-sm text-alfa-metal-300">
+      <p id="lightbox-caption" class="text-white font-medium text-center flex-1 pr-4">
+        <!-- Injected via JS -->
+      </p>
+      <span id="lightbox-counter" class="font-mono text-xs px-2.5 py-1 rounded bg-white/10 text-alfa-silver-300">
+        <!-- 1 / 8 -->
+      </span>
+    </div>
+  </div>
+</div>
+
+<script>
+  function setupLightbox() {
+    const modal = document.getElementById('lightbox-modal');
+    const img = document.getElementById('lightbox-img') as HTMLImageElement;
+    const caption = document.getElementById('lightbox-caption');
+    const counter = document.getElementById('lightbox-counter');
+    const closeBtn = document.getElementById('lightbox-close');
+    const prevBtn = document.getElementById('lightbox-prev');
+    const nextBtn = document.getElementById('lightbox-next');
+    const triggers = document.querySelectorAll('.lightbox-trigger');
+
+    if (!modal || !img || !caption || !counter || triggers.length === 0) return;
+
+    let currentIndex = 0;
+    const items = Array.from(triggers).map((el) => ({
+      src: el.getAttribute('data-src') || '',
+      captionIt: el.getAttribute('data-caption') || '',
+      captionEn: el.getAttribute('data-caption-en') || el.getAttribute('data-caption') || '',
+    }));
+
+    function showImage(index: number) {
+      if (index < 0) index = items.length - 1;
+      if (index >= items.length) index = 0;
+      currentIndex = index;
+
+      const item = items[currentIndex];
+      img.src = item.src;
+
+      const currentLang = document.documentElement.getAttribute('data-lang') || 'it';
+      const cap = currentLang === 'en' ? item.captionEn : item.captionIt;
+      img.alt = cap;
+      caption.textContent = cap;
+      counter.textContent = `${currentIndex + 1} / ${items.length}`;
+    }
+
+    function openModal(index: number) {
+      showImage(index);
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.classList.add('lightbox-open');
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.classList.remove('lightbox-open');
+    }
+
+    triggers.forEach((trigger, idx) => {
+      trigger.addEventListener('click', () => openModal(idx));
+    });
+
+    closeBtn?.addEventListener('click', closeModal);
+    prevBtn?.addEventListener('click', () => showImage(currentIndex - 1));
+    nextBtn?.addEventListener('click', () => showImage(currentIndex + 1));
+
+    // Backdrop click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (modal.classList.contains('hidden')) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+      if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+    });
+
+    // React to language change
+    window.addEventListener('languagechange', () => {
+      if (!modal.classList.contains('hidden')) {
+        showImage(currentIndex);
+      }
+    });
+  }
+
+  setupLightbox();
+  document.addEventListener('astro:page-load', setupLightbox);
+</script>

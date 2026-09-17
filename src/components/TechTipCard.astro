@@ -1,0 +1,122 @@
+---
+// TechTipCard.astro
+interface Props {
+  title: string;
+  title_en?: string;
+  description: string;
+  description_en?: string;
+  category: string;
+  category_en?: string;
+  difficulty: 'Facile' | 'Medio' | 'Avanzato';
+  difficulty_en?: string;
+  timeRequired: string;
+  timeRequired_en?: string;
+  stepsCount: number;
+  featuredImage: string;
+  slug: string;
+}
+
+const {
+  title,
+  title_en,
+  description,
+  description_en,
+  category,
+  category_en,
+  difficulty,
+  difficulty_en,
+  timeRequired,
+  timeRequired_en,
+  stepsCount,
+  featuredImage,
+  slug,
+} = Astro.props;
+
+const difficultyColors = {
+  Facile: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30',
+  Medio: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/30',
+  Avanzato: 'bg-alfa-red-600/10 text-alfa-red-600 dark:text-alfa-red-400 border-alfa-red-600/30',
+};
+
+const defaultDifficultyEn = {
+  Facile: 'Easy',
+  Medio: 'Medium',
+  Avanzato: 'Advanced',
+};
+---
+
+<article class="group relative flex flex-col bg-white dark:bg-alfa-metal-900 rounded-2xl border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-600/50 dark:hover:border-alfa-red-500/50 transition-all duration-300 shadow-sm hover:shadow-glow-red overflow-hidden">
+  
+  <!-- Image Container -->
+  <div class="relative w-full h-52 overflow-hidden bg-alfa-metal-950">
+    <img
+      src={featuredImage}
+      alt={title}
+      loading="lazy"
+      class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+    />
+    
+    <!-- Gradient Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-alfa-metal-950/80 via-transparent to-transparent opacity-80" />
+    
+    <!-- Category Tag -->
+    <div class="absolute top-3 left-3">
+      <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold tracking-wide bg-alfa-red-600/90 text-white backdrop-blur-sm shadow-md">
+        <span class="lang-it">{category}</span>
+        <span class="lang-en">{category_en || category}</span>
+      </span>
+    </div>
+
+    <!-- Difficulty & Time Badges -->
+    <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white font-medium">
+      <span class={`px-2.5 py-0.5 rounded-full border backdrop-blur-md bg-black/40 ${difficultyColors[difficulty]}`}>
+        <span class="lang-it">{difficulty}</span>
+        <span class="lang-en">{difficulty_en || defaultDifficultyEn[difficulty]}</span>
+      </span>
+      <div class="flex items-center space-x-1.5 bg-black/50 backdrop-blur-md px-2 py-0.5 rounded-md text-alfa-silver-300">
+        <svg class="w-3.5 h-3.5 text-alfa-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span class="lang-it">{timeRequired}</span>
+        <span class="lang-en">{timeRequired_en || timeRequired}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Body -->
+  <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+    <div class="space-y-2.5">
+      <h3 class="font-display font-bold text-xl text-alfa-metal-900 dark:text-white group-hover:text-alfa-red-600 dark:group-hover:text-alfa-red-400 transition-colors line-clamp-2">
+        <a href={`/techtips/${slug}`}>
+          <span class="absolute inset-0" aria-hidden="true" />
+          <span class="lang-it">{title}</span>
+          <span class="lang-en">{title_en || title}</span>
+        </a>
+      </h3>
+      <p class="text-sm text-alfa-metal-600 dark:text-alfa-metal-400 line-clamp-2 leading-relaxed">
+        <span class="lang-it">{description}</span>
+        <span class="lang-en">{description_en || description}</span>
+      </p>
+    </div>
+
+    <!-- Card Footer -->
+    <div class="pt-4 border-t border-alfa-metal-100 dark:border-alfa-metal-800/80 flex items-center justify-between text-xs text-alfa-metal-500 dark:text-alfa-metal-400">
+      <div class="flex items-center space-x-1">
+        <svg class="w-4 h-4 text-alfa-metal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        <span class="lang-it">{stepsCount} passaggi fotografici</span>
+        <span class="lang-en">{stepsCount} photo steps</span>
+      </div>
+      
+      <span class="font-semibold text-alfa-red-600 dark:text-alfa-red-400 group-hover:translate-x-1 transition-transform duration-200 inline-flex items-center space-x-1">
+        <span class="lang-it">Leggi Guida</span>
+        <span class="lang-en">Read Guide</span>
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </span>
+    </div>
+
+  </div>
+</article>

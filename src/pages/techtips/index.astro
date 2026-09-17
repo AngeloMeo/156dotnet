@@ -1,0 +1,187 @@
+---
+// techtips/index.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TechTipCard from '../../components/TechTipCard.astro';
+import { getCollection } from 'astro:content';
+
+const techtips = await getCollection('techtips');
+
+const categories = [
+  { it: 'Tutte', en: 'All' },
+  { it: 'Illuminazione & Elettronica', en: 'Lighting & Electrical' },
+  { it: 'Motore Busso V6', en: 'Busso V6 Engine' },
+  { it: 'Aspirazione & Filtri', en: 'Intake & Filters' },
+  { it: 'Aspirazione & Debimetro', en: 'Intake & MAF' },
+  { it: 'Carrozzeria & Serrature', en: 'Bodywork & Locks' },
+  { it: 'Raffreddamento & Motore', en: 'Cooling & Engine' },
+];
+
+const diagnosticSheets = [
+  {
+    titleIt: 'Braccetti Sospensioni Anteriori Rumorosi',
+    titleEn: 'Noisy Front Suspension Wishbones',
+    symptomIt: 'Gommini trapezio superiore/inferiore cigolano su dossi e asfalto sconnesso.',
+    symptomEn: 'Upper and lower wishbone bushes creaking and squeaking over speed bumps.',
+    categoryIt: 'Sospensioni',
+    categoryEn: 'Suspension',
+  },
+  {
+    titleIt: 'Minimo Irregolare Twin Spark & JTS',
+    titleEn: 'Uneven Idle on Twin Spark & JTS',
+    symptomIt: 'Il motore oscilla tra 700 e 1200 giri al semaforo o si spegne in frenata.',
+    symptomEn: 'Engine hunting between 700 and 1200 RPM at junctions or stalling when stopping.',
+    categoryIt: 'Alimentazione',
+    categoryEn: 'Fuel & Intake',
+  },
+  {
+    titleIt: 'Temperatura Motore Ferma a 70°C',
+    titleEn: 'Engine Temperature Stuck at 70°C',
+    symptomIt: 'In autostrada la temperatura scende bruscamente sotto i 90°C.',
+    symptomEn: 'On the motorway the temperature gauge drops down to 70°C or lower.',
+    categoryIt: 'Raffreddamento',
+    categoryEn: 'Cooling',
+  },
+  {
+    titleIt: 'Infiltrazioni d’Acqua nel Baule o Pavimento',
+    titleEn: 'Water Leaks in Boot or Footwells',
+    symptomIt: 'Umidità sotto i tappetini anteriori o nella vasca ruota di scorta.',
+    symptomEn: 'Dampness beneath front carpets or standing water in spare wheel well.',
+    categoryIt: 'Carrozzeria',
+    categoryEn: 'Bodywork',
+  },
+  {
+    titleIt: 'Spia Avaria Controllo Motore Accesa',
+    titleEn: 'Motor Control System Failure Light',
+    symptomIt: 'Codici errore P0170/P0130, debimetro esaurito o sonde lambda lente.',
+    symptomEn: 'Fault codes P0170/P0130, worn MAF sensor or sluggish oxygen lambda sensors.',
+    categoryIt: 'Elettronica',
+    categoryEn: 'Electronics',
+  },
+  {
+    titleIt: 'Scricchiolii Plancia e Console Centrale',
+    titleEn: 'Dashboard & Center Console Rattles',
+    symptomIt: 'Vibrazioni dalla cupolino strumenti e dalle bocchette aria centrali.',
+    symptomEn: 'Vibration rattles from the instrument hood cowls and central air vents.',
+    categoryIt: 'Interni',
+    categoryEn: 'Interior',
+  },
+];
+---
+
+<BaseLayout
+  title="TechTips & Guide Passo-Passo – Alfa Romeo 156 (156dotnet)"
+  description="Archivio guide tecniche illustrate per Alfa Romeo 156: sostituzione fari, candele Busso V6, airbox con bulloni inox, pulizia debimetro MAF e diagnosi rapida."
+>
+  
+  <!-- Hero Section -->
+  <div class="relative py-12 lg:py-16 bg-alfa-metal-100 dark:bg-alfa-metal-900 border-b border-alfa-metal-200 dark:border-alfa-metal-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl space-y-4">
+        <div class="flex items-center space-x-2 text-xs font-semibold tracking-wider uppercase text-alfa-red-600 dark:text-alfa-red-400">
+          <span class="w-2 h-2 rounded-full bg-alfa-red-600"></span>
+          <span class="lang-it">Officina Virtuale Alfista</span>
+          <span class="lang-en">Alfista Virtual Workshop</span>
+        </div>
+        <h1 class="font-display font-extrabold text-3xl sm:text-5xl text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">TechTips & Guide Tecniche</span>
+          <span class="lang-en">TechTips & Technical Guides</span>
+        </h1>
+        <p class="text-base text-alfa-metal-600 dark:text-alfa-metal-400 leading-relaxed">
+          <span class="lang-it">
+            Le celebri guide pratiche dell'archivio originale, convertite con <strong>immagini ad alta risoluzione</strong>, tempi di lavoro, attrezzi consigliati e galleria interattiva passo-passo.
+          </span>
+          <span class="lang-en">
+            The celebrated practical guides from the original archive, modernized with <strong>high-resolution photography</strong>, estimated times, required tools, and interactive step-by-step lightbox galleries.
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <!-- Filter bar -->
+    <div class="mb-10 flex flex-wrap items-center gap-2">
+      {categories.map((cat, i) => (
+        <button
+          type="button"
+          class={`px-3.5 py-1.5 rounded-xl text-xs font-semibold tracking-wide transition-all ${
+            i === 0
+              ? 'bg-alfa-red-600 text-white shadow-glow-red-sm'
+              : 'bg-white dark:bg-alfa-metal-900 text-alfa-metal-700 dark:text-alfa-metal-300 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-600/50'
+          }`}
+        >
+          <span class="lang-it">{cat.it}</span>
+          <span class="lang-en">{cat.en}</span>
+        </button>
+      ))}
+    </div>
+
+    <!-- Guides Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {techtips.map((guide) => (
+        <TechTipCard
+          title={guide.data.title}
+          title_en={guide.data.title_en}
+          description={guide.data.description}
+          description_en={guide.data.description_en}
+          category={guide.data.category}
+          category_en={guide.data.category_en}
+          difficulty={guide.data.difficulty}
+          difficulty_en={guide.data.difficulty_en}
+          timeRequired={guide.data.timeRequired}
+          timeRequired_en={guide.data.timeRequired_en}
+          stepsCount={guide.data.stepsCount}
+          featuredImage={guide.data.featuredImage}
+          slug={guide.id}
+        />
+      ))}
+    </div>
+
+    <!-- Rapid Diagnostic Sheets Section -->
+    <section class="mt-20 pt-16 border-t border-alfa-metal-200 dark:border-alfa-metal-800">
+      <div class="mb-8">
+        <span class="text-xs font-semibold tracking-wider uppercase text-alfa-red-600">
+          <span class="lang-it">Risoluzione Rapida</span>
+          <span class="lang-en">Quick Troubleshooting</span>
+        </span>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-alfa-metal-900 dark:text-white mt-1">
+          <span class="lang-it">Schede Diagnosi Sintomi Comuni</span>
+          <span class="lang-en">Common Diagnostic Sheets</span>
+        </h2>
+        <p class="text-sm text-alfa-metal-600 dark:text-alfa-metal-400 mt-1">
+          <span class="lang-it">Problemi ricorrenti riscontrati dalla community Alfa 156 con le cause radice e le soluzioni testate.</span>
+          <span class="lang-en">Recurring issues identified by the Alfa 156 community with verified root causes and tested fixes.</span>
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {diagnosticSheets.map((item) => (
+          <div class="p-5 rounded-xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-600/40 transition-all shadow-xs">
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-alfa-metal-100 dark:bg-alfa-metal-800 text-alfa-metal-600 dark:text-alfa-metal-400">
+                <span class="lang-it">{item.categoryIt}</span>
+                <span class="lang-en">{item.categoryEn}</span>
+              </span>
+              <span class="text-xs text-alfa-red-600 font-semibold">
+                <span class="lang-it">Diagnosi</span>
+                <span class="lang-en">Diagnosis</span>
+              </span>
+            </div>
+            <h3 class="font-display font-bold text-base text-alfa-metal-900 dark:text-white mb-2">
+              <span class="lang-it">{item.titleIt}</span>
+              <span class="lang-en">{item.titleEn}</span>
+            </h3>
+            <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400 leading-relaxed">
+              <span class="lang-it">{item.symptomIt}</span>
+              <span class="lang-en">{item.symptomEn}</span>
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </div>
+
+</BaseLayout>

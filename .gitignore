@@ -1,9 +1,10 @@
-﻿# Build & dependencies
+# Build & dependencies
 node_modules/
 dist/
 build/
 .astro/
 .cache/
+archive/
 
 # Environment variables
 .env

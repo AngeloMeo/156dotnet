@@ -1,0 +1,293 @@
+---
+// storia.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const timelineEvents = [
+  {
+    year: '1997',
+    titleIt: 'Debutto al Salone di Francoforte & Rivoluzione Common Rail',
+    titleEn: 'Frankfurt Motor Show Debut & Common Rail Revolution',
+    badgeIt: 'Lancio',
+    badgeEn: 'Launch',
+    descIt: 'Presentata a Francoforte nel settembre 1997 con la firma del Centro Stile Alfa Romeo diretto da Walter de’ Silva. È la prima automobile di serie al mondo a debuttare con la tecnologia turbodiesel Common Rail Unijet (1.9 e 2.4 JTD).',
+    descEn: 'Unveiled in Frankfurt in September 1997 styled by Alfa Romeo Centro Stile under Walter de’ Silva. It was the world’s very first production car to debut with Unijet Common Rail direct injection turbodiesel technology (1.9 and 2.4 JTD).',
+  },
+  {
+    year: '1998',
+    titleIt: 'Auto dell’Anno 1998 (European Car of the Year)',
+    titleEn: 'European Car of the Year 1998',
+    badgeIt: 'Premio Storico',
+    badgeEn: 'Award',
+    descIt: 'La 156 trionfa nel prestigioso premio europeo con un distacco schiacciante: 454 punti assegnati dalla giuria internazionale di 56 giornalisti, stabilendo all’epoca uno dei punteggi più alti mai registrati.',
+    descEn: 'The 156 triumphed with a landslide victory: 454 points from an international jury of 56 motoring journalists, setting one of the highest winning point totals in European Car of the Year history.',
+  },
+  {
+    year: '2000',
+    titleIt: 'Arriva la 156 Sportwagon',
+    titleEn: '156 Sportwagon Introduced',
+    badgeIt: 'Design Iconico',
+    badgeEn: 'Iconic Design',
+    descIt: 'Presentata a Ginevra, la Sportwagon dimostra al mondo che una station wagon può essere affascinante quanto una coupé sportiva, conservando le maniglie posteriori celate nei montanti.',
+    descEn: 'Revealed at the Geneva Motor Show, the Sportwagon proved that an estate car could look just as sensual and sculpted as a sports coupe, retaining concealed rear handles and a rakish roofline.',
+  },
+  {
+    year: '2002',
+    titleIt: 'Nasce la Leggenda: 156 GTA (Gran Turismo Alleggerita)',
+    titleEn: 'Birth of a Legend: 156 GTA',
+    badgeIt: '3.2 V6 250 CV',
+    badgeEn: '3.2 V6 250 bhp',
+    descIt: 'Debutta la versione più estrema: motore V6 Busso 3.2 litri 24 valvole da 250 CV, assetto ribassato di 20mm, carreggiate allargate, freni Brembo e paraurti aggressivi. 0-100 km/h in 6.3 secondi.',
+    descEn: 'The flagship model arrives: 3.2-litre 24V Busso V6 pushing 250 bhp, 20mm lower stance, widened track, beefed-up Brembo calipers, and aggressive bodywork. 0-62 mph in 6.3 seconds.',
+  },
+  {
+    year: '2003',
+    titleIt: 'Restyling di Giorgetto Giugiaro',
+    titleEn: 'Giorgetto Giugiaro Facelift',
+    badgeIt: 'Facelift',
+    badgeEn: 'Facelift',
+    descIt: 'Giorgetto Giugiaro reinterpreta il frontale con uno scudetto più imponente che taglia il paraurti. Debuttano i potenti 1.9 JTDm 16V da 140/150 CV e 2.4 JTDm 20V da 175 CV.',
+    descEn: 'Giorgetto Giugiaro restyled the front end with a deeper, bolder Scudetto grille cutting through the bumper. Powerful 1.9 JTDm 16V (140/150 bhp) and 2.4 JTDm 20V (175 bhp) engines debuted.',
+  },
+  {
+    year: '2000 - 2003',
+    titleIt: 'Trionfi nei Campionati Turismo ETCC & DTM',
+    titleEn: 'ETCC & Touring Car Dominance',
+    badgeIt: 'Motorsport',
+    badgeEn: 'Motorsport',
+    descIt: 'La 156 Superturismo domina le piste europee conquistando 4 campionati costruttori e piloti consecutivi nell’ETCC con Fabrizio Giovanardi e Gabriele Tarquini.',
+    descEn: 'The 156 Superturismo dominated European racing circuits, claiming 4 consecutive manufacturer and driver championships in the ETCC with Fabrizio Giovanardi and Gabriele Tarquini.',
+  },
+];
+
+const enginesData = [
+  { name: '1.6 Twin Spark 16V', type: 'Petrol L4', power: '120 CV @ 6300 rpm', torque: '144 Nm @ 4500 rpm', period: '1997-2005' },
+  { name: '1.8 Twin Spark 16V', type: 'Petrol L4', power: '144 CV (poi 140) @ 6500 rpm', torque: '169 Nm @ 3500 rpm', period: '1997-2005' },
+  { name: '2.0 Twin Spark 16V', type: 'Petrol L4', power: '155 CV (poi 150) @ 6400 rpm', torque: '187 Nm @ 3500 rpm', period: '1997-2002' },
+  { name: '2.0 JTS 16V Direct Injection', type: 'Petrol L4', power: '165 CV @ 6400 rpm', torque: '206 Nm @ 3250 rpm', period: '2002-2005' },
+  { name: '2.5 V6 24V Busso', type: 'Petrol V6 60°', power: '190 CV (poi 192) @ 6300 rpm', torque: '222 Nm @ 5000 rpm', period: '1997-2005' },
+  { name: '3.2 V6 24V GTA Busso', type: 'Petrol V6 60°', power: '250 CV @ 6200 rpm', torque: '300 Nm @ 4800 rpm', period: '2002-2005' },
+  { name: '1.9 JTD 8V Unijet', type: 'Turbodiesel L4', power: '105 / 110 / 115 CV', torque: '255 - 275 Nm', period: '1997-2005' },
+  { name: '1.9 JTDm 16V Multijet', type: 'Turbodiesel L4', power: '140 / 150 CV @ 4000 rpm', torque: '305 Nm @ 2000 rpm', period: '2003-2005' },
+  { name: '2.4 JTD 10V Unijet', type: 'Turbodiesel L5', power: '136 / 140 / 150 CV', torque: '304 - 310 Nm', period: '1997-2003' },
+  { name: '2.4 JTDm 20V Multijet', type: 'Turbodiesel L5', power: '175 CV @ 4000 rpm', torque: '385 Nm @ 2000 rpm', period: '2003-2005' },
+];
+---
+
+<BaseLayout
+  title="Storia, Design & Versioni – Alfa Romeo 156 (156dotnet)"
+  description="La storia dell'Alfa Romeo 156: il design rivoluzionario di Walter de' Silva, la vittoria al Car of the Year 1998, la GTA, il restyling Giugiaro e i trionfi in pista."
+>
+  <!-- Hero Section -->
+  <div class="relative py-12 lg:py-16 bg-alfa-metal-100 dark:bg-alfa-metal-900 border-b border-alfa-metal-200 dark:border-alfa-metal-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl space-y-4">
+        <div class="flex items-center space-x-2 text-xs font-semibold tracking-wider uppercase text-alfa-red-600 dark:text-alfa-red-400">
+          <span class="w-2 h-2 rounded-full bg-alfa-red-600"></span>
+          <span class="lang-it">Eredità & Trionfi 1997 - 2007</span>
+          <span class="lang-en">Heritage & Triumphs 1997 - 2007</span>
+        </div>
+        <h1 class="font-display font-extrabold text-3xl sm:text-5xl text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">Storia, Design & Leggenda</span>
+          <span class="lang-en">History, Design & Legend</span>
+        </h1>
+        <p class="text-base text-alfa-metal-600 dark:text-alfa-metal-400 leading-relaxed">
+          <span class="lang-it">
+            L'automobile che ha salvato e rilanciato l'identità sportiva dell'Alfa Romeo nel mondo, unendo bellezza scultorea, innovazione motoristica e trionfi nei campionati turismo.
+          </span>
+          <span class="lang-en">
+            The car that revitalized Alfa Romeo's sporting spirit globally, marrying sculpted beauty, mechanical innovation, and touring car championships.
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+    
+    <!-- Walter de' Silva Section -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-7 space-y-5">
+        <span class="text-xs font-semibold uppercase tracking-wider text-alfa-red-600">
+          <span class="lang-it">Genio Stilistico Italiano</span>
+          <span class="lang-en">Italian Design Genius</span>
+        </span>
+        <h2 class="font-display font-bold text-3xl text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">La Rivoluzione di Walter de' Silva</span>
+          <span class="lang-en">The Walter de' Silva Revolution</span>
+        </h2>
+        <p class="text-sm sm:text-base text-alfa-metal-700 dark:text-alfa-metal-300 leading-relaxed">
+          <span class="lang-it">
+            A metà degli anni Novanta, il Centro Stile Alfa Romeo di Arese riceve il compito di sostituire la spigolosa 155. Sotto la direzione di <strong>Walter de' Silva</strong>, i designer tracciano linee fluide ispirate alle grandi sportive del dopoguerra come la Giulietta Sprint e la 1900.
+          </span>
+          <span class="lang-en">
+            In the mid-1990s, Alfa Romeo Centro Stile in Arese was tasked with replacing the boxy 155. Guided by <strong>Walter de' Silva</strong>, the design team sculpted taut, feline surfaces inspired by post-war legends like the Giulietta Sprint and 1900.
+          </span>
+        </p>
+
+        <ul class="space-y-2 text-xs sm:text-sm text-alfa-metal-600 dark:text-alfa-metal-400">
+          <li class="flex items-start space-x-2">
+            <span class="text-alfa-red-600 font-bold">•</span>
+            <span>
+              <strong class="lang-it">Maniglie posteriori a scomparsa:</strong>
+              <strong class="lang-en">Hidden rear door handles:</strong>
+              <span class="lang-it"> Annegate nei montanti neri dei finestrini, conferiscono alla berlina 4 porte l'aspetto compatto di una pura coupé.</span>
+              <span class="lang-en"> Recessed into the black window C-pillars, giving the 4-door saloon the sleek silhouette of a 2-door coupe.</span>
+            </span>
+          </li>
+          <li class="flex items-start space-x-2">
+            <span class="text-alfa-red-600 font-bold">•</span>
+            <span>
+              <strong class="lang-it">Lo Scudetto prominente:</strong>
+              <strong class="lang-en">The prominent Scudetto:</strong>
+              <span class="lang-it"> Il trilobo cromato scende così in basso da imporre lo spostamento della targa sulla sinistra.</span>
+              <span class="lang-en"> The deep chrome shield plunged down so far that the number plate had to be offset to the nearside.</span>
+            </span>
+          </li>
+          <li class="flex items-start space-x-2">
+            <span class="text-alfa-red-600 font-bold">•</span>
+            <span>
+              <strong class="lang-it">Cockpit a doppio cannocchiale:</strong>
+              <strong class="lang-en">Twin-cowl instrument pods:</strong>
+              <span class="lang-it"> Tachimetro e contagiri racchiusi in pozzetti orientati rigorosamente verso il pilota.</span>
+              <span class="lang-en"> Speedometer and rev counter set deep within hooded binnacles focused purely on the driver.</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-5 p-8 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 space-y-4">
+        <h3 class="font-display font-bold text-xl text-alfa-metal-900 dark:text-white border-b border-alfa-metal-100 dark:border-alfa-metal-800 pb-3">
+          <span class="lang-it">I Numeri del Successo</span>
+          <span class="lang-en">By The Numbers</span>
+        </h3>
+        <dl class="space-y-3 text-xs sm:text-sm">
+          <div class="flex justify-between">
+            <dt class="text-alfa-metal-500">
+              <span class="lang-it">Unità vendute:</span>
+              <span class="lang-en">Total Production:</span>
+            </dt>
+            <dd class="font-bold text-alfa-metal-900 dark:text-white">680.000+ units</dd>
+          </div>
+          <div class="flex justify-between">
+            <dt class="text-alfa-metal-500">
+              <span class="lang-it">Stabilimento:</span>
+              <span class="lang-en">Plant:</span>
+            </dt>
+            <dd class="font-bold text-alfa-metal-900 dark:text-white">Pomigliano d'Arco (NA)</dd>
+          </div>
+          <div class="flex justify-between">
+            <dt class="text-alfa-metal-500">
+              <span class="lang-it">Car of the Year:</span>
+              <span class="lang-en">Car of the Year:</span>
+            </dt>
+            <dd class="font-bold text-alfa-red-600">1998 (454 pts)</dd>
+          </div>
+          <div class="flex justify-between">
+            <dt class="text-alfa-metal-500">
+              <span class="lang-it">Titoli ETCC:</span>
+              <span class="lang-en">ETCC Titles:</span>
+            </dt>
+            <dd class="font-bold text-alfa-metal-900 dark:text-white">4 European Touring Championships</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="space-y-10">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="text-xs font-semibold uppercase tracking-wider text-alfa-red-600">
+          <span class="lang-it">Tappe Fondamentali</span>
+          <span class="lang-en">Key Milestones</span>
+        </span>
+        <h2 class="font-display font-bold text-3xl text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">Cronologia del Modello</span>
+          <span class="lang-en">Model Chronology</span>
+        </h2>
+      </div>
+
+      <div class="space-y-6">
+        {timelineEvents.map((item) => (
+          <div class="p-6 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-600/40 transition-all flex flex-col md:flex-row gap-6 items-start">
+            <div class="md:w-36 flex-shrink-0">
+              <span class="font-display font-extrabold text-2xl text-alfa-red-600">{item.year}</span>
+              <span class="block text-xs font-semibold uppercase tracking-wider text-alfa-metal-500 mt-0.5">
+                <span class="lang-it">{item.badgeIt}</span>
+                <span class="lang-en">{item.badgeEn}</span>
+              </span>
+            </div>
+            <div class="space-y-1.5 flex-1">
+              <h3 class="font-display font-bold text-lg text-alfa-metal-900 dark:text-white">
+                <span class="lang-it">{item.titleIt}</span>
+                <span class="lang-en">{item.titleEn}</span>
+              </h3>
+              <p class="text-xs sm:text-sm text-alfa-metal-600 dark:text-alfa-metal-400 leading-relaxed">
+                <span class="lang-it">{item.descIt}</span>
+                <span class="lang-en">{item.descEn}</span>
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Engine Specifications Table -->
+    <section id="motori" class="space-y-6">
+      <div class="space-y-2">
+        <span class="text-xs font-semibold uppercase tracking-wider text-alfa-red-600">
+          <span class="lang-it">Specifiche Tecniche</span>
+          <span class="lang-en">Technical Specifications</span>
+        </span>
+        <h2 class="font-display font-bold text-3xl text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">Gamma Motori Alfa 156 (1997 - 2005)</span>
+          <span class="lang-en">Alfa 156 Engine Range (1997 - 2005)</span>
+        </h2>
+        <p class="text-sm text-alfa-metal-600 dark:text-alfa-metal-400">
+          <span class="lang-it">Dati ufficiali delle motorizzazioni benzina Twin Spark, JTS, V6 Busso e turbodiesel JTD / JTDm.</span>
+          <span class="lang-en">Official specifications for Twin Spark, JTS, Busso V6 petrol, and JTD / JTDm turbodiesel engines.</span>
+        </p>
+      </div>
+
+      <div class="overflow-x-auto rounded-2xl border border-alfa-metal-200 dark:border-alfa-metal-800 bg-white dark:bg-alfa-metal-900 shadow-xs">
+        <table class="w-full text-left text-xs sm:text-sm">
+          <thead class="bg-alfa-metal-50 dark:bg-alfa-metal-950 border-b border-alfa-metal-200 dark:border-alfa-metal-800 text-alfa-metal-500 font-semibold uppercase tracking-wider">
+            <tr>
+              <th class="py-3.5 px-4">
+                <span class="lang-it">Motore</span>
+                <span class="lang-en">Engine</span>
+              </th>
+              <th class="py-3.5 px-4">
+                <span class="lang-it">Architettura</span>
+                <span class="lang-en">Type</span>
+              </th>
+              <th class="py-3.5 px-4">
+                <span class="lang-it">Potenza Max</span>
+                <span class="lang-en">Max Power</span>
+              </th>
+              <th class="py-3.5 px-4">
+                <span class="lang-it">Coppia Max</span>
+                <span class="lang-en">Max Torque</span>
+              </th>
+              <th class="py-3.5 px-4">
+                <span class="lang-it">Produzione</span>
+                <span class="lang-en">Production</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-alfa-metal-100 dark:divide-alfa-metal-800 text-alfa-metal-700 dark:text-alfa-metal-300">
+            {enginesData.map((eng) => (
+              <tr class="hover:bg-alfa-metal-50/60 dark:hover:bg-alfa-metal-800/50 transition-colors">
+                <td class="py-3 px-4 font-semibold text-alfa-metal-900 dark:text-white">{eng.name}</td>
+                <td class="py-3 px-4 text-alfa-metal-500">{eng.type}</td>
+                <td class="py-3 px-4 font-mono font-medium text-alfa-red-600 dark:text-alfa-red-400">{eng.power}</td>
+                <td class="py-3 px-4 font-mono">{eng.torque}</td>
+                <td class="py-3 px-4 text-alfa-metal-500">{eng.period}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>

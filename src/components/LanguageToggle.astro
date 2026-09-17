@@ -1,0 +1,58 @@
+---
+// LanguageToggle.astro
+---
+
+<button
+  id="language-toggle"
+  type="button"
+  class="relative inline-flex items-center px-2.5 py-1.5 rounded-xl text-xs font-bold tracking-wider font-mono bg-alfa-metal-100/80 dark:bg-alfa-metal-800/80 border border-alfa-metal-200 dark:border-alfa-metal-700 hover:border-alfa-red-600/40 dark:hover:border-alfa-red-500/40 transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-alfa-red-600/50"
+  aria-label="Cambia lingua (IT / EN)"
+  title="Cambia lingua / Switch language (IT / EN)"
+>
+  <span id="lang-indicator-it" class="px-1 py-0.5 rounded transition-colors text-alfa-red-600 dark:text-alfa-red-400 font-extrabold bg-alfa-red-50 dark:bg-alfa-red-950/60">
+    IT
+  </span>
+  <span class="text-alfa-metal-400 dark:text-alfa-metal-600 mx-0.5 select-none">|</span>
+  <span id="lang-indicator-en" class="px-1 py-0.5 rounded transition-colors text-alfa-metal-500 dark:text-alfa-metal-400 font-medium">
+    EN
+  </span>
+</button>
+
+<script>
+  function setupLanguageToggle() {
+    const toggleBtn = document.getElementById('language-toggle');
+    const indicatorIt = document.getElementById('lang-indicator-it');
+    const indicatorEn = document.getElementById('lang-indicator-en');
+    if (!toggleBtn || !indicatorIt || !indicatorEn) return;
+
+    function updateIndicators(lang: string) {
+      if (lang === 'en') {
+        indicatorIt.className = 'px-1 py-0.5 rounded transition-colors text-alfa-metal-500 dark:text-alfa-metal-400 font-medium';
+        indicatorEn.className = 'px-1 py-0.5 rounded transition-colors text-alfa-red-600 dark:text-alfa-red-400 font-extrabold bg-alfa-red-50 dark:bg-alfa-red-950/60';
+      } else {
+        indicatorIt.className = 'px-1 py-0.5 rounded transition-colors text-alfa-red-600 dark:text-alfa-red-400 font-extrabold bg-alfa-red-50 dark:bg-alfa-red-950/60';
+        indicatorEn.className = 'px-1 py-0.5 rounded transition-colors text-alfa-metal-500 dark:text-alfa-metal-400 font-medium';
+      }
+    }
+
+    const currentLang = document.documentElement.getAttribute('data-lang') || 'it';
+    updateIndicators(currentLang);
+
+    // Toggle on click
+    toggleBtn.addEventListener('click', () => {
+      const activeLang = document.documentElement.getAttribute('data-lang') || 'it';
+      const newLang = activeLang === 'it' ? 'en' : 'it';
+
+      document.documentElement.setAttribute('data-lang', newLang);
+      document.documentElement.setAttribute('lang', newLang);
+      localStorage.setItem('lang', newLang);
+      updateIndicators(newLang);
+
+      // Dispatch custom event for any listening components
+      window.dispatchEvent(new CustomEvent('languagechange', { detail: { lang: newLang } }));
+    });
+  }
+
+  setupLanguageToggle();
+  document.addEventListener('astro:page-load', setupLanguageToggle);
+</script>

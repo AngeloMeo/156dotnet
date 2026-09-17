@@ -1,0 +1,99 @@
+@import '@fontsource/outfit/400.css';
+@import '@fontsource/outfit/600.css';
+@import '@fontsource/outfit/700.css';
+@import '@fontsource/outfit/800.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #990000;
+    --color-primary-hover: #b81414;
+    --bg-base: #f8f9fa;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f3f5;
+    --border-metal: #e2e5ea;
+    --text-main: #14151a;
+    --text-muted: #525866;
+  }
+
+  html.dark {
+    --color-primary: #990000;
+    --color-primary-hover: #c51010;
+    --bg-base: #0c0d10;
+    --bg-card: #14151a;
+    --bg-card-hover: #1b1d24;
+    --border-metal: #2a2d36;
+    --text-main: #f4f6f8;
+    --text-muted: #9ea4b0;
+  }
+
+  body {
+    background-color: var(--bg-base);
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    transition: background-color 0.25s ease, color 0.25s ease;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom Alfa Romeo metallic details */
+.bg-carbon {
+  background-color: #111215;
+  background-image: 
+    radial-gradient(#22252e 15%, transparent 16%),
+    radial-gradient(#22252e 15%, transparent 16%);
+  background-size: 12px 12px;
+  background-position: 0 0, 6px 6px;
+}
+
+.scudetto-border {
+  border-image: linear-gradient(to bottom, #990000, #373c47) 1;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #14151a;
+}
+::-webkit-scrollbar-thumb {
+  background: #373c47;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #990000;
+}
+
+/* Bilingual content switching rules */
+html[data-lang="it"] .lang-en {
+  display: none !important;
+}
+html[data-lang="en"] .lang-it {
+  display: none !important;
+}
+html[data-lang="it"] .inline-lang-en {
+  display: none !important;
+}
+html[data-lang="en"] .inline-lang-it {
+  display: none !important;
+}
+
+/* Lightbox styles */
+.lightbox-open {
+  overflow: hidden;
+}
+
