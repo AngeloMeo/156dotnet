@@ -1,0 +1,231 @@
+---
+// src/pages/technical/tuning/engine.astro
+import Layout from '../../../layouts/Layout.astro';
+
+// Novitec Compressor Table
+const novitecCompressor = [
+  { motor: '3.2 V6 GTA', stdPower: '184 (250)', modTorque: '400 (4500)', topSpeed: '265 km/h', newPower: '256 (348)', accel: '5.2 s' },
+  { motor: '2.5 V6 24V', stdPower: '141/138 (192/188)', modTorque: '320 (4400)', topSpeed: '255 km/h', newPower: '198 (269)', accel: '5.9 s' },
+  { motor: '2.0 TS 16V', stdPower: '110 (150)', modTorque: '304 (3600)', topSpeed: '231 km/h', newPower: '153 (208)', accel: '6.6 s' },
+  { motor: '1.8 TS 16V', stdPower: '103 (140)', modTorque: '281 (3700)', topSpeed: '221 km/h', newPower: '141 (192)', accel: '7.8 s' },
+  { motor: '1.6 TS 16V', stdPower: '88 (120)', modTorque: '259 (3800)', topSpeed: '213 km/h', newPower: '130 (177)', accel: '8.1 s' }
+];
+
+// Novitec Turbo Table
+const novitecTurbo = [
+  { motor: '2.5 V6 to 3.0 Bi-Turbo (*)', stdPower: '140 (190)', modTorque: '434 (4000)', topSpeed: '283 km/h', newPower: '226 (308)', accel: '5.7 s' },
+  { motor: '2.5 V6 24V Bi-Turbo (*)', stdPower: '140 (190)', modTorque: '401 (4400)', topSpeed: '269 km/h', newPower: '196 (267)', accel: '5.9 s' },
+  { motor: '2.0 TS Turbo', stdPower: '114 (155)', modTorque: '332 (3700)', topSpeed: '244 km/h', newPower: '160 (218)', accel: '6.2 s' },
+  { motor: '1.8 TS Turbo', stdPower: '106 (144)', modTorque: '309 (4100)', topSpeed: '236 km/h', newPower: '148 (201)', accel: '7.3 s' }
+];
+---
+
+<Layout
+  title="Elaborazioni Motore Alfa 156 (Novitec, Squadra, Autodelta) | Cuore Sportivo Archive"
+  description="Dossier storico integrale sulle elaborazioni motoristiche per Alfa Romeo 156: kit compressore e turbo Novitec, rimappature Squadra Tuning e conversioni V6."
+  currentPath="/technical/tuning"
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex items-center space-x-2 text-xs font-mono text-alfa-metal-500 mb-6">
+      <a href="/" class="hover:text-alfa-red-600">Home</a>
+      <span>/</span>
+      <a href="/technical" class="hover:text-alfa-red-600">Technical</a>
+      <span>/</span>
+      <a href="/technical/tuning" class="hover:text-alfa-red-600">Tuning</a>
+      <span>/</span>
+      <span class="text-alfa-red-600 font-bold">Motor Tuning</span>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="border-b border-alfa-metal-200 dark:border-alfa-metal-800 pb-8 mb-10">
+      <h1 class="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-alfa-metal-900 dark:text-white">
+        <span class="lang-it">Elaborazione Motori: Sovralimentazione & Centraline</span>
+        <span class="lang-en">Engine Tuning: Forced Induction & Electronics</span>
+      </h1>
+
+      <p class="mt-4 text-base sm:text-lg text-alfa-metal-600 dark:text-alfa-metal-300 max-w-3xl leading-relaxed">
+        <span class="lang-it">
+          Tutti i programmi di potenziamento ufficiali offerti dai più celebri preparatori europei dell'epoca per Alfa Romeo 156: kit compressore volumetrico e turbo Novitec, rimappature Squadra Tuning, conversioni cilindrata Autodelta e AH Motorsports.
+        </span>
+        <span class="lang-en">
+          All original performance packages from the leading European tuners for the Alfa 156: Novitec supercharger and turbo kits, Squadra Tuning remaps, and Autodelta / AH Motorsports V6 displacement enlargements.
+        </span>
+      </p>
+    </div>
+
+    <!-- NOVITEC COMPRESSOR -->
+    <div class="mb-14 p-6 sm:p-8 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center space-x-3">
+          <div class="w-9 h-9 rounded-lg bg-alfa-red-600 text-white flex items-center justify-center font-bold">N</div>
+          <h2 class="font-display text-2xl font-bold text-alfa-metal-900 dark:text-white">Novitec — Kit Compressore Volumetrico (Kompressor)</h2>
+        </div>
+        <span class="text-xs font-mono text-alfa-metal-500">Stetten, Germany</span>
+      </div>
+
+      <p class="text-sm text-alfa-metal-600 dark:text-alfa-metal-300 mb-6 leading-relaxed">
+        <span class="lang-it">
+          Novitec ha sviluppato celebri kit con compressore centrifugo azionato a cinghia e intercooler aria-aria. La sovralimentazione dolce e lineare preserva il tipico allungo del motore Alfa Romeo aumentando la coppia motrice fin dai bassi regimi.
+        </span>
+        <span class="lang-en">
+          Novitec developed renowned belt-driven centrifugal supercharger conversions with front-mount intercoolers. Delivering linear boost, it preserved the legendary Alfa high-revving roar while massive low-end torque transformed driveability.
+        </span>
+      </p>
+
+      <div class="overflow-x-auto rounded-xl border border-alfa-metal-200 dark:border-alfa-metal-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-alfa-metal-100 dark:bg-alfa-metal-900 text-alfa-metal-700 dark:text-alfa-metal-200 border-b border-alfa-metal-200 dark:border-alfa-metal-800 font-bold">
+              <th class="p-3">Basismotor</th>
+              <th class="p-3">Originale CV</th>
+              <th class="p-3">Coppia Modificata</th>
+              <th class="p-3">Velocità Max</th>
+              <th class="p-3">Potenza Novitec</th>
+              <th class="p-3">0-100 km/h</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-alfa-metal-200 dark:divide-alfa-metal-800 font-mono bg-white dark:bg-alfa-metal-950">
+            {novitecCompressor.map((row) => (
+              <tr class="hover:bg-alfa-red-50/40 dark:hover:bg-alfa-metal-900/50">
+                <td class="p-3 font-sans font-bold text-alfa-red-600 dark:text-alfa-red-400">{row.motor}</td>
+                <td class="p-3">{row.stdPower}</td>
+                <td class="p-3 text-alfa-metal-800 dark:text-alfa-silver-200">{row.modTorque}</td>
+                <td class="p-3 font-bold text-alfa-metal-900 dark:text-white">{row.topSpeed}</td>
+                <td class="p-3 font-bold text-emerald-600 dark:text-emerald-400">{row.newPower} CV</td>
+                <td class="p-3 text-alfa-metal-800 dark:text-alfa-silver-200">{row.accel}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- NOVITEC TURBO & BITURBO -->
+    <div class="mb-14 p-6 sm:p-8 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center space-x-3">
+          <div class="w-9 h-9 rounded-lg bg-alfa-metal-900 dark:bg-white text-white dark:text-alfa-metal-900 flex items-center justify-center font-bold">T</div>
+          <h2 class="font-display text-2xl font-bold text-alfa-metal-900 dark:text-white">Novitec — Kit Turbo & Bi-Turbo</h2>
+        </div>
+        <span class="text-xs font-mono text-alfa-metal-500">Stetten, Germany</span>
+      </div>
+
+      <p class="text-sm text-alfa-metal-600 dark:text-alfa-metal-300 mb-6 leading-relaxed">
+        <span class="lang-it">
+          Per gli alfisti in cerca di prestazioni estreme, Novitec realizzò kit con turbocompressore su cuscinetti per il 2.0 TS e spettacolari conversioni Bi-Turbo per il Busso 2.5 e 3.0 V6 24V.
+        </span>
+        <span class="lang-en">
+          For enthusiasts seeking maximum velocity, Novitec built turbocharger packages for the 2.0 TS and magnificent twin-turbo conversions for the 2.5 and 3.0 Busso V6 24V engines.
+        </span>
+      </p>
+
+      <div class="overflow-x-auto rounded-xl border border-alfa-metal-200 dark:border-alfa-metal-800">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-alfa-metal-100 dark:bg-alfa-metal-900 text-alfa-metal-700 dark:text-alfa-metal-200 border-b border-alfa-metal-200 dark:border-alfa-metal-800 font-bold">
+              <th class="p-3">Basismotor</th>
+              <th class="p-3">Originale CV</th>
+              <th class="p-3">Coppia Modificata</th>
+              <th class="p-3">Velocità Max</th>
+              <th class="p-3">Potenza Novitec</th>
+              <th class="p-3">0-100 km/h</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-alfa-metal-200 dark:divide-alfa-metal-800 font-mono bg-white dark:bg-alfa-metal-950">
+            {novitecTurbo.map((row) => (
+              <tr class="hover:bg-alfa-red-50/40 dark:hover:bg-alfa-metal-900/50">
+                <td class="p-3 font-sans font-bold text-alfa-red-600 dark:text-alfa-red-400">{row.motor}</td>
+                <td class="p-3">{row.stdPower}</td>
+                <td class="p-3 text-alfa-metal-800 dark:text-alfa-silver-200">{row.modTorque}</td>
+                <td class="p-3 font-bold text-alfa-metal-900 dark:text-white">{row.topSpeed} km/h</td>
+                <td class="p-3 font-bold text-emerald-600 dark:text-emerald-400">{row.newPower} CV</td>
+                <td class="p-3 text-alfa-metal-800 dark:text-alfa-silver-200">{row.accel} s</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs font-mono text-alfa-metal-500 mt-2">
+        *) Kit Bi-Turbo per Busso V6 24V. Comprende intercooler maggiorati, tubazioni in inox e collettori di scarico specifici.
+      </p>
+    </div>
+
+    <!-- OTHER TUNERS -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14">
+      
+      <!-- Squadra Tuning -->
+      <div class="p-6 rounded-xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs">
+        <h3 class="font-display text-xl font-bold text-alfa-metal-900 dark:text-white mb-2">
+          Squadra Tuning (Olanda)
+        </h3>
+        <p class="text-xs sm:text-sm text-alfa-metal-600 dark:text-alfa-metal-300 leading-relaxed">
+          <span class="lang-it">
+            Stephan Lenior di Squadra Tuning ha sviluppato le mappature per ECU Bosch più apprezzate dalla community europea. Guadagni tipici: +10 CV su 1.6 TS, +11 CV su 1.8 TS, +13 CV su 2.0 TS e fino a +20 CV sul Busso 2.5 V6 24V, con limitatore di giri spostato a 7200 rpm ed erogazione più vigorosa a medio regime.
+          </span>
+          <span class="lang-en">
+            Stephan Lenior of Squadra Tuning developed the most respected Bosch ECU remaps in Europe. Real dyno gains: +10 bhp on 1.6 TS, +11 bhp on 1.8 TS, +13 bhp on 2.0 TS and up to +20 bhp on 2.5 V6 with a crisp 7200 rpm redline.
+          </span>
+        </p>
+      </div>
+
+      <!-- Autodelta -->
+      <div class="p-6 rounded-xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs">
+        <h3 class="font-display text-xl font-bold text-alfa-metal-900 dark:text-white mb-2">
+          Autodelta (Londra, UK)
+        </h3>
+        <p class="text-xs sm:text-sm text-alfa-metal-600 dark:text-alfa-metal-300 leading-relaxed">
+          <span class="lang-it">
+            Fondata da Jano Djelalian, Autodelta ha realizzato le conversioni meccaniche più famose per il V6: aumento di cilindrata da 2.5 a 3.3 litri (+80 CV) e la straordinaria versione 3.7 litri da 328 CV per la 156 GTA, oltre a kit con compressore Rotrex.
+          </span>
+          <span class="lang-en">
+            Founded by Jano Djelalian, London-based Autodelta built legendary bespoke V6 conversions: 2.5 to 3.3 litre capacity enlargements (+80 bhp) and the iconic 3.7-litre 328 bhp GTA package alongside Rotrex superchargers.
+          </span>
+        </p>
+      </div>
+
+      <!-- Z-Engineering & Kerscher -->
+      <div class="p-6 rounded-xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs">
+        <h3 class="font-display text-xl font-bold text-alfa-metal-900 dark:text-white mb-2">
+          Z-Engineering & Kerscher Motoren
+        </h3>
+        <p class="text-xs sm:text-sm text-alfa-metal-600 dark:text-alfa-metal-300 leading-relaxed">
+          <span class="lang-it">
+            Z-Engineering offriva un kit compressore reversibile omologato TÜV per il 2.5 V6 portandolo da 190 a 270 CV. Kerscher Motoren commercializzava un kit volumetrico con un incremento certificato di +50 CV e +36 kW rispetto alla serie.
+          </span>
+          <span class="lang-en">
+            Z-Engineering engineered a fully reversible TÜV-approved supercharger kit for the 2.5 V6 increasing power from 190 to 270 bhp. Kerscher Motoren offered a compressor kit providing +50 bhp over standard.
+          </span>
+        </p>
+      </div>
+
+      <!-- Madeno Racing & AH Motorsports -->
+      <div class="p-6 rounded-xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs">
+        <h3 class="font-display text-xl font-bold text-alfa-metal-900 dark:text-white mb-2">
+          Madeno Racing & AH Motorsports
+        </h3>
+        <p class="text-xs sm:text-sm text-alfa-metal-600 dark:text-alfa-metal-300 leading-relaxed">
+          <span class="lang-it">
+            Madeno Racing (Olanda) specializzata in preparazioni racing con conversione da 2.5 a 3.0 V6 da 260+ CV. AH Motorsports (UK) costruttore di motori da corsa su base Busso con cubature maggiorate a 3.2, 3.5 e 3.8 litri con bielle forgiate e corpi farfallati singoli.
+          </span>
+          <span class="lang-en">
+            Madeno Racing (Netherlands) engineered race-proven 2.5 to 3.0 conversions yielding 260+ bhp. AH Motorsports (UK) built bespoke V6 race units in 3.2, 3.5 and 3.8 litre displacements with forged internals and throttle bodies.
+          </span>
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Back to Hub -->
+    <div class="border-t border-alfa-metal-200 dark:border-alfa-metal-800 pt-6 flex justify-between items-center text-xs font-mono">
+      <a href="/technical/tuning" class="text-alfa-red-600 dark:text-alfa-red-400 font-bold hover:underline">
+        ← Torna all'indice Tuning
+      </a>
+      <a href="/technical/tuning/handling" class="text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 transition-colors">
+        Prossimo dossier: Assetto & Tenuta Alfanytt →
+      </a>
+    </div>
+
+  </div>
+</Layout>

@@ -1,75 +1,135 @@
 ---
-// index.astro
-import BaseLayout from '../layouts/BaseLayout.astro';
-import TechTipCard from '../components/TechTipCard.astro';
-import { getCollection } from 'astro:content';
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+import Lightbox from '../components/Lightbox.astro';
 
-const techtips = await getCollection('techtips');
-const featuredGuides = techtips.slice(0, 6);
+const pillars = [
+  {
+    titleIt: 'Specifiche Tecniche & Motori',
+    titleEn: 'Technical Specs & Engines',
+    descIt: 'Tutti i dati ufficiali di motori Euro 2, Euro 3, Facelift 2002 e GTA. Rapporti cambio, pesi e geometrie del quadrilatero alto.',
+    descEn: 'Factory specifications for Euro 2, Euro 3, 2002 Facelift and GTA engines. Gear ratios, kerb weights and double wishbone geometry.',
+    link: '/technical',
+    badge: 'teknisk.html',
+    icon: '⚡'
+  },
+  {
+    titleIt: 'Problemi Noti & Guide Passo-Passo',
+    titleEn: 'Known Problems & DIY Guides',
+    descIt: 'I 6 difetti congeniti storici (plancia, variatore, braccetti, infiltrazioni) e oltre 15 guide illustrate di Jeff e Anders.',
+    descEn: 'The 6 classic known faults (dash rattles, TS variator, wishbones, leaks) and over 15 illustrated guides by Jeff and Anders.',
+    link: '/technical/tips',
+    badge: 'info.html',
+    icon: '🔧'
+  },
+  {
+    titleIt: 'Guida all\'Acquisto (Buyer\'s Guide)',
+    titleEn: 'Alfa 156 Buyer\'s Guide',
+    descIt: 'La lista di controllo originale a 16 punti di Anders, la checklist stampabile a 48 punti di Posty e le scansioni di Auto Italia.',
+    descEn: 'Anders\' original 16-point checklist, Posty\'s 48-point printable PDF checklist and full Auto Italia magazine buyer\'s dossiers.',
+    link: '/buyers-guide',
+    badge: 'buyersg.html',
+    icon: '📋'
+  },
+  {
+    titleIt: 'Dossier Tuning & Elaborazioni',
+    titleEn: 'Tuning & Road Handling',
+    descIt: 'Kit compressore e turbo Novitec (fino a 348 CV), rimappature Squadra Tuning, guida assetto Alfanytt e scarichi Ragazzon.',
+    descEn: 'Novitec superchargers and turbos (up to 348 bhp), Squadra Tuning remaps, Alfanytt handling guide and Ragazzon exhausts.',
+    link: '/technical/tuning',
+    badge: 'tuning.html',
+    icon: '🏁'
+  },
+  {
+    titleIt: 'Archivio Styling & Bodykit d\'Epoca',
+    titleEn: 'Period Styling & Bodykits',
+    descIt: 'I kit estetici storici dei maggiori carrozzieri: Cadamuro Design, Novitec, Zender, Autodelta, MS Design e Lester.',
+    descEn: 'The period aerodynamic packages from leading tuners: Cadamuro Design, Novitec, Zender, Autodelta, MS Design and Lester.',
+    link: '/styling',
+    badge: 'styling.html',
+    icon: '🎨'
+  },
+  {
+    titleIt: 'Storia del Progetto 932',
+    titleEn: 'History of Project 932',
+    descIt: 'La genesi del design di Walter de\' Silva, l\'ispirazione Nuvola, il trionfo di Auto dell\'Anno 1998 e le gare STC.',
+    descEn: 'Walter de Silva\'s design genesis, Nuvola inspiration, Car of the Year 1998 triumph and European Super Touring titles.',
+    link: '/storia',
+    badge: 'history.html',
+    icon: '🏆'
+  }
+];
+
+const featuredGuides = [
+  { slug: 'variator', titleIt: 'Variatore di fase Twin Spark (Rumore Diesel)', titleEn: 'Twin Spark Cam Variator (Diesel Sound)', tag: 'Motore' },
+  { slug: 'v6sparks', titleIt: 'Sostituzione candele Busso V6 24V', titleEn: 'V6 24V Spark Plug Change', tag: 'V6' },
+  { slug: 'wishbone', titleIt: 'Cigolii bracci e gommini sospensione', titleEn: 'Front Wishbone Suspension Creaks', tag: 'Assetto' },
+  { slug: 'maf', titleIt: 'Debimetro / Sensore MAF: pulizia e diagnosi', titleEn: 'MAF Sensor Cleaning & Diagnosis', tag: 'Motore' },
+  { slug: 'dash', titleIt: 'Rumorosità plancia e dadi prigionieri', titleEn: 'Dashboard Noise & Captive Nuts', tag: 'Interni' },
+  { slug: 'timing', titleIt: 'Cinghie distribuzione: regola dei 60.000 km', titleEn: 'Timing Belts: 36,000-mile Rule', tag: 'Manutenzione' }
+];
 ---
 
-<BaseLayout
-  title="Alfa Romeo 156 – Cuore Sportivo & Technical Archive (156dotnet)"
-  description="Il portale tecnico di riferimento per proprietari e appassionati di Alfa Romeo 156. Guide fotografiche passo-passo, diagnosi V6 Busso e Twin Spark, modifiche e storia."
+<Layout
+  title="Hub Alfa 156 – All Things 156 | Cuore Sportivo & Technical Heritage"
+  description="L'hub definitivo per tutti gli appassionati di Alfa Romeo 156. Storia del modello, specifiche tecniche, guide officina passo-passo, tuning e guida all'acquisto."
+  currentPath="/"
 >
-
   <!-- Hero Section -->
-
   <section class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 border-b border-alfa-metal-200 dark:border-alfa-metal-800">
-    <!-- Subtle background carbon effect and radial glow in dark mode -->
     <div class="absolute inset-0 bg-carbon opacity-30 dark:opacity-60 pointer-events-none" />
     <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-alfa-red-600/15 dark:bg-alfa-red-600/25 blur-[120px] rounded-full pointer-events-none" />
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto space-y-6">
         
-        <!-- Badge -->
-        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-alfa-red-600/10 dark:bg-alfa-red-600/20 text-alfa-red-600 dark:text-alfa-red-400 border border-alfa-red-600/30">
-          <span class="w-2 h-2 rounded-full bg-alfa-red-600 animate-ping" />
-          <span class="lang-it">Auto dell'Anno 1998 • 1997 - 2007</span>
-          <span class="lang-en">Car of the Year 1998 • 1997 - 2007</span>
-        </div>
-
         <!-- Main Heading -->
         <h1 class="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight text-alfa-metal-900 dark:text-white">
           Alfa Romeo <span class="text-transparent bg-clip-text bg-gradient-to-r from-alfa-red-600 via-alfa-red-500 to-alfa-red-700">156</span>
         </h1>
         
-        <p class="font-display font-semibold text-xl sm:text-2xl text-alfa-metal-700 dark:text-alfa-metal-300">
-          Cuore Sportivo & Technical Archive
-        </p>
+        <div class="flex items-center justify-center space-x-2 sm:space-x-3">
+          <span class="font-display font-extrabold text-2xl sm:text-3xl text-alfa-red-600 dark:text-alfa-red-500 tracking-tight">Hub Alfa 156</span>
+          <span class="text-alfa-metal-300 dark:text-alfa-metal-600 text-xl font-light">•</span>
+          <span class="font-display font-semibold text-xl sm:text-2xl text-alfa-metal-700 dark:text-alfa-metal-200">All Things 156</span>
+        </div>
 
-        <p class="text-base sm:text-lg text-alfa-metal-600 dark:text-alfa-metal-400 leading-relaxed max-w-2xl mx-auto">
+        <p class="text-base sm:text-lg text-alfa-metal-600 dark:text-alfa-metal-300 leading-relaxed max-w-2xl mx-auto">
           <span class="lang-it">
-            Il portale tecnico completo dedicato alla manutenzione, restauro e conservazione della berlina e Sportwagon di Arese. <strong>Oltre 4.400 documenti storici</strong>, 12 guide fotografiche passo-passo e diagnosi per motori <em>Twin Spark, JTD e V6 Busso</em>.
+            Il capolavoro stilistico di <strong>Walter de Silva</strong> che ha salvato e rilanciato l'Alfa Romeo nel mondo. Eletta <strong>Auto dell'Anno 1998</strong>, pioniera mondiale della tecnologia <strong>Common Rail JTD</strong> e dominatrice nel motorsport. L'hub definitivo per chi guida, restaura e celebra la 156.
           </span>
           <span class="lang-en">
-            The definitive technical portal dedicated to the maintenance, restoration, and preservation of the Arese sports saloon and Sportwagon. <strong>Over 4,400 historical files</strong>, 12 step-by-step photographic guides, and diagnostics for <em>Twin Spark, JTD, and Busso V6</em> engines.
+            Walter de Silva's design masterpiece that redefined Alfa Romeo. Voted <strong>European Car of the Year 1998</strong>, pioneer of world-first passenger <strong>Common Rail JTD</strong> technology, and touring car champion. The definitive hub for all things Alfa 156.
           </span>
         </p>
 
         <!-- CTA Buttons -->
         <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            href="/techtips"
-            class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-semibold text-white bg-alfa-red-600 hover:bg-alfa-red-700 transition-all duration-200 shadow-glow-red hover:scale-[1.02] focus:outline-none"
+            href="/storia"
+            class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-bold text-white bg-alfa-red-600 hover:bg-alfa-red-700 transition-all duration-200 shadow-lg hover:shadow-alfa-red-900/50 hover:scale-[1.02]"
           >
-            <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-            </svg>
-            <span class="lang-it">Esplora i TechTips</span>
-            <span class="lang-en">Explore TechTips</span>
+            <span class="mr-2">🏁</span>
+            <span class="lang-it">Storia del Modello</span>
+            <span class="lang-en">Model History</span>
           </a>
 
           <a
-            href="/storia"
-            class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-semibold text-alfa-metal-800 dark:text-alfa-silver-200 bg-alfa-metal-100 dark:bg-alfa-metal-900 hover:bg-alfa-metal-200 dark:hover:bg-alfa-metal-800 border border-alfa-metal-300 dark:border-alfa-metal-700 transition-all duration-200 hover:scale-[1.02] focus:outline-none"
+            href="/technical/tips"
+            class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-bold text-alfa-metal-800 dark:text-alfa-silver-200 bg-alfa-metal-100 dark:bg-alfa-metal-900 hover:bg-alfa-metal-200 dark:hover:bg-alfa-metal-800 border border-alfa-metal-300 dark:border-alfa-metal-700 transition-all duration-200 hover:scale-[1.02]"
           >
-            <svg class="w-5 h-5 mr-2 text-alfa-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
-            <span class="lang-it">Storia & Design de' Silva</span>
-            <span class="lang-en">History & de' Silva Design</span>
+            <span class="mr-2 text-alfa-red-600">🔧</span>
+            <span class="lang-it">Tips & Guide Officina</span>
+            <span class="lang-en">Tips & DIY Guides</span>
+          </a>
+
+          <a
+            href="/buyers-guide"
+            class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-bold text-alfa-metal-800 dark:text-alfa-silver-200 bg-alfa-metal-100 dark:bg-alfa-metal-900 hover:bg-alfa-metal-200 dark:hover:bg-alfa-metal-800 border border-alfa-metal-300 dark:border-alfa-metal-700 transition-all duration-200 hover:scale-[1.02]"
+          >
+            <span class="mr-2 text-alfa-red-600">📋</span>
+            <span class="lang-it">Guida all'Acquisto</span>
+            <span class="lang-en">Buyer's Guide</span>
           </a>
         </div>
 
@@ -77,296 +137,193 @@ const featuredGuides = techtips.slice(0, 6);
     </div>
   </section>
 
-  <!-- Key Statistics Counter -->
-  <section class="py-12 bg-white dark:bg-alfa-metal-900 border-b border-alfa-metal-200 dark:border-alfa-metal-800 transition-colors">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-        
-        <div class="p-4 rounded-xl bg-alfa-metal-50 dark:bg-alfa-metal-950 border border-alfa-metal-200 dark:border-alfa-metal-800">
-          <div class="font-display font-extrabold text-3xl sm:text-4xl text-alfa-red-600">4.400+</div>
-          <div class="text-xs sm:text-sm font-semibold text-alfa-metal-600 dark:text-alfa-metal-400 mt-1 uppercase tracking-wider">
-            <span class="lang-it">File Preservati</span>
-            <span class="lang-en">Preserved Files</span>
-          </div>
-        </div>
-
-        <div class="p-4 rounded-xl bg-alfa-metal-50 dark:bg-alfa-metal-950 border border-alfa-metal-200 dark:border-alfa-metal-800">
-          <div class="font-display font-extrabold text-3xl sm:text-4xl text-alfa-metal-900 dark:text-white">12</div>
-          <div class="text-xs sm:text-sm font-semibold text-alfa-metal-600 dark:text-alfa-metal-400 mt-1 uppercase tracking-wider">
-            <span class="lang-it">Guide Passo-Passo</span>
-            <span class="lang-en">Step Guides</span>
-          </div>
-        </div>
-
-        <div class="p-4 rounded-xl bg-alfa-metal-50 dark:bg-alfa-metal-950 border border-alfa-metal-200 dark:border-alfa-metal-800">
-          <div class="font-display font-extrabold text-3xl sm:text-4xl text-alfa-red-600">19</div>
-          <div class="text-xs sm:text-sm font-semibold text-alfa-metal-600 dark:text-alfa-metal-400 mt-1 uppercase tracking-wider">
-            <span class="lang-it">Schede Diagnosi</span>
-            <span class="lang-en">Diagnostic Sheets</span>
-          </div>
-        </div>
-
-        <div class="p-4 rounded-xl bg-alfa-metal-50 dark:bg-alfa-metal-950 border border-alfa-metal-200 dark:border-alfa-metal-800">
-          <div class="font-display font-extrabold text-3xl sm:text-4xl text-alfa-metal-900 dark:text-white">25+</div>
-          <div class="text-xs sm:text-sm font-semibold text-alfa-metal-600 dark:text-alfa-metal-400 mt-1 uppercase tracking-wider">
-            <span class="lang-it">Cataloghi & PDF</span>
-            <span class="lang-en">Catalogues & PDFs</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured TechTips Section -->
+  <!-- The 6 Pillars Section -->
   <section class="py-16 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
-      <div class="space-y-2">
-        <div class="flex items-center space-x-2 text-alfa-red-600 font-semibold text-xs tracking-wider uppercase">
-          <span class="w-2 h-2 rounded-full bg-alfa-red-600"></span>
-          <span class="lang-it">Officina & Risoluzione Problemi</span>
-          <span class="lang-en">Workshop & Troubleshooting</span>
-        </div>
-        <h2 class="font-display font-bold text-3xl sm:text-4xl text-alfa-metal-900 dark:text-white">
-          <span class="lang-it">TechTips in Evidenza</span>
-          <span class="lang-en">Featured TechTips</span>
-        </h2>
-        <p class="text-alfa-metal-600 dark:text-alfa-metal-400 text-sm max-w-xl">
-          <span class="lang-it">Guide fotografiche dettagliate con strumenti richiesti, tempi stimati e galleria interattiva passo-passo.</span>
-          <span class="lang-en">Detailed photo guides with required tools, estimated times, and interactive step-by-step lightbox gallery.</span>
-        </p>
-      </div>
-
-      <a
-        href="/techtips"
-        class="mt-4 md:mt-0 inline-flex items-center space-x-2 text-sm font-semibold text-alfa-red-600 dark:text-alfa-red-400 hover:underline"
-      >
-        <span class="lang-it">Visualizza tutti i TechTips</span>
-        <span class="lang-en">View all TechTips</span>
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-        </svg>
-      </a>
-    </div>
-
-    <!-- TechTips Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {featuredGuides.map((guide) => (
-        <TechTipCard
-          title={guide.data.title}
-          title_en={guide.data.title_en}
-          description={guide.data.description}
-          description_en={guide.data.description_en}
-          category={guide.data.category}
-          category_en={guide.data.category_en}
-          difficulty={guide.data.difficulty}
-          difficulty_en={guide.data.difficulty_en}
-          timeRequired={guide.data.timeRequired}
-          timeRequired_en={guide.data.timeRequired_en}
-          stepsCount={guide.data.stepsCount}
-          featuredImage={guide.data.featuredImage}
-          slug={guide.id}
-        />
-      ))}
-    </div>
-  </section>
-
-  <!-- Interactive Diagnostic Audio Player Preview -->
-  <section class="py-16 bg-alfa-metal-100 dark:bg-alfa-metal-900 border-y border-alfa-metal-200 dark:border-alfa-metal-800 transition-colors">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-        
-        <div class="lg:col-span-1 space-y-3">
-          <span class="text-xs font-semibold tracking-wider uppercase text-alfa-red-600 dark:text-alfa-red-400">
-            <span class="lang-it">Diagnosi Acustica Twin Spark</span>
-            <span class="lang-en">Twin Spark Acoustic Diagnostics</span>
-          </span>
-          <h2 class="font-display font-bold text-2xl sm:text-3xl text-alfa-metal-900 dark:text-white">
-            <span class="lang-it">Ascolta il Tuo Motore</span>
-            <span class="lang-en">Listen to Your Engine</span>
-          </h2>
-          <p class="text-sm text-alfa-metal-600 dark:text-alfa-metal-400 leading-relaxed">
-            <span class="lang-it">
-              Il rumore "da diesel" all'avviamento a freddo è il classico sintomo del <strong>variatore di fase</strong> usurato sui motori Twin Spark 16V. Confronta i file audio reali registrati dalla community.
-            </span>
-            <span class="lang-en">
-              The "diesel-like clatter" on cold start is the classic symptom of a worn <strong>cam variator</strong> on 16V Twin Spark engines. Compare actual diagnostic audio clips recorded by the community.
-            </span>
-          </p>
-        </div>
-
-        <!-- Audio Player Cards -->
-        <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          
-          <!-- Bad Variator Sound -->
-          <div class="p-5 rounded-xl bg-white dark:bg-alfa-metal-950 border border-alfa-red-600/30 shadow-sm space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="font-display font-bold text-sm text-alfa-red-600">
-                <span class="lang-it">Variatore Usurato / Rotto</span>
-                <span class="lang-en">Worn / Broken Variator</span>
-              </span>
-              <span class="px-2 py-0.5 text-[10px] font-mono rounded bg-alfa-red-600/10 text-alfa-red-600 font-semibold">
-                <span class="lang-it">Tichettio Diesel</span>
-                <span class="lang-en">Diesel Sound</span>
-              </span>
-            </div>
-            <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400">
-              <span class="lang-it">Rumore metallico persistente nei primi secondi dopo l'avvio a freddo.</span>
-              <span class="lang-en">Metallic clattering sound for the first few seconds upon cold startup.</span>
-            </p>
-            <audio controls class="w-full h-9 rounded" preload="none">
-              <source src="/audio/badvariator-alfa156-net.mp3" type="audio/mpeg" />
-              Audio element not supported.
-            </audio>
-          </div>
-
-          <!-- Good Variator Sound -->
-          <div class="p-5 rounded-xl bg-white dark:bg-alfa-metal-950 border border-emerald-500/30 shadow-sm space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="font-display font-bold text-sm text-emerald-600 dark:text-emerald-400">
-                <span class="lang-it">Variatore Nuovo / Sano</span>
-                <span class="lang-en">Healthy / New Variator</span>
-              </span>
-              <span class="px-2 py-0.5 text-[10px] font-mono rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold">
-                <span class="lang-it">Suono Ottimale</span>
-                <span class="lang-en">Optimal Sound</span>
-              </span>
-            </div>
-            <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400">
-              <span class="lang-it">Avviamento fluido e rotondo, assenza di battiti in testata.</span>
-              <span class="lang-en">Smooth, quiet startup without top-end valve tapping or valvetrain noise.</span>
-            </p>
-            <audio controls class="w-full h-9 rounded" preload="none">
-              <source src="/audio/goodvariator-alfa156-net.mp3" type="audio/mpeg" />
-              Audio element not supported.
-            </audio>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- The 6 Main Sections Navigation Hub -->
-  <section class="py-16 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
-      <h2 class="font-display font-bold text-3xl sm:text-4xl text-alfa-metal-900 dark:text-white">
-        <span class="lang-it">Esplora le Sezioni dell'Archivio</span>
-        <span class="lang-en">Explore the Archive Sections</span>
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-alfa-metal-900 dark:text-white">
+        <span class="lang-it">Tutto sull'Alfa 156: Esplora l'Hub</span>
+        <span class="lang-en">All Things Alfa 156: Explore the Hub</span>
       </h2>
-      <p class="text-alfa-metal-600 dark:text-alfa-metal-400 text-sm">
-        <span class="lang-it">Tutto il materiale storico riorganizzato con una navigazione moderna e immediata.</span>
-        <span class="lang-en">All historic materials restructured with modern, rapid navigation.</span>
+      <p class="text-sm text-alfa-metal-600 dark:text-alfa-metal-400 mt-2">
+        <span class="lang-it">Dalla meccanica alle guide d'officina passo-passo, dai test prestazionali alla storia: ogni risorsa in un unico luogo.</span>
+        <span class="lang-en">From factory engineering to step-by-step DIY guides, performance tuning, and history: every resource in one place.</span>
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      
-      <!-- Card 1: TechTips -->
-      <a href="/techtips" class="group p-6 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-600/60 transition-all hover:shadow-glow-red duration-300">
-        <div class="w-12 h-12 rounded-xl bg-alfa-red-600/10 text-alfa-red-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
-        </div>
-        <h3 class="font-display font-bold text-xl text-alfa-metal-900 dark:text-white group-hover:text-alfa-red-600 transition-colors mb-2">
-          <span class="lang-it">TechTips & Guide</span>
-          <span class="lang-en">TechTips & Guides</span>
-        </h3>
-        <p class="text-sm text-alfa-metal-600 dark:text-alfa-metal-400">
-          <span class="lang-it">Guide pratiche passo-passo illustrate con foto reali per intervenire su fari, candele V6, debimetri, maniglie e diagnosi rapida.</span>
-          <span class="lang-en">Step-by-step practical guides illustrated with real photos for headlights, V6 spark plugs, MAF cleaning, door handles, and diagnostics.</span>
-        </p>
-      </a>
+      {pillars.map((p) => (
+        <a
+          href={p.link}
+          class="group p-6 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-500/50 hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+        >
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-3xl p-2 rounded-xl bg-alfa-metal-100 dark:bg-alfa-metal-800">{p.icon}</span>
+              <span class="px-2 py-0.5 rounded text-[11px] font-mono text-alfa-metal-400 bg-alfa-metal-50 dark:bg-alfa-metal-950 border border-alfa-metal-200 dark:border-alfa-metal-800">
+                {p.badge}
+              </span>
+            </div>
 
-      <!-- Card 2: Modifiche -->
-      <a href="/modifiche" class="group p-6 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-600/60 transition-all hover:shadow-glow-red duration-300">
-        <div class="w-12 h-12 rounded-xl bg-alfa-red-600/10 text-alfa-red-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-          </svg>
-        </div>
-        <h3 class="font-display font-bold text-xl text-alfa-metal-900 dark:text-white group-hover:text-alfa-red-600 transition-colors mb-2">
-          <span class="lang-it">Modifiche & Tuning</span>
-          <span class="lang-en">Modifications & Tuning</span>
-        </h3>
-        <p class="text-sm text-alfa-metal-600 dark:text-alfa-metal-400">
-          <span class="lang-it">Assetti sportivi ribassati (Eibach / Bilstein), scarichi omologati Ragazzon, aspirazione K&N e sospensioni a quadrilatero.</span>
-          <span class="lang-en">Lowered sports suspensions (Eibach / Bilstein), homologated Ragazzon exhausts, K&N intakes, and double wishbone geometry.</span>
-        </p>
-      </a>
+            <h3 class="font-display font-bold text-xl text-alfa-metal-900 dark:text-white group-hover:text-alfa-red-600 dark:group-hover:text-alfa-red-400 transition-colors">
+              <span class="lang-it">{p.titleIt}</span>
+              <span class="lang-en">{p.titleEn}</span>
+            </h3>
 
-      <!-- Card 3: Storia -->
-      <a href="/storia" class="group p-6 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-600/60 transition-all hover:shadow-glow-red duration-300">
-        <div class="w-12 h-12 rounded-xl bg-alfa-red-600/10 text-alfa-red-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-        </div>
-        <h3 class="font-display font-bold text-xl text-alfa-metal-900 dark:text-white group-hover:text-alfa-red-600 transition-colors mb-2">
-          <span class="lang-it">Storia & Design</span>
-          <span class="lang-en">History & Design</span>
-        </h3>
-        <p class="text-sm text-alfa-metal-600 dark:text-alfa-metal-400">
-          <span class="lang-it">Il capolavoro di Walter de' Silva, la vittoria al Car of the Year 1998, il restyling di Giugiaro, le leggendarie GTA e i successi ETCC/DTM.</span>
-          <span class="lang-en">Walter de' Silva's masterpiece, European Car of the Year 1998 victory, Giugiaro facelift, legendary GTA, and ETCC/DTM touring championships.</span>
-        </p>
-      </a>
+            <p class="text-xs sm:text-sm text-alfa-metal-600 dark:text-alfa-metal-300 mt-2.5 leading-relaxed">
+              <span class="lang-it">{p.descIt}</span>
+              <span class="lang-en">{p.descEn}</span>
+            </p>
+          </div>
 
-      <!-- Card 4: Download & Cataloghi -->
-      <a href="/download" class="group p-6 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-600/60 transition-all hover:shadow-glow-red duration-300">
-        <div class="w-12 h-12 rounded-xl bg-alfa-red-600/10 text-alfa-red-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-          </svg>
-        </div>
-        <h3 class="font-display font-bold text-xl text-alfa-metal-900 dark:text-white group-hover:text-alfa-red-600 transition-colors mb-2">
-          <span class="lang-it">Download & Cataloghi</span>
-          <span class="lang-en">Downloads & Catalogues</span>
-        </h3>
-        <p class="text-sm text-alfa-metal-600 dark:text-alfa-metal-400">
-          <span class="lang-it">Scaricabili ufficiali in PDF: guida all'acquisto a 48 punti, manuali freni, cataloghi ricambi storici e clip audio.</span>
-          <span class="lang-en">Official PDF downloads: 48-point buyer's guide checklist, brake manuals, historical parts catalogues, and audio clips.</span>
-        </p>
-      </a>
-
-      <!-- Card 5: About -->
-      <a href="/about" class="group p-6 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-600/60 transition-all hover:shadow-glow-red duration-300">
-        <div class="w-12 h-12 rounded-xl bg-alfa-red-600/10 text-alfa-red-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-        </div>
-        <h3 class="font-display font-bold text-xl text-alfa-metal-900 dark:text-white group-hover:text-alfa-red-600 transition-colors mb-2">
-          <span class="lang-it">About 156dotnet</span>
-          <span class="lang-en">About 156dotnet</span>
-        </h3>
-        <p class="text-sm text-alfa-metal-600 dark:text-alfa-metal-400">
-          <span class="lang-it">La missione di conservazione del patrimonio alfa156.net, i ringraziamenti ai pionieri Anders e Jeff, e la tecnologia moderna.</span>
-          <span class="lang-en">The preservation mission of alfa156.net, tributes to pioneers Anders and Jeff, and modern edge infrastructure.</span>
-        </p>
-      </a>
-
-      <!-- Card 6: Dati Tecnici Motori -->
-      <a href="/storia#motori" class="group p-6 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-600/60 transition-all hover:shadow-glow-red duration-300">
-        <div class="w-12 h-12 rounded-xl bg-alfa-red-600/10 text-alfa-red-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-          </svg>
-        </div>
-        <h3 class="font-display font-bold text-xl text-alfa-metal-900 dark:text-white group-hover:text-alfa-red-600 transition-colors mb-2">
-          <span class="lang-it">Schede Tecniche Motori</span>
-          <span class="lang-en">Engine Specifications</span>
-        </h3>
-        <p class="text-sm text-alfa-metal-600 dark:text-alfa-metal-400">
-          <span class="lang-it">Specifiche dettagliate su coppia, cavalli, cilindrate e alesaggio per tutti i motori Twin Spark 16V, JTD Unijet/Multijet e V6 Busso.</span>
-          <span class="lang-en">Detailed specs on torque, bhp, displacement, and bore for all 16V Twin Spark, JTD Unijet/Multijet, and Busso V6 engines.</span>
-        </p>
-      </a>
-
+          <div class="mt-6 pt-4 border-t border-alfa-metal-100 dark:border-alfa-metal-800/80 flex items-center justify-between text-xs font-mono font-bold text-alfa-red-600 dark:text-alfa-red-400">
+            <span>Accedi alla sezione</span>
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+        </a>
+      ))}
     </div>
   </section>
 
-</BaseLayout>
+  <!-- Featured Popular Guides -->
+  <section class="py-16 bg-alfa-metal-50 dark:bg-alfa-metal-900/60 border-t border-alfa-metal-200 dark:border-alfa-metal-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest text-alfa-red-600 font-bold">Diagnosi Rapida</span>
+          <h2 class="font-display font-bold text-2xl sm:text-3xl text-alfa-metal-900 dark:text-white mt-1">
+            <span class="lang-it">Le Guide Tecniche Più Consultate</span>
+            <span class="lang-en">Most Consulted Technical Guides</span>
+          </h2>
+        </div>
+        <a
+          href="/technical/tips"
+          class="mt-4 md:mt-0 inline-flex items-center space-x-1 text-sm font-bold text-alfa-red-600 hover:underline"
+        >
+          <span>Tutte le 21 guide complete</span>
+          <span>→</span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {featuredGuides.map((g) => (
+          <a
+            href={`/technical/tips/${g.slug}`}
+            class="p-4 rounded-xl bg-white dark:bg-alfa-metal-950 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-500/50 transition-colors shadow-xs flex items-center justify-between group"
+          >
+            <div>
+              <span class="text-[10px] font-mono uppercase text-alfa-red-600 font-semibold block mb-1">
+                {g.tag}
+              </span>
+              <h3 class="font-semibold text-sm text-alfa-metal-900 dark:text-white group-hover:text-alfa-red-600 transition-colors">
+                <span class="lang-it">{g.titleIt}</span>
+                <span class="lang-en">{g.titleEn}</span>
+              </h3>
+            </div>
+            <span class="text-xs text-alfa-metal-400 group-hover:translate-x-1 transition-transform ml-2">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Model Milestones / Timeline -->
+  <section class="py-16 lg:py-24 border-t border-alfa-metal-200 dark:border-alfa-metal-800 bg-white/50 dark:bg-alfa-metal-900/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">I Traguardi di un'Icona (1997 - 2007)</span>
+          <span class="lang-en">Milestones of an Icon (1997 - 2007)</span>
+        </h2>
+        <p class="text-sm text-alfa-metal-600 dark:text-alfa-metal-400 mt-2">
+          <span class="lang-it">Dieci anni di produzione, oltre 680.000 esemplari e una serie ininterrotta di vittorie sportive e innovazioni ingegneristiche.</span>
+          <span class="lang-en">A decade of production, over 680,000 units built, and an unbroken legacy of motorsport triumphs and engineering milestones.</span>
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Milestone 1 -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs flex flex-col justify-between">
+          <div>
+            <span class="font-display font-black text-2xl text-alfa-red-600 dark:text-alfa-red-500">1997</span>
+            <h3 class="font-display font-bold text-lg text-alfa-metal-900 dark:text-white mt-2">
+              <span class="lang-it">Il Debutto a Francoforte</span>
+              <span class="lang-en">Frankfurt World Premiere</span>
+            </h3>
+            <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400 mt-2 leading-relaxed">
+              <span class="lang-it">Presentata al Salone IAA '97, stupisce il mondo con le linee scultoree di Walter de Silva e le iconiche maniglie posteriori nascoste.</span>
+              <span class="lang-en">Unveiled at IAA Frankfurt '97, stunning the automotive world with Walter de Silva's coupe profile and concealed rear door handles.</span>
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-alfa-metal-100 dark:border-alfa-metal-800 text-[11px] font-mono text-alfa-metal-500">
+            Design Centro Stile Alfa
+          </div>
+        </div>
+
+        <!-- Milestone 2 -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs flex flex-col justify-between">
+          <div>
+            <span class="font-display font-black text-2xl text-alfa-red-600 dark:text-alfa-red-500">1998</span>
+            <h3 class="font-display font-bold text-lg text-alfa-metal-900 dark:text-white mt-2">
+              <span class="lang-it">Auto dell'Anno Europea</span>
+              <span class="lang-en">European Car of the Year</span>
+            </h3>
+            <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400 mt-2 leading-relaxed">
+              <span class="lang-it">Prima Alfa Romeo a vincere l'ambito titolo con un distacco record di 454 punti, superando Volkswagen Golf IV e Audi A6.</span>
+              <span class="lang-en">The first Alfa Romeo in history to claim the prestigious COTY trophy by a record 454 points, defeating VW Golf IV and Audi A6.</span>
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-alfa-metal-100 dark:border-alfa-metal-800 text-[11px] font-mono text-alfa-metal-500">
+            Car of the Year 1998
+          </div>
+        </div>
+
+        <!-- Milestone 3 -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs flex flex-col justify-between">
+          <div>
+            <span class="font-display font-black text-2xl text-alfa-red-600 dark:text-alfa-red-500">1997-02</span>
+            <h3 class="font-display font-bold text-lg text-alfa-metal-900 dark:text-white mt-2">
+              <span class="lang-it">Pioniera Common Rail</span>
+              <span class="lang-en">Common Rail Pioneer</span>
+            </h3>
+            <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400 mt-2 leading-relaxed">
+              <span class="lang-it">Prima auto passeggeri al mondo con iniezione diretta Common Rail Unijet (JTD), unita a sospensioni anteriori a quadrilatero alto per handling da riferimento.</span>
+              <span class="lang-en">The world's first production car with Unijet Common Rail direct injection (JTD), mated with high double-wishbone front suspension.</span>
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-alfa-metal-100 dark:border-alfa-metal-800 text-[11px] font-mono text-alfa-metal-500">
+            Ingegneria & Handling
+          </div>
+        </div>
+
+        <!-- Milestone 4 -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs flex flex-col justify-between">
+          <div>
+            <span class="font-display font-black text-2xl text-alfa-red-600 dark:text-alfa-red-500">GTA & ETCC</span>
+            <h3 class="font-display font-bold text-lg text-alfa-metal-900 dark:text-white mt-2">
+              <span class="lang-it">Leggenda GTA & Corse</span>
+              <span class="lang-en">GTA Legend & Motorsport</span>
+            </h3>
+            <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400 mt-2 leading-relaxed">
+              <span class="lang-it">Il debutto del mitico 3.2 Busso V6 24V sulla GTA e 4 titoli europei turismo (ETCC) consecutivi vinti dalla 156 con Fabrizio Giovanardi e Gabriele Tarquini.</span>
+              <span class="lang-en">The launch of the legendary 3.2 Busso V6 GTA and 4 consecutive European Touring Car Championship (ETCC) titles with Giovanardi and Tarquini.</span>
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-alfa-metal-100 dark:border-alfa-metal-800 text-[11px] font-mono text-alfa-metal-500">
+            4x Campione ETCC
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center">
+        <a
+          href="/storia"
+          class="inline-flex items-center space-x-2 px-6 py-3 rounded-xl font-semibold text-sm text-alfa-red-600 dark:text-alfa-red-400 bg-alfa-red-50 dark:bg-alfa-red-950/40 hover:bg-alfa-red-100 dark:hover:bg-alfa-red-900/40 border border-alfa-red-200 dark:border-alfa-red-800/80 transition-colors"
+        >
+          <span class="lang-it">Approfondisci la storia completa del Progetto 932</span>
+          <span class="lang-en">Explore the full history of Project 932</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

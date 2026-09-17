@@ -9,21 +9,14 @@ interface Props {
 
 const { currentPath = Astro.url.pathname } = Astro.props;
 
-const navLinks = [
-  { href: '/', labelIt: 'Home', labelEn: 'Home' },
-  { href: '/techtips', labelIt: 'TechTips', labelEn: 'TechTips' },
-  { href: '/modifiche', labelIt: 'Modifiche', labelEn: 'Modifications' },
-  { href: '/storia', labelIt: 'Storia', labelEn: 'History' },
-  { href: '/download', labelIt: 'Download / Cataloghi', labelEn: 'Downloads' },
-  { href: '/about', labelIt: 'About', labelEn: 'About' },
-];
-
 const isActive = (href: string) => {
   if (href === '/') {
     return currentPath === '/';
   }
   return currentPath.startsWith(href);
 };
+
+const isTechnicalActive = currentPath.startsWith('/technical') || currentPath.startsWith('/techtips');
 ---
 
 <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-white/90 dark:bg-alfa-metal-950/90 border-b border-alfa-metal-200 dark:border-alfa-metal-800/80 transition-colors duration-200">
@@ -52,27 +45,23 @@ const isActive = (href: string) => {
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
     <div class="flex items-center justify-between h-20">
       
       <!-- Brand Logo -->
-      <a href="/" class="group flex items-center space-x-3.5 focus:outline-none" aria-label="156dotnet Home">
+      <a href="/" class="group flex items-center space-x-3.5 focus:outline-none" aria-label="alfa156.it Home">
         <!-- Alfa Romeo stylized Scudetto V-Shield -->
         <div class="relative w-10 h-12 flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
           <svg viewBox="0 0 100 120" class="w-full h-full drop-shadow-[0_2px_8px_rgba(153,0,0,0.35)]" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Scudetto Outer Shield Frame with metallic border -->
             <path
               d="M50 116 C40 100, 4 60, 4 10 L50 2 L96 10 C96 60, 60 100, 50 116 Z"
               fill="#14151a"
               stroke="#990000"
               stroke-width="5"
             />
-            <!-- Inner Red V-core -->
             <path
               d="M50 105 C42 90, 12 55, 12 16 L50 10 L88 16 C88 55, 58 90, 50 105 Z"
               fill="#990000"
             />
-            <!-- Horizontal Chrome Bars (classic 156 grille) -->
             <line x1="20" y1="35" x2="80" y2="35" stroke="#f4f6f8" stroke-width="2.5" stroke-linecap="round" />
             <line x1="26" y1="52" x2="74" y2="52" stroke="#f4f6f8" stroke-width="2.5" stroke-linecap="round" />
             <line x1="32" y1="69" x2="68" y2="69" stroke="#f4f6f8" stroke-width="2.5" stroke-linecap="round" />
@@ -82,9 +71,10 @@ const isActive = (href: string) => {
 
         <!-- Typography -->
         <div class="flex flex-col">
-          <div class="flex items-center space-x-1">
+          <div class="flex items-center space-x-0.5">
+            <span class="font-display font-bold text-xl tracking-tight text-alfa-metal-900 dark:text-white">alfa</span>
             <span class="font-display font-extrabold text-2xl tracking-tighter text-alfa-red-600 dark:text-alfa-red-500">156</span>
-            <span class="font-display font-bold text-xl tracking-tight text-alfa-metal-900 dark:text-white">dotnet</span>
+            <span class="font-display font-extrabold text-xl tracking-tight text-alfa-red-600 dark:text-alfa-red-500">.it</span>
           </div>
           <span class="text-[10px] font-semibold tracking-wider uppercase text-alfa-metal-500 dark:text-alfa-metal-400 -mt-1 group-hover:text-alfa-red-600 dark:group-hover:text-alfa-red-400 transition-colors">
             Cuore Sportivo Archive
@@ -93,49 +83,187 @@ const isActive = (href: string) => {
       </a>
 
       <!-- Desktop Navigation -->
-      <nav class="hidden lg:flex items-center space-x-1">
-        {navLinks.map((link) => {
-          const active = isActive(link.href);
-          return (
+      <nav class="hidden xl:flex items-center space-x-1">
+        <!-- Home -->
+        <a
+          href="/"
+          class={`relative px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 ${
+            currentPath === '/'
+              ? 'text-alfa-red-600 dark:text-alfa-red-400 bg-alfa-red-50/70 dark:bg-alfa-red-950/40 font-bold'
+              : 'text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-white hover:bg-alfa-metal-100/70 dark:hover:bg-alfa-metal-900/60'
+          }`}
+        >
+          <span class="lang-it">Home</span>
+          <span class="lang-en">Home</span>
+          {currentPath === '/' && (
+            <span class="absolute bottom-0 left-2 right-2 h-0.5 bg-alfa-red-600 dark:bg-alfa-red-500 rounded-full shadow-[0_0_8px_rgba(153,0,0,0.8)]" />
+          )}
+        </a>
+
+        <!-- Technical Dropdown -->
+        <div class="relative group" id="technical-dropdown">
+          <button
+            type="button"
+            class={`inline-flex items-center space-x-1.5 px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 ${
+              isTechnicalActive
+                ? 'text-alfa-red-600 dark:text-alfa-red-400 bg-alfa-red-50/70 dark:bg-alfa-red-950/40 font-bold'
+                : 'text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-white hover:bg-alfa-metal-100/70 dark:hover:bg-alfa-metal-900/60'
+            }`}
+            aria-expanded="false"
+            aria-haspopup="true"
+          >
+            <span>Technical</span>
+            <svg class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+            {isTechnicalActive && (
+              <span class="absolute bottom-0 left-2 right-2 h-0.5 bg-alfa-red-600 dark:bg-alfa-red-500 rounded-full shadow-[0_0_8px_rgba(153,0,0,0.8)]" />
+            )}
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div class="absolute left-0 mt-2 w-64 rounded-xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-700 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2">
             <a
-              href={link.href}
-              class={`relative px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 ${
-                active
-                  ? 'text-alfa-red-600 dark:text-alfa-red-400 bg-alfa-red-50/70 dark:bg-alfa-red-950/40 font-bold'
-                  : 'text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-white hover:bg-alfa-metal-100/70 dark:hover:bg-alfa-metal-900/60'
-              }`}
-              aria-current={active ? 'page' : undefined}
+              href="/technical"
+              class="flex flex-col px-3 py-2.5 rounded-lg text-sm hover:bg-alfa-red-50 dark:hover:bg-alfa-metal-800 transition-colors"
             >
-              <span class="lang-it">{link.labelIt}</span>
-              <span class="lang-en">{link.labelEn}</span>
-              {active && (
-                <span class="absolute bottom-0 left-2 right-2 h-0.5 bg-alfa-red-600 dark:bg-alfa-red-500 rounded-full shadow-[0_0_8px_rgba(153,0,0,0.8)]" />
-              )}
+              <span class="font-bold text-alfa-metal-900 dark:text-white">
+                <span class="lang-it">Specifiche Tecniche</span>
+                <span class="lang-en">Technical Specs</span>
+              </span>
+              <span class="text-xs text-alfa-metal-500 dark:text-alfa-metal-400">
+                <span class="lang-it">Dati motori, cambi, pesi e telaio</span>
+                <span class="lang-en">Engines, gearboxes, weights & chassis</span>
+              </span>
             </a>
-          );
-        })}
+
+            <a
+              href="/technical/tips"
+              class="flex flex-col px-3 py-2.5 rounded-lg text-sm hover:bg-alfa-red-50 dark:hover:bg-alfa-metal-800 transition-colors"
+            >
+              <span class="font-bold text-alfa-metal-900 dark:text-white">
+                <span class="lang-it">Tips & Guide Passo-Passo</span>
+                <span class="lang-en">Tips & DIY Guides</span>
+              </span>
+              <span class="text-xs text-alfa-metal-500 dark:text-alfa-metal-400">
+                <span class="lang-it">Problemi noti, debimetro, candele V6 e guide</span>
+                <span class="lang-en">Known issues, MAF, V6 sparks & tutorials</span>
+              </span>
+            </a>
+
+            <a
+              href="/technical/tuning"
+              class="flex flex-col px-3 py-2.5 rounded-lg text-sm hover:bg-alfa-red-50 dark:hover:bg-alfa-metal-800 transition-colors"
+            >
+              <span class="font-bold text-alfa-metal-900 dark:text-white">
+                <span class="lang-it">Tuning & Elaborazioni</span>
+                <span class="lang-en">Tuning & Handling</span>
+              </span>
+              <span class="text-xs text-alfa-metal-500 dark:text-alfa-metal-400">
+                <span class="lang-it">Elaborazione motore, assetto Alfanytt, Ragazzon</span>
+                <span class="lang-en">Engine mods, Alfanytt suspension, exhausts</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Buyer's Guide (Dedicated section) -->
+        <a
+          href="/buyers-guide"
+          class={`relative px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 ${
+            isActive('/buyers-guide')
+              ? 'text-alfa-red-600 dark:text-alfa-red-400 bg-alfa-red-50/70 dark:bg-alfa-red-950/40 font-bold'
+              : 'text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-white hover:bg-alfa-metal-100/70 dark:hover:bg-alfa-metal-900/60'
+          }`}
+        >
+          <span class="lang-it">Guida Acquisto</span>
+          <span class="lang-en">Buyer's Guide</span>
+          {isActive('/buyers-guide') && (
+            <span class="absolute bottom-0 left-2 right-2 h-0.5 bg-alfa-red-600 dark:bg-alfa-red-500 rounded-full shadow-[0_0_8px_rgba(153,0,0,0.8)]" />
+          )}
+        </a>
+
+        <!-- Styling -->
+        <a
+          href="/styling"
+          class={`relative px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 ${
+            isActive('/styling')
+              ? 'text-alfa-red-600 dark:text-alfa-red-400 bg-alfa-red-50/70 dark:bg-alfa-red-950/40 font-bold'
+              : 'text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-white hover:bg-alfa-metal-100/70 dark:hover:bg-alfa-metal-900/60'
+          }`}
+        >
+          <span>Styling</span>
+          {isActive('/styling') && (
+            <span class="absolute bottom-0 left-2 right-2 h-0.5 bg-alfa-red-600 dark:bg-alfa-red-500 rounded-full shadow-[0_0_8px_rgba(153,0,0,0.8)]" />
+          )}
+        </a>
+
+        <!-- Storia -->
+        <a
+          href="/storia"
+          class={`relative px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 ${
+            isActive('/storia')
+              ? 'text-alfa-red-600 dark:text-alfa-red-400 bg-alfa-red-50/70 dark:bg-alfa-red-950/40 font-bold'
+              : 'text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-white hover:bg-alfa-metal-100/70 dark:hover:bg-alfa-metal-900/60'
+          }`}
+        >
+          <span class="lang-it">Storia</span>
+          <span class="lang-en">History</span>
+          {isActive('/storia') && (
+            <span class="absolute bottom-0 left-2 right-2 h-0.5 bg-alfa-red-600 dark:bg-alfa-red-500 rounded-full shadow-[0_0_8px_rgba(153,0,0,0.8)]" />
+          )}
+        </a>
+
+        <!-- Download -->
+        <a
+          href="/download"
+          class={`relative px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 ${
+            isActive('/download')
+              ? 'text-alfa-red-600 dark:text-alfa-red-400 bg-alfa-red-50/70 dark:bg-alfa-red-950/40 font-bold'
+              : 'text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-white hover:bg-alfa-metal-100/70 dark:hover:bg-alfa-metal-900/60'
+          }`}
+        >
+          <span class="lang-it">Download</span>
+          <span class="lang-en">Downloads</span>
+          {isActive('/download') && (
+            <span class="absolute bottom-0 left-2 right-2 h-0.5 bg-alfa-red-600 dark:bg-alfa-red-500 rounded-full shadow-[0_0_8px_rgba(153,0,0,0.8)]" />
+          )}
+        </a>
+
+        <!-- Links -->
+        <a
+          href="/links"
+          class={`relative px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 ${
+            isActive('/links')
+              ? 'text-alfa-red-600 dark:text-alfa-red-400 bg-alfa-red-50/70 dark:bg-alfa-red-950/40 font-bold'
+              : 'text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-white hover:bg-alfa-metal-100/70 dark:hover:bg-alfa-metal-900/60'
+          }`}
+        >
+          <span class="lang-it">Link</span>
+          <span class="lang-en">Links</span>
+          {isActive('/links') && (
+            <span class="absolute bottom-0 left-2 right-2 h-0.5 bg-alfa-red-600 dark:bg-alfa-red-500 rounded-full shadow-[0_0_8px_rgba(153,0,0,0.8)]" />
+          )}
+        </a>
+
+        <!-- About -->
+        <a
+          href="/about"
+          class={`relative px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 ${
+            isActive('/about')
+              ? 'text-alfa-red-600 dark:text-alfa-red-400 bg-alfa-red-50/70 dark:bg-alfa-red-950/40 font-bold'
+              : 'text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-white hover:bg-alfa-metal-100/70 dark:hover:bg-alfa-metal-900/60'
+          }`}
+        >
+          <span>About</span>
+          {isActive('/about') && (
+            <span class="absolute bottom-0 left-2 right-2 h-0.5 bg-alfa-red-600 dark:bg-alfa-red-500 rounded-full shadow-[0_0_8px_rgba(153,0,0,0.8)]" />
+          )}
+        </a>
       </nav>
 
       <!-- Right Actions: Language Toggle, Theme Toggle, Mobile Menu button -->
       <div class="flex items-center space-x-2 sm:space-x-2.5">
-        
-        <!-- Search Trigger (Pagefind ready) -->
-        <button
-          id="search-trigger"
-          type="button"
-          class="hidden xl:inline-flex items-center space-x-2 px-3 py-1.5 rounded-xl text-xs font-medium text-alfa-metal-500 dark:text-alfa-metal-400 bg-alfa-metal-100/90 dark:bg-alfa-metal-900/80 hover:bg-alfa-metal-200 dark:hover:bg-alfa-metal-800 border border-alfa-metal-200 dark:border-alfa-metal-700/80 transition-colors"
-          title="Cerca nell'archivio (Ctrl+K)"
-        >
-          <svg class="w-4 h-4 text-alfa-red-600 dark:text-alfa-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-          <span class="lang-it">Cerca guide...</span>
-          <span class="lang-en">Search guides...</span>
-          <kbd class="inline-block px-1.5 py-0.5 text-[10px] font-mono font-semibold bg-white dark:bg-alfa-metal-800 border border-alfa-metal-300 dark:border-alfa-metal-700 rounded shadow-xs">
-            Ctrl+K
-          </kbd>
-        </button>
-
         <!-- Language Toggle (IT / EN) -->
         <LanguageToggle />
 
@@ -146,7 +274,7 @@ const isActive = (href: string) => {
         <button
           id="mobile-menu-btn"
           type="button"
-          class="lg:hidden inline-flex items-center justify-center p-2 rounded-xl text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-white hover:bg-alfa-metal-100 dark:hover:bg-alfa-metal-800 focus:outline-none"
+          class="xl:hidden inline-flex items-center justify-center p-2 rounded-xl text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-white hover:bg-alfa-metal-100 dark:hover:bg-alfa-metal-800 focus:outline-none"
           aria-expanded="false"
           aria-label="Apri menu principale"
         >
@@ -162,38 +290,89 @@ const isActive = (href: string) => {
   </div>
 
   <!-- Mobile Menu Drawer -->
-  <div id="mobile-menu" class="hidden lg:hidden border-t border-alfa-metal-200 dark:border-alfa-metal-800 bg-white dark:bg-alfa-metal-950 px-4 pt-3 pb-6 space-y-2">
-    <!-- Mobile Search input -->
-    <div class="mb-3">
-      <a
-        href="/techtips"
-        class="flex items-center space-x-2 w-full px-3 py-2 rounded-lg text-sm text-alfa-metal-500 bg-alfa-metal-100 dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800"
-      >
-        <svg class="w-4 h-4 text-alfa-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-        <span class="lang-it">Cerca guide e diagnosi...</span>
-        <span class="lang-en">Search guides & diagnostics...</span>
-      </a>
+  <div id="mobile-menu" class="hidden xl:hidden border-t border-alfa-metal-200 dark:border-alfa-metal-800 bg-white dark:bg-alfa-metal-950 px-4 pt-3 pb-6 space-y-2">
+    <!-- Home -->
+    <a
+      href="/"
+      class="block px-3.5 py-2 rounded-lg text-base font-medium text-alfa-metal-800 dark:text-alfa-metal-200 hover:text-alfa-red-600 dark:hover:text-white"
+    >
+      <span class="lang-it">Home</span>
+      <span class="lang-en">Home</span>
+    </a>
+
+    <!-- Technical Accordion -->
+    <div class="border-y border-alfa-metal-100 dark:border-alfa-metal-800 py-2">
+      <div class="px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-alfa-red-600 dark:text-alfa-red-400">
+        Technical
+      </div>
+      <div class="pl-3 space-y-1">
+        <a
+          href="/technical"
+          class="block px-3 py-1.5 rounded-lg text-sm text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-white"
+        >
+          • <span class="lang-it">Specifiche Tecniche</span><span class="lang-en">Technical Specs</span>
+        </a>
+        <a
+          href="/technical/tips"
+          class="block px-3 py-1.5 rounded-lg text-sm text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-white"
+        >
+          • <span class="lang-it">Tips & Guide Passo-Passo</span><span class="lang-en">Tips & DIY Guides</span>
+        </a>
+        <a
+          href="/technical/tuning"
+          class="block px-3 py-1.5 rounded-lg text-sm text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-white"
+        >
+          • <span class="lang-it">Tuning & Elaborazioni</span><span class="lang-en">Tuning & Handling</span>
+        </a>
+      </div>
     </div>
 
-    <!-- Mobile Nav Links -->
-    {navLinks.map((link) => {
-      const active = isActive(link.href);
-      return (
-        <a
-          href={link.href}
-          class={`block px-3.5 py-2.5 rounded-lg text-base font-medium transition-colors ${
-            active
-              ? 'text-alfa-red-600 dark:text-alfa-red-400 bg-alfa-red-50 dark:bg-alfa-red-950/50 font-bold border-l-4 border-alfa-red-600'
-              : 'text-alfa-metal-800 dark:text-alfa-metal-200 hover:text-alfa-red-600 dark:hover:text-white hover:bg-alfa-metal-50 dark:hover:bg-alfa-metal-900'
-          }`}
-        >
-          <span class="lang-it">{link.labelIt}</span>
-          <span class="lang-en">{link.labelEn}</span>
-        </a>
-      );
-    })}
+    <!-- Other Links -->
+    <a
+      href="/buyers-guide"
+      class="block px-3.5 py-2 rounded-lg text-base font-medium text-alfa-metal-800 dark:text-alfa-metal-200 hover:text-alfa-red-600 dark:hover:text-white"
+    >
+      <span class="lang-it">Guida all'Acquisto</span>
+      <span class="lang-en">Buyer's Guide</span>
+    </a>
+
+    <a
+      href="/styling"
+      class="block px-3.5 py-2 rounded-lg text-base font-medium text-alfa-metal-800 dark:text-alfa-metal-200 hover:text-alfa-red-600 dark:hover:text-white"
+    >
+      <span>Styling</span>
+    </a>
+
+    <a
+      href="/storia"
+      class="block px-3.5 py-2 rounded-lg text-base font-medium text-alfa-metal-800 dark:text-alfa-metal-200 hover:text-alfa-red-600 dark:hover:text-white"
+    >
+      <span class="lang-it">Storia</span>
+      <span class="lang-en">History</span>
+    </a>
+
+    <a
+      href="/download"
+      class="block px-3.5 py-2 rounded-lg text-base font-medium text-alfa-metal-800 dark:text-alfa-metal-200 hover:text-alfa-red-600 dark:hover:text-white"
+    >
+      <span class="lang-it">Download</span>
+      <span class="lang-en">Downloads</span>
+    </a>
+
+    <a
+      href="/links"
+      class="block px-3.5 py-2 rounded-lg text-base font-medium text-alfa-metal-800 dark:text-alfa-metal-200 hover:text-alfa-red-600 dark:hover:text-white"
+    >
+      <span class="lang-it">Link</span>
+      <span class="lang-en">Links</span>
+    </a>
+
+    <a
+      href="/about"
+      class="block px-3.5 py-2 rounded-lg text-base font-medium text-alfa-metal-800 dark:text-alfa-metal-200 hover:text-alfa-red-600 dark:hover:text-white"
+    >
+      <span>About</span>
+    </a>
   </div>
 </header>
 

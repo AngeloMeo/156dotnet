@@ -1,240 +1,295 @@
 ---
-// download.astro
-import BaseLayout from '../layouts/BaseLayout.astro';
+// src/pages/download.astro
+import Layout from '../layouts/Layout.astro';
+import Lightbox from '../components/Lightbox.astro';
+
+const audioDownloads = [
+  {
+    title: 'Alfa 156 Twin Spark con Filtro K&N (Sound Dinamico)',
+    file: '/audio/knfilter-alfa156-net.mp3',
+    desc: 'Registrazione del timbro in aspirazione con filtro ad alto flusso K&N montato nell\'airbox.'
+  },
+  {
+    title: 'Alfa 156 con Tubo Centrale Inox Flexipipe',
+    file: '/audio/flexipipe-alfa156-net.mp3',
+    desc: 'Registrazione del borbottio di scarico con tubo flessibile diretto in acciaio inox.'
+  },
+  {
+    title: 'Twin Spark — Variatore di Fase Usurato (Rumore Diesel)',
+    file: '/audio/badvariator-alfa156-net.mp3',
+    desc: 'Il tipico ticchettio da diesel all\'avviamento a freddo quando il variatore è da sostituire.'
+  },
+  {
+    title: 'Twin Spark — Variatore Nuovo Aggiornato 60666199',
+    file: '/audio/goodvariator-alfa156-net.mp3',
+    desc: 'Avviamento pulito, silenzioso e istantaneo con variatore originale modificato.'
+  }
+];
 
 const pdfDownloads = [
   {
-    titleIt: "Checklist Acquisto Alfa 156 (Buyer's Guide)",
-    titleEn: "Alfa 156 Buyer's Guide Checklist",
-    filename: 'buyersguide.pdf',
-    size: '72 KB',
-    descIt: 'Guida completa in 48 punti per valutare un’Alfa 156 usata: controlli carrozzeria, ruggine pianale, usura braccetti, storico distribuzione e spie cruscotto.',
-    descEn: 'Comprehensive 48-point checklist to inspect a used 156: floorpan rust spots, suspension wishbone play, timing belt history, and dashboard warning lights.',
-    catIt: 'Guida all’Acquisto',
-    catEn: "Buyer's Guide",
+    title: 'Checklist di Ispezione a 48 Punti per Alfa 156 (PDF)',
+    file: '/downloads/buyersguide.pdf',
+    author: 'Posty (ARDC)',
+    size: '73 KB',
+    desc: 'La scheda di controllo definitiva da stampare e portare con sé durante la visione di una 156 usata.'
   },
   {
-    titleIt: 'Manutenzione e Sostituzione Freni Ant/Post',
-    titleEn: 'Front & Rear Brake Servicing Manual',
-    filename: 'Alfa156Brakes.pdf',
+    title: 'Guida Sostituzione Dischi e Pastiglie Freni (PDF)',
+    file: '/downloads/Alfa156Brakes.pdf',
+    author: 'Gary',
     size: '1.0 MB',
-    descIt: 'Manuale tecnico per la sostituzione di dischi e pastiglie anteriori e posteriori, spurgo circuito idraulico e regolazione cavo freno a mano.',
-    descEn: 'Technical instructions for front and rear brake disc and pad replacement, system bleeding, and handbrake cable adjustment.',
-    catIt: 'Freni & Assetto',
-    catEn: 'Brakes & Chassis',
+    desc: 'Manuale passo-passo illustrato per lo smontaggio e revisione freni anteriori e posteriori.'
   },
   {
-    titleIt: 'Installazione e Manutenzione Filtro Aria K&N',
-    titleEn: 'K&N Air Filter Installation & Care',
-    filename: 'Alfa156AirFilter.pdf',
-    size: '983 KB',
-    descIt: 'Istruzioni dettagliate per l’alloggiamento del filtro sportivo lavabile nel cassoncino originale, oliatura corretta e intervalli di lavaggio.',
-    descEn: 'Detailed instructions for fitting the washable cotton filter into the factory airbox, correct re-oiling, and cleaning intervals.',
-    catIt: 'Aspirazione',
-    catEn: 'Intake',
+    title: 'Installazione Filtro Aria K&N nel Box Originale (PDF)',
+    file: '/downloads/Alfa156AirFilter.pdf',
+    author: 'Wilson',
+    size: '980 KB',
+    desc: 'Tutorial per l\'inserimento di un elemento filtrante a pannello K&N nell\'airbox di serie.'
   },
   {
-    titleIt: 'Conversione Chiave a Scatto con Telecomando',
-    titleEn: 'Flip Key Remote Conversion Guide',
-    filename: 'buttonflipkey.pdf',
+    title: 'Conversione Chiave a Scatto Button Flip Key (PDF)',
+    file: '/downloads/buttonflipkey.pdf',
+    author: 'Michaeld',
     size: '268 KB',
-    descIt: 'Procedura per trapiantare il trasponder immobilizer Alfa Code e la scheda elettronica telecomando originale all’interno di un guscio a scatto moderno.',
-    descEn: 'Procedure to transplant the Alfa Code immobilizer chip and remote circuit board into a modern folding flip key casing.',
-    catIt: 'Elettronica & Chiavi',
-    catEn: 'Keys & Electronics',
+    desc: 'Guida fai-da-te per trasferire transponder immobilizer e telecomando in guscio a scatto.'
   },
   {
-    titleIt: 'Pulizia Approfondita Corpo Farfallato',
-    titleEn: 'Throttle Body Deep Cleaning Guide',
-    filename: 'cleaningthrottlebody.pdf',
-    size: '156 KB',
-    descIt: 'Guida per rimuovere morchie e residui carboniosi dalla farfalla motorizzata, risolvendo problemi di minimo ballerino e partenze a freddo incerte.',
-    descEn: 'Guide to removing oily carbon deposits from the motorized throttle butterfly, eliminating erratic idle and cold stalling.',
-    catIt: 'Motore',
-    catEn: 'Engine',
-  },
-  {
-    titleIt: 'Leva & Tirante Chiusura Cofano Anteriore',
-    titleEn: 'Bonnet Catch & Safety Lever Recall',
-    filename: 'bonnetcatch.pdf',
+    title: 'Manutenzione Gancio Sicurezza Cofano Motore (PDF)',
+    file: '/downloads/bonnetcatch.pdf',
+    author: 'ARDC',
     size: '3.1 MB',
-    descIt: 'Documentazione tecnica relativa al richiamo e alla manutenzione della serratura e del gancio di sicurezza del cofano anteriore.',
-    descEn: 'Official technical bulletin and service guide for the bonnet secondary catch mechanism and safety release lever.',
-    catIt: 'Carrozzeria',
-    catEn: 'Bodywork',
+    desc: 'Istruzioni e schema di lubrificazione per prevenire l\'apertura accidentale del cofano.'
   },
+  {
+    title: 'Procedura Pulizia Corpo Farfallato Bosch (PDF)',
+    file: '/downloads/cleaningthrottlebody.pdf',
+    author: 'Community',
+    size: '156 KB',
+    desc: 'Smontaggio valvola a farfalla, pulizia morchie e ripristino battuta minima.'
+  }
 ];
 
-const audioTracks = [
+const wallpapers = [
   {
-    titleIt: 'Variatore di Fase Rotto / Sgranato',
-    titleEn: 'Worn / Rattling Cam Variator',
-    file: '/audio/badvariator-alfa156-net.mp3',
-    descIt: 'Il classico tichettio metallico "tipo motore diesel" che si manifesta nei primi 5-10 secondi dopo l’avviamento sui Twin Spark 16V.',
-    descEn: 'The infamous diesel-like clattering noise on cold start on 16V Twin Spark engines caused by a worn spring and internal brass splines.',
-    tagIt: 'Sintomo Guasto',
-    tagEn: 'Fault Sound',
-    tagColor: 'text-alfa-red-600 bg-alfa-red-600/10 border-alfa-red-600/30',
+    src: '/images/desktop/BERNAR31.jpg',
+    thumb: '/images/desktop/BERNAR31-s.jpg',
+    title: 'Alfa 156 in Pista — Curva Veloce',
+    res: 'Originale / 1152x864 / 800x600'
   },
   {
-    titleIt: 'Variatore di Fase Nuovo / Revisionato',
-    titleEn: 'Healthy / New Cam Variator',
-    file: '/audio/goodvariator-alfa156-net.mp3',
-    descIt: 'Il corretto sound di avviamento a freddo: rotazione rotonda e silenziosa della distribuzione senza alcun rumore di battito valvole.',
-    descEn: 'The proper cold start sound: immediate quiet oil pressure build-up and sweet, smooth valve train spin without clatter.',
-    tagIt: 'Riferimento Ottimale',
-    tagEn: 'Healthy Benchmark',
-    tagColor: 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/30',
+    src: '/images/desktop/GIOVAN21.jpg',
+    thumb: '/images/desktop/GIOVAN21-s.jpg',
+    title: 'Alfa 156 V6 24V — Vista Dinamica',
+    res: 'Originale / 800x600'
   },
   {
-    titleIt: 'Tubo Flessibile di Scarico Fessurato',
-    titleEn: 'Cracked Exhaust Flexi-Pipe',
-    file: '/audio/flexipipe-alfa156-net.mp3',
-    descIt: 'Rumore sordo di sfiato gas e risonanza cupa sotto il pianale in accelerazione dovuto al retino metallico flessibile lesionato.',
-    descEn: 'Dull blowing gas leak and bassy cabin drone under acceleration caused by a torn braided downpipe flexi section.',
-    tagIt: 'Diagnosi Scarico',
-    tagEn: 'Exhaust Leak',
-    tagColor: 'text-amber-600 dark:text-amber-400 bg-amber-500/10 border-amber-500/30',
-  },
+    src: '/images/desktop/GIOVAN22.jpg',
+    thumb: '/images/desktop/GIOVAN22-s.jpg',
+    title: 'Alfa 156 Dettaglio Scudetto & Fari',
+    res: 'Originale / 800x600'
+  }
+];
+
+const games = [
+  { title: 'Need For Speed 4: High Stakes', item: 'Alfa 156 2.0 Twin Spark (3D Car Model)' },
+  { title: 'Need For Speed 3: Hot Pursuit', item: 'Alfa 156 Superturismo & 2.5 V6 24V' },
+  { title: 'TOCA 2 Touring Cars', item: 'Alfa 156 Selenia Official Livery Skin' }
 ];
 ---
 
-<BaseLayout
-  title="Download Guide PDF & Clip Audio Diagnostiche – Alfa Romeo 156 (156dotnet)"
-  description="Scarica guide ufficiali in PDF (Buyer's Guide, freni, filtro aria, corpo farfallato) e ascolta i file audio diagnostici per variatore Twin Spark e scarichi."
+<Layout
+  title="Download & Risorse d'Epoca Alfa 156 | Cuore Sportivo Archive"
+  description="L'archivio multimediale di alfa156.net: suoni motore MP3, manuali PDF scaricabili, sfondi desktop ufficiali e mod per Need For Speed e TOCA 2."
+  currentPath="/download"
 >
-  <!-- Hero Section -->
-  <div class="relative py-12 lg:py-16 bg-alfa-metal-100 dark:bg-alfa-metal-900 border-b border-alfa-metal-200 dark:border-alfa-metal-800 transition-colors">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl space-y-4">
-        <div class="flex items-center space-x-2 text-xs font-semibold tracking-wider uppercase text-alfa-red-600 dark:text-alfa-red-400">
-          <span class="w-2 h-2 rounded-full bg-alfa-red-600"></span>
-          <span class="lang-it">Risorse & Documenti Scaricabili</span>
-          <span class="lang-en">Downloadable Guides & Resources</span>
-        </div>
-        <h1 class="font-display font-extrabold text-3xl sm:text-5xl text-alfa-metal-900 dark:text-white">
-          <span class="lang-it">Download Center & Diagnosi Audio</span>
-          <span class="lang-en">Download Center & Audio Diagnostics</span>
-        </h1>
-        <p class="text-base text-alfa-metal-600 dark:text-alfa-metal-400 leading-relaxed">
-          <span class="lang-it">
-            Tutti i documenti PDF storici dell'archivio pronti da scaricare e stampare per la tua officina, uniti alle clip sonore diagnostiche per identificare i problemi a orecchio.
-          </span>
-          <span class="lang-en">
-            Historical PDF documents from the archive ready to download and print for your workshop, paired with diagnostic audio files to identify engine noises by ear.
-          </span>
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
     
-    <!-- PDF Guides Section -->
-    <section class="space-y-8">
-      <div class="space-y-1">
-        <span class="text-xs font-semibold uppercase tracking-wider text-alfa-red-600">
-          <span class="lang-it">Documenti Ufficiali Community</span>
-          <span class="lang-en">Community Technical Documents</span>
+    <!-- Breadcrumb -->
+    <nav class="flex items-center space-x-2 text-xs font-mono text-alfa-metal-500 mb-6">
+      <a href="/" class="hover:text-alfa-red-600">Home</a>
+      <span>/</span>
+      <span class="text-alfa-red-600 font-bold">Download</span>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="border-b border-alfa-metal-200 dark:border-alfa-metal-800 pb-8 mb-10">
+      <h1 class="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-alfa-metal-900 dark:text-white">
+        <span class="lang-it">Area Download & File Multimediali</span>
+        <span class="lang-en">Downloads & Multimedia Hub</span>
+      </h1>
+
+      <p class="mt-4 text-base sm:text-lg text-alfa-metal-600 dark:text-alfa-metal-300 max-w-3xl leading-relaxed">
+        <span class="lang-it">
+          Risorse multimediali per Alfa Romeo 156: registrazioni audio autentiche dei motori, manuali tecnici in formato PDF, sfondi desktop d'epoca e add-on per simulatori di guida anni '90 e 2000.
         </span>
-        <h2 class="font-display font-bold text-3xl text-alfa-metal-900 dark:text-white">
-          <span class="lang-it">Guide Tecniche in Formato PDF</span>
-          <span class="lang-en">Technical Guides in PDF Format</span>
+        <span class="lang-en">
+          Complete multimedia collection for Alfa Romeo 156: authentic engine sound recordings, technical PDF service manuals, retro wallpapers, and classic racing simulator mods.
+        </span>
+      </p>
+    </div>
+
+    <!-- 1. AUDIO CLIPS SECTION -->
+    <div class="mb-14">
+      <div class="flex items-center space-x-3 mb-6">
+        <span class="text-2xl">🎵</span>
+        <h2 class="font-display text-2xl font-bold text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">Campioni Audio Motori & Scarichi (MP3)</span>
+          <span class="lang-en">Engine & Exhaust Audio Recordings (MP3)</span>
         </h2>
-        <p class="text-sm text-alfa-metal-600 dark:text-alfa-metal-400">
-          <span class="lang-it">Clicca per scaricare gratuitamente o visualizzare direttamente nel browser.</span>
-          <span class="lang-en">Click to download free or view directly in your browser.</span>
-        </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {pdfDownloads.map((doc) => (
-          <div class="p-6 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-600/50 transition-all duration-300 shadow-xs flex flex-col justify-between space-y-4">
-            <div class="space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-alfa-metal-100 dark:bg-alfa-metal-800 text-alfa-metal-600 dark:text-alfa-metal-400">
-                  <span class="lang-it">{doc.catIt}</span>
-                  <span class="lang-en">{doc.catEn}</span>
-                </span>
-                <span class="font-mono text-xs text-alfa-metal-500 font-semibold">{doc.size}</span>
-              </div>
-
-              <h3 class="font-display font-bold text-lg text-alfa-metal-900 dark:text-white leading-snug">
-                <span class="lang-it">{doc.titleIt}</span>
-                <span class="lang-en">{doc.titleEn}</span>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {audioDownloads.map((item) => (
+          <div class="p-5 rounded-xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs flex flex-col justify-between">
+            <div>
+              <h3 class="font-display font-bold text-base text-alfa-metal-900 dark:text-white mb-1">
+                {item.title}
               </h3>
-
-              <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400 leading-relaxed">
-                <span class="lang-it">{doc.descIt}</span>
-                <span class="lang-en">{doc.descEn}</span>
+              <p class="text-xs text-alfa-metal-500 dark:text-alfa-metal-400 mb-3">
+                {item.desc}
               </p>
             </div>
+            <div class="pt-2 border-t border-alfa-metal-100 dark:border-alfa-metal-800">
+              <audio controls class="w-full h-8 rounded" preload="metadata">
+                <source src={item.file} type="audio/mpeg" />
+              </audio>
+              <div class="mt-2 text-right">
+                <a
+                  href={item.file}
+                  download
+                  class="text-[11px] font-mono font-bold text-alfa-red-600 dark:text-alfa-red-400 hover:underline"
+                >
+                  Scarica file MP3 ↓
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
 
-            <div class="pt-4 border-t border-alfa-metal-100 dark:border-alfa-metal-800">
+    <!-- 2. PDF MANUALS & CHECKLISTS -->
+    <div class="border-t border-alfa-metal-200 dark:border-alfa-metal-800 pt-12 mb-14">
+      <div class="flex items-center space-x-3 mb-6">
+        <span class="text-2xl">📄</span>
+        <h2 class="font-display text-2xl font-bold text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">Documenti Tecnici, Guide e Manuali PDF</span>
+          <span class="lang-en">Technical PDF Documents & Workshop Guides</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {pdfDownloads.map((pdf) => (
+          <div class="p-5 rounded-xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-[11px] font-mono text-alfa-metal-400 mb-2">
+                <span>{pdf.author}</span>
+                <span class="font-bold text-alfa-red-600">{pdf.size}</span>
+              </div>
+              <h3 class="font-display font-bold text-base text-alfa-metal-900 dark:text-white mb-2">
+                {pdf.title}
+              </h3>
+              <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400 leading-relaxed mb-4">
+                {pdf.desc}
+              </p>
+            </div>
+            <a
+              href={pdf.file}
+              download
+              class="w-full text-center px-4 py-2 rounded-lg bg-alfa-metal-100 dark:bg-alfa-metal-800 hover:bg-alfa-red-600 hover:text-white text-xs font-mono font-bold text-alfa-metal-800 dark:text-alfa-silver-200 transition-colors"
+            >
+              Scarica Documento PDF ↓
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- 3. RETRO WALLPAPERS -->
+    <div class="border-t border-alfa-metal-200 dark:border-alfa-metal-800 pt-12 mb-14">
+      <div class="flex items-center space-x-3 mb-6">
+        <span class="text-2xl">🖼️</span>
+        <h2 class="font-display text-2xl font-bold text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">Sfondi Desktop Storici Windows</span>
+          <span class="lang-en">Retro Windows Desktop Wallpapers</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        {wallpapers.map((wp) => (
+          <div class="p-4 rounded-xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs flex flex-col justify-between">
+            <div
+              class="group relative cursor-pointer overflow-hidden rounded-lg border border-alfa-metal-200 dark:border-alfa-metal-700 mb-3"
+              data-lightbox-trigger
+              data-img-src={wp.src}
+              data-img-title={wp.title}
+            >
+              <img
+                src={wp.src}
+                alt={wp.title}
+                class="w-full h-44 object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-mono font-bold">
+                🔍 Anteprima
+              </div>
+            </div>
+
+            <div>
+              <h3 class="font-semibold text-sm text-alfa-metal-900 dark:text-white mb-1">
+                {wp.title}
+              </h3>
+              <span class="text-[11px] font-mono text-alfa-metal-400 block mb-3">
+                Risoluzione: {wp.res}
+              </span>
               <a
-                href={`/downloads/${doc.filename}`}
+                href={wp.src}
                 download
-                class="w-full inline-flex items-center justify-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-white bg-alfa-red-600 hover:bg-alfa-red-700 transition-colors shadow-glow-red-sm"
+                class="block text-center px-3 py-1.5 rounded-lg bg-alfa-metal-100 dark:bg-alfa-metal-800 hover:bg-alfa-red-600 hover:text-white text-xs font-mono font-bold transition-colors"
               >
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-                <span class="lang-it">Scarica PDF ({doc.size})</span>
-                <span class="lang-en">Download PDF ({doc.size})</span>
+                Download Sfondo ↓
               </a>
             </div>
           </div>
         ))}
       </div>
-    </section>
+    </div>
 
-    <!-- Diagnostic Audio Section -->
-    <section class="space-y-8">
-      <div class="space-y-1">
-        <span class="text-xs font-semibold uppercase tracking-wider text-alfa-red-600">
-          <span class="lang-it">Ascolto Comparativo</span>
-          <span class="lang-en">Comparative Audio Listening</span>
-        </span>
-        <h2 class="font-display font-bold text-3xl text-alfa-metal-900 dark:text-white">
-          <span class="lang-it">Clip Audio Diagnostiche MP3</span>
-          <span class="lang-en">Diagnostic Audio Clips (MP3)</span>
+    <!-- 4. GAMING MODS RETRO -->
+    <div class="border-t border-alfa-metal-200 dark:border-alfa-metal-800 pt-12">
+      <div class="flex items-center space-x-3 mb-6">
+        <span class="text-2xl">🕹️</span>
+        <h2 class="font-display text-2xl font-bold text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">Modellismo Virtuale & Videogiochi Anni 90/2000</span>
+          <span class="lang-en">Retro Gaming Add-ons & 3D Models</span>
         </h2>
-        <p class="text-sm text-alfa-metal-600 dark:text-alfa-metal-400">
-          <span class="lang-it">Usa le cuffie per cogliere le sfumature di frequenza e riconoscere i problemi prima che causino danni maggiori.</span>
-          <span class="lang-en">Use headphones to detect fine acoustic frequencies and identify valvetrain issues before major failure.</span>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-alfa-metal-50 dark:bg-alfa-metal-900/60 border border-alfa-metal-200 dark:border-alfa-metal-800">
+        <p class="text-sm text-alfa-metal-600 dark:text-alfa-metal-300 mb-4 leading-relaxed">
+          <span class="lang-it">
+            All'apice del successo dell'Alfa 156, la community internazionale realizzò conversioni 3D e livree ufficiali per i titoli di simulazione di corsa più famosi dell'epoca:
+          </span>
+          <span class="lang-en">
+            At the peak of the 156's racing fame, the global community built bespoke 3D cars and liveries for the era's legendary sim racing games:
+          </span>
         </p>
+
+        <ul class="space-y-3 font-mono text-xs sm:text-sm">
+          {games.map((g) => (
+            <li class="flex items-center space-x-3 p-3 rounded-lg bg-white dark:bg-alfa-metal-950 border border-alfa-metal-200 dark:border-alfa-metal-800">
+              <span class="w-2 h-2 rounded-full bg-alfa-red-600"></span>
+              <strong class="text-alfa-metal-900 dark:text-white">{g.title}:</strong>
+              <span class="text-alfa-metal-600 dark:text-alfa-silver-300">{g.item}</span>
+            </li>
+          ))}
+        </ul>
       </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {audioTracks.map((track) => (
-          <div class="p-6 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-600/40 transition-all space-y-4">
-            <div class="flex items-center justify-between">
-              <span class={`px-2.5 py-0.5 rounded-full text-xs font-semibold border ${track.tagColor}`}>
-                <span class="lang-it">{track.tagIt}</span>
-                <span class="lang-en">{track.tagEn}</span>
-              </span>
-            </div>
-
-            <h3 class="font-display font-bold text-lg text-alfa-metal-900 dark:text-white">
-              <span class="lang-it">{track.titleIt}</span>
-              <span class="lang-en">{track.titleEn}</span>
-            </h3>
-
-            <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400 leading-relaxed">
-              <span class="lang-it">{track.descIt}</span>
-              <span class="lang-en">{track.descEn}</span>
-            </p>
-
-            <div class="pt-2">
-              <audio controls class="w-full h-10 rounded-lg" preload="none">
-                <source src={track.file} type="audio/mpeg" />
-                Audio element not supported.
-              </audio>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
+    </div>
 
   </div>
-</BaseLayout>
+
+  <Lightbox />
+</Layout>

@@ -1,0 +1,178 @@
+---
+// src/pages/links.astro
+import Layout from '../layouts/Layout.astro';
+
+const clubLinks = [
+  { name: 'KARN (Klubb Alfa Romeo Norge)', desc: 'Lo storico club Alfa Romeo norvegese, patria del creatore di alfa156.net.', url: 'http://www.klubbalfaromeo.no' },
+  { name: 'AROC UK (Alfa Romeo Owners Club)', desc: 'Il club ufficiale dei proprietari Alfa Romeo nel Regno Unito.', url: 'http://www.aroc-uk.com' },
+  { name: 'Club Alfa Romeo Svezia', desc: 'La vivace community svedese per gli appassionati del Biscione.', url: 'http://www.alfaromeo.org' },
+  { name: 'Alfaowner.com', desc: 'Uno dei forum di lingua inglese più grandi e attivi al mondo dedicato ad ogni modello Alfa.', url: 'http://www.alfaowner.com' },
+  { name: 'Cuore Sportivo UK', desc: 'Pagine storiche e documentazione tecnica a cura di Catman.', url: 'http://www.cuore-sportivo.co.uk' },
+  { name: 'Italiaspeed', desc: 'Lo storico portale di notizie aggiornato quotidianamente sull\'automobilismo italiano.', url: 'http://www.italiaspeed.com' },
+  { name: 'Cars From Italy', desc: 'La banca dati documentale più completa sul web dedicata a tutte le automobili italiane.', url: 'http://www.carsfromitaly.com' },
+  { name: 'Auto Italia Magazine', desc: 'La rivista britannica leader mondiale per l\'approfondimento e la storia dei veicoli italiani.', url: 'http://www.auto-italia.co.uk' }
+];
+
+const tunerLinks = [
+  { name: 'Novitec (Germania)', desc: 'Specialista in sovralimentazione, kit aerodinamici e scarichi per Alfa Romeo.', url: 'http://www.novitec.com' },
+  { name: 'Squadra Tuning (Olanda)', desc: 'Le rimappature centralina Bosch più raffinate e studiate su banco prova.', url: 'http://www.squadra-tuning.com' },
+  { name: 'Autodelta (Londra, UK)', desc: 'Creazioni motorsport, kit volumetrico e conversioni 3.7 V6 per 156 GTA.', url: 'http://www.autodelta.co.uk' },
+  { name: 'Cadamuro Design (Italia)', desc: 'Design italiano e kit estetici sportivi aerodinamici per berlina e SW.', url: 'http://www.cadamurodesign.it' },
+  { name: 'Zender (Germania)', desc: 'Accessori sportivi e partner estetico ufficiale Alfa Romeo.', url: 'http://www.zender.de' },
+  { name: 'Ragazzon (Italia)', desc: 'Fabbrica di impianti di scarico sportivi al 100% in acciaio inox.', url: 'http://www.ragazzon.it' },
+  { name: 'Tarox (Italia)', desc: 'Impianti frenanti maggiorati da corsa a 6 e 10 pompanti e dischi speciali.', url: 'http://www.tarox.com' },
+  { name: 'Madeno Racing (Olanda)', desc: 'Assetti racing, cambi ravvicinati e conversioni motore V6.', url: 'http://www.madeno.nl' }
+];
+
+const partsLinks = [
+  { name: 'Alternative Autos (UK)', desc: 'Fornitore storico di ricambi originali e OEM per vetture italiane.', url: 'http://www.alternativeautos.com' },
+  { name: 'EB Spares (UK)', desc: 'Specialisti in ricambi d\'epoca e moderni Alfa Romeo dal 1969.', url: 'http://www.ebspares.co.uk' },
+  { name: 'The Alfa Workshop (UK)', desc: 'Officina specializzata e vasto catalogo guide di manutenzione a cura di Jamie Porter.', url: 'http://www.alfaworkshop.co.uk' },
+  { name: 'Gazzella Racing (UK)', desc: 'Store internazionale per componenti racing, scarichi e parti speciali italiane.', url: 'http://www.gazzella.cc' }
+];
+---
+
+<Layout
+  title="Link Utili & Directory Storica Alfa 156 | Cuore Sportivo Archive"
+  description="La directory storica originale dei link di alfa156.net: club ufficiali, preparatori d'epoca (Novitec, Autodelta, Squadra) e ricambisti specializzati."
+  currentPath="/links"
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex items-center space-x-2 text-xs font-mono text-alfa-metal-500 mb-6">
+      <a href="/" class="hover:text-alfa-red-600">Home</a>
+      <span>/</span>
+      <span class="text-alfa-red-600 font-bold">Link</span>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="border-b border-alfa-metal-200 dark:border-alfa-metal-800 pb-8 mb-10">
+      <h1 class="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-alfa-metal-900 dark:text-white">
+        <span class="lang-it">Link Utili & Directory della Community</span>
+        <span class="lang-en">Essential Links & Community Directory</span>
+      </h1>
+
+      <p class="mt-4 text-base sm:text-lg text-alfa-metal-600 dark:text-alfa-metal-300 max-w-3xl leading-relaxed">
+        <span class="lang-it">
+          La selezione ragionata di siti web, club ufficiali, preparatori d'epoca e ricambisti specializzati per il mondo Alfa Romeo e 156.
+        </span>
+        <span class="lang-en">
+          The curated directory of enthusiast websites, official marque clubs, period tuners, and specialized spare parts suppliers for Alfa Romeo 156.
+        </span>
+      </p>
+    </div>
+
+    <!-- 1. CLUBS & MEDIA -->
+    <div class="mb-14">
+      <div class="flex items-center space-x-3 mb-6">
+        <span class="text-2xl">🏛️</span>
+        <h2 class="font-display text-2xl font-bold text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">Club di Marca & Portali di Informazione</span>
+          <span class="lang-en">Official Clubs & Enthusiast Portals</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {clubLinks.map((item) => (
+          <a
+            href={item.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group p-5 rounded-xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-500/50 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+          >
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <h3 class="font-display font-bold text-base text-alfa-metal-900 dark:text-white group-hover:text-alfa-red-600 transition-colors">
+                  {item.name}
+                </h3>
+                <span class="text-xs text-alfa-metal-400 group-hover:translate-x-1 transition-transform">↗</span>
+              </div>
+              <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400 leading-relaxed">
+                {item.desc}
+              </p>
+            </div>
+            <span class="text-[11px] font-mono text-alfa-metal-400 dark:text-alfa-metal-500 mt-3 truncate block">
+              {item.url}
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- 2. TUNERS -->
+    <div class="border-t border-alfa-metal-200 dark:border-alfa-metal-800 pt-12 mb-14">
+      <div class="flex items-center space-x-3 mb-6">
+        <span class="text-2xl">⚡</span>
+        <h2 class="font-display text-2xl font-bold text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">Preparatori & Costruttori di Parti Speciali</span>
+          <span class="lang-en">Tuners & Performance Manufacturers</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {tunerLinks.map((item) => (
+          <a
+            href={item.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group p-5 rounded-xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-500/50 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+          >
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <h3 class="font-display font-bold text-base text-alfa-metal-900 dark:text-white group-hover:text-alfa-red-600 transition-colors">
+                  {item.name}
+                </h3>
+                <span class="text-xs text-alfa-metal-400 group-hover:translate-x-1 transition-transform">↗</span>
+              </div>
+              <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400 leading-relaxed">
+                {item.desc}
+              </p>
+            </div>
+            <span class="text-[11px] font-mono text-alfa-metal-400 dark:text-alfa-metal-500 mt-3 truncate block">
+              {item.url}
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- 3. SPECIALIST PARTS SUPPLIERS -->
+    <div class="border-t border-alfa-metal-200 dark:border-alfa-metal-800 pt-12">
+      <div class="flex items-center space-x-3 mb-6">
+        <span class="text-2xl">🔧</span>
+        <h2 class="font-display text-2xl font-bold text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">Ricambisti Specializzati & Officine</span>
+          <span class="lang-en">Specialist Parts Suppliers & Garages</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {partsLinks.map((item) => (
+          <a
+            href={item.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group p-5 rounded-xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-500/50 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+          >
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <h3 class="font-display font-bold text-base text-alfa-metal-900 dark:text-white group-hover:text-alfa-red-600 transition-colors">
+                  {item.name}
+                </h3>
+                <span class="text-xs text-alfa-metal-400 group-hover:translate-x-1 transition-transform">↗</span>
+              </div>
+              <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400 leading-relaxed">
+                {item.desc}
+              </p>
+            </div>
+            <span class="text-[11px] font-mono text-alfa-metal-400 dark:text-alfa-metal-500 mt-3 truncate block">
+              {item.url}
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</Layout>

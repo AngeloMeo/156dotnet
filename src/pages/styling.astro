@@ -1,0 +1,212 @@
+---
+// src/pages/styling.astro
+import Layout from '../layouts/Layout.astro';
+import Lightbox from '../components/Lightbox.astro';
+
+const stylingKits = [
+  {
+    name: 'Cadamuro Design',
+    country: 'Italia',
+    descEn: 'Aggressive front spoiler with large central intake, side skirts and rear bumper diffuser.',
+    descIt: 'Sotto-paraurti anteriore aggressivo con ampia presa d\'aria centrale, minigonne sagomate ed estrattore posteriore.',
+    images: [
+      { src: '/images/styling/camaduro1.jpg', alt: 'Cadamuro Design Alfa 156 Front' },
+      { src: '/images/styling/camaduro2.jpg', alt: 'Cadamuro Design Alfa 156 Rear' }
+    ]
+  },
+  {
+    name: 'Novitec',
+    country: 'Germania',
+    descEn: 'Full aerodynamic kit for Saloon and dedicated rear roof spoiler and bumper for Sportwagon.',
+    descIt: 'Kit aerodinamico completo per berlina e kit specifico per Sportwagon con spoiler lunotto e paraurti.',
+    images: [
+      { src: '/images/styling/novitec1.jpg', alt: 'Novitec Alfa 156 Saloon Front' },
+      { src: '/images/styling/novitec2.jpg', alt: 'Novitec Alfa 156 Saloon Rear' },
+      { src: '/images/styling/novitec3.jpg', alt: 'Novitec Alfa 156 Sportwagon' }
+    ]
+  },
+  {
+    name: 'Zender',
+    country: 'Germania',
+    descEn: 'OEM styling partner for Alfa Romeo. Subtle front lip spoiler, side skirts and boot lid spoiler.',
+    descIt: 'Partner ufficiale Alfa Romeo per gli allestimenti sportivi. Labbro anteriore discreto, minigonne e spoiler baule.',
+    images: [
+      { src: '/images/styling/zender1.jpg', alt: 'Zender Alfa 156 Front' },
+      { src: '/images/styling/zender2.jpg', alt: 'Zender Alfa 156 Rear' }
+    ]
+  },
+  {
+    name: 'Autodelta',
+    country: 'Inghilterra',
+    descEn: 'Motorsport-derived body styling with functional brake cooling ducts and touring-car style spoilers.',
+    descIt: 'Kit estetico di derivazione racing con condotti per il raffreddamento freni e spoiler stile Superturismo.',
+    images: [
+      { src: '/images/styling/autodelta1.jpg', alt: 'Autodelta Alfa 156 Front' },
+      { src: '/images/styling/autodelta2.jpg', alt: 'Autodelta Alfa 156 Rear' }
+    ]
+  },
+  {
+    name: 'MS Design',
+    country: 'Austria',
+    descEn: 'Clean, elegant lines that complement Walter de Silva original silhouette without exaggeration.',
+    descIt: 'Linee pulite ed eleganti che valorizzano la silhouette originale di Walter de\' Silva senza esagerazioni.',
+    images: [
+      { src: '/images/styling/msdesign1.jpg', alt: 'MS Design Alfa 156 Front' },
+      { src: '/images/styling/msdesign2.jpg', alt: 'MS Design Alfa 156 Rear' }
+    ]
+  },
+  {
+    name: 'Lester',
+    country: 'Italia',
+    descEn: 'Vast catalogue of polyurethane and fiberglass body components, brows, splitters and bonnets.',
+    descIt: 'Vasto catalogo italiano di appendici in poliuretano e vetroresina, palpebre fari, splitter e prese d\'aria.',
+    images: [
+      { src: '/images/styling/lester1.jpg', alt: 'Lester Alfa 156 Front' },
+      { src: '/images/styling/lester2.jpg', alt: 'Lester Alfa 156 Rear' }
+    ]
+  },
+  {
+    name: 'Hörmann Motorsport',
+    country: 'Germania',
+    descEn: 'Historic German tuner specialized in Italian touring cars. DTM style aerodynamics and wide body parts.',
+    descIt: 'Storico preparatore tedesco specializzato in vetture italiane turismo. Aerodinamica DTM e parafanghi allargati.',
+    images: [
+      { src: '/images/styling/hormann1.jpg', alt: 'Hörmann Motorsport Front' },
+      { src: '/images/styling/hormann2.jpg', alt: 'Hörmann Motorsport Rear' }
+    ]
+  },
+  {
+    name: 'Autotecnica Design',
+    country: 'Italia',
+    descEn: 'Distinctive Italian custom bodykit with pronounced lower air dam and twin exhaust cutouts.',
+    descIt: 'Personalizzazione italiana con pronunciato fascione inferiore e doppio incavo per scarichi sportivi.',
+    images: [
+      { src: '/images/styling/atd01.jpg', alt: 'Autotecnica Design Front' },
+      { src: '/images/styling/atd02.jpg', alt: 'Autotecnica Design Rear' }
+    ]
+  },
+  {
+    name: 'Carcept',
+    country: 'Belgio',
+    descEn: 'Bold European show car tuning styling package with deep front bumper apron.',
+    descIt: 'Kit estetico europeo ad alto impatto visivo con paraurti anteriore ribassato e prese d\'aria laterali.',
+    images: [
+      { src: '/images/styling/carcept1.jpg', alt: 'Carcept Front' },
+      { src: '/images/styling/carcept2.jpg', alt: 'Carcept Rear' }
+    ]
+  },
+  {
+    name: 'Eurotuning / Eurolineas',
+    country: 'Spagna',
+    descEn: 'Spanish styling package featuring smoothed bumpers and integrated fog light pods.',
+    descIt: 'Kit spagnolo caratterizzato da paraurti raccordati e alloggiamenti fendinebbia integrati.',
+    images: [
+      { src: '/images/styling/eurolineas1.jpg', alt: 'Eurolineas Front' },
+      { src: '/images/styling/eurolineas2.jpg', alt: 'Eurolineas Rear' }
+    ]
+  },
+  {
+    name: 'Formula 2 Design',
+    country: 'Italia',
+    descEn: 'Racing-inspired lightweight aerodynamic package.',
+    descIt: 'Kit aerodinamico leggero ispirato alle competizioni formula.',
+    images: [
+      { src: '/images/styling/formula2-1.jpg', alt: 'Formula 2 Front' },
+      { src: '/images/styling/formula2-2.jpg', alt: 'Formula 2 Rear' }
+    ]
+  },
+  {
+    name: 'G&S Tuning',
+    country: 'Germania',
+    descEn: 'Custom German styling featuring pronounced rear wing and deep rocker extensions.',
+    descIt: 'Allestimento tedesco con vistoso alettone posteriore e minigonne sottoporta.',
+    images: [
+      { src: '/images/styling/gst1.jpg', alt: 'G&S Tuning Front' },
+      { src: '/images/styling/gst2.jpg', alt: 'G&S Tuning Rear' }
+    ]
+  }
+];
+---
+
+<Layout
+  title="Kit Estetici e Styling d'Epoca Alfa 156 | Cuore Sportivo Archive"
+  description="L'archivio fotografico e documentale completo di tutti i kit estetici d'epoca per Alfa Romeo 156 da alfa156.net: Cadamuro, Novitec, Zender, Autodelta e Lester."
+  currentPath="/styling"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex items-center space-x-2 text-xs font-mono text-alfa-metal-500 mb-6">
+      <a href="/" class="hover:text-alfa-red-600">Home</a>
+      <span>/</span>
+      <span class="text-alfa-red-600 font-bold">Styling</span>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="border-b border-alfa-metal-200 dark:border-alfa-metal-800 pb-8 mb-10">
+      <h1 class="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-alfa-metal-900 dark:text-white">
+        <span class="lang-it">I Diversi Kit Estetici per Alfa Romeo 156</span>
+        <span class="lang-en">The Different Styling Kits for Alfa Romeo 156</span>
+      </h1>
+
+      <p class="mt-4 text-base sm:text-lg text-alfa-metal-600 dark:text-alfa-metal-300 max-w-3xl leading-relaxed">
+        <span class="lang-it">
+          <em>"Credo che saremo tutti d'accordo sul fatto che l'Alfa 156 sia una delle auto più belle presenti sulle autostrade di oggi. Ma ci sarà sempre chi desidera quel tocco in più per rendere la propria auto ancora più speciale. Questa pagina è per voi!"</em> — <strong>Anders</strong>
+        </span>
+        <span class="lang-en">
+          <em>"I think we will all agree that the Alfa 156 is one of the best looking cars on the motorways today. But there are always some who just need the little extra to make their car even more special. This page is for you!"</em> — <strong>Anders</strong>
+        </span>
+      </p>
+    </div>
+
+    <!-- Kits Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-14">
+      {stylingKits.map((kit) => (
+        <div class="p-6 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs hover:border-alfa-red-500/50 hover:shadow-lg transition-all duration-200 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-alfa-red-50 dark:bg-alfa-red-950 text-alfa-red-600 dark:text-alfa-red-400">
+                {kit.country}
+              </span>
+              <span class="text-xs font-mono text-alfa-metal-400">Kit d'epoca</span>
+            </div>
+
+            <h2 class="font-display text-2xl font-bold text-alfa-metal-900 dark:text-white mb-2">
+              {kit.name}
+            </h2>
+
+            <p class="text-xs sm:text-sm text-alfa-metal-600 dark:text-alfa-metal-300 mb-5 leading-relaxed">
+              <span class="lang-it">{kit.descIt}</span>
+              <span class="lang-en">{kit.descEn}</span>
+            </p>
+          </div>
+
+          <!-- Thumbnails -->
+          <div class="grid grid-cols-2 gap-2 pt-4 border-t border-alfa-metal-100 dark:border-alfa-metal-800">
+            {kit.images.map((img) => (
+              <div
+                class="group relative cursor-pointer overflow-hidden rounded-lg border border-alfa-metal-200 dark:border-alfa-metal-700 bg-alfa-metal-100 dark:bg-alfa-metal-950"
+                data-lightbox-trigger
+                data-img-src={img.src}
+                data-img-title={`${kit.name} - ${img.alt}`}
+              >
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  class="w-full h-28 sm:h-32 object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <span class="text-white text-xs font-mono font-bold">🔍 Ingrandisci</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+
+  <Lightbox />
+</Layout>

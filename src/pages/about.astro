@@ -1,191 +1,132 @@
 ---
-// about.astro
-import BaseLayout from '../layouts/BaseLayout.astro';
+// src/pages/about.astro
+import Layout from '../layouts/Layout.astro';
 ---
 
-<BaseLayout
-  title="About & Crediti – Il Progetto 156dotnet (Alfa Romeo 156)"
-  description="La storia dell'archivio storico 156dotnet, il tributo ai pionieri Anders e Jeff di alfa156.net, e la missione di preservazione tecnica."
+<Layout
+  title="About alfa156.it | Cuore Sportivo Archive"
+  description="Il messaggio e la storia originale di Anders e Jeff, fondatori di alfa156.net a Bergen (Norvegia), la genesi del sito e l'eredità per la community degli Alfisti."
+  currentPath="/about"
 >
-  <!-- Hero Section -->
-  <div class="relative py-12 lg:py-16 bg-alfa-metal-100 dark:bg-alfa-metal-900 border-b border-alfa-metal-200 dark:border-alfa-metal-800 transition-colors">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl space-y-4">
-        <div class="flex items-center space-x-2 text-xs font-semibold tracking-wider uppercase text-alfa-red-600 dark:text-alfa-red-400">
-          <span class="w-2 h-2 rounded-full bg-alfa-red-600"></span>
-          <span class="lang-it">Il Progetto & La Community</span>
-          <span class="lang-en">The Project & Community</span>
-        </div>
-        <h1 class="font-display font-extrabold text-3xl sm:text-5xl text-alfa-metal-900 dark:text-white">
-          <span class="lang-it">About 156dotnet</span>
-          <span class="lang-en">About 156dotnet</span>
-        </h1>
-        <p class="text-base text-alfa-metal-600 dark:text-alfa-metal-400 leading-relaxed">
-          <span class="lang-it">
-            Un ponte tra la gloriosa era d'oro dei forum dei primi anni 2000 e il web moderno: preservare la conoscenza tecnica per mantenere vive le Alfa Romeo 156 su strada.
-          </span>
-          <span class="lang-en">
-            Bridging the golden era of early 2000s forums with the modern web: preserving irreplaceable technical knowledge to keep Alfa Romeo 156s alive on the road.
-          </span>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex items-center space-x-2 text-xs font-mono text-alfa-metal-500 mb-6">
+      <a href="/" class="hover:text-alfa-red-600">Home</a>
+      <span>/</span>
+      <span class="text-alfa-red-600 font-bold">About</span>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="border-b border-alfa-metal-200 dark:border-alfa-metal-800 pb-8 mb-10">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-alfa-red-50 dark:bg-alfa-red-950/60 border border-alfa-red-200 dark:border-alfa-red-800 text-alfa-red-600 dark:text-alfa-red-400 text-xs font-mono font-semibold uppercase tracking-wider mb-4">
+        <span>Messaggio Originale Verbatim</span>
+        <span>•</span>
+        <span>about.html</span>
+      </div>
+
+      <h1 class="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-alfa-metal-900 dark:text-white">
+        <span class="lang-it">Informazioni su questo sito (About)</span>
+        <span class="lang-en">About this page (alfa156.it)</span>
+      </h1>
+
+      <p class="mt-4 text-base sm:text-lg text-alfa-metal-600 dark:text-alfa-metal-300 leading-relaxed">
+        <span class="lang-it">
+          La dichiarazione originale autentica di <strong>Anders Bull</strong>, fondatore e curatore storico del portale <em>alfa156.net</em> a Bergen, Norvegia.
+        </span>
+        <span class="lang-en">
+          The original authentic statement from <strong>Anders Bull</strong>, creator and historical curator of <em>alfa156.net</em> in Bergen, Norway.
+        </span>
+      </p>
+    </div>
+
+    <!-- The Founders: Andy & Jeff -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      <!-- Andy (Anders) -->
+      <div class="p-6 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs flex flex-col items-center text-center">
+        <img
+          src="/images/about/andy.jpg"
+          alt="Andy (Anders Bull)"
+          class="w-48 h-64 object-cover rounded-xl shadow-md border border-alfa-metal-200 dark:border-alfa-metal-700 mb-4"
+        />
+        <h2 class="font-display text-xl font-bold text-alfa-metal-900 dark:text-white">
+          Andy (Anders Bull)
+        </h2>
+        <span class="text-xs font-mono text-alfa-red-600 dark:text-alfa-red-400 mb-2">
+          Creatore & Webmaster — Bergen, Norvegia
+        </span>
+        <p class="text-xs text-alfa-metal-500 dark:text-alfa-metal-400 italic">
+          "I believe this is the best Alfa 156 site on the net, so I am keeping it alive for you!"
+        </p>
+      </div>
+
+      <!-- Jeff -->
+      <div class="p-6 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs flex flex-col items-center text-center">
+        <img
+          src="/images/about/jeffp.jpg"
+          alt="Jeff"
+          class="w-48 h-64 object-cover rounded-xl shadow-md border border-alfa-metal-200 dark:border-alfa-metal-700 mb-4"
+        />
+        <h2 class="font-display text-xl font-bold text-alfa-metal-900 dark:text-white">
+          Jeff
+        </h2>
+        <span class="text-xs font-mono text-alfa-red-600 dark:text-alfa-red-400 mb-2">
+          Autore Guide Tecniche & Moderatore — UK
+        </span>
+        <p class="text-xs text-alfa-metal-500 dark:text-alfa-metal-400 italic">
+          Ex proprietario di Alfa 156 2.5 V6 24V e di una splendida 147 GTA.
         </p>
       </div>
     </div>
-  </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <div class="max-w-3xl mx-auto space-y-12">
+    <!-- Verbatim Letter by Anders -->
+    <div class="p-8 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-sm space-y-6 text-alfa-metal-700 dark:text-alfa-metal-300 text-sm sm:text-base leading-relaxed">
       
-      <!-- Section 1: The Heritage -->
-      <section class="space-y-4">
-        <h2 class="font-display font-bold text-2xl sm:text-3xl text-alfa-metal-900 dark:text-white">
-          <span class="lang-it">L'Eredità di <span class="text-alfa-red-600">alfa156.net</span></span>
-          <span class="lang-en">The Heritage of <span class="text-alfa-red-600">alfa156.net</span></span>
-        </h2>
-        
-        <div class="text-sm sm:text-base text-alfa-metal-700 dark:text-alfa-metal-300 leading-relaxed space-y-3 lang-it">
-          <p>
-            Nei primi anni 2000, <strong>alfa156.net</strong> è stato il punto di incontro mondiale per migliaia di proprietari di Alfa 156. Fondato dal norvegese <strong>Anders</strong> e supportato dall'appassionato <strong>Jeff</strong> e da innumerevoli alfisti in tutto il mondo, il sito ha raccolto guide "fai-da-te" straordinarie in un'epoca in cui YouTube e i social non esistevano ancora.
-          </p>
-          <p>
-            Con il passare dei decenni, la chiusura dei vecchi server e il declino dei siti a frame in HTML puro rischiavano di far sparire per sempre preziosissimi dettagli tecnici, schemi di smontaggio introvabili e testimonianze dirette.
-          </p>
+      <p>
+        <span class="lang-it">
+          "Mi chiamo Anders e vivo a Bergen, in Norvegia. Questo sito web è nato originariamente per condividere informazioni ed esperienze sulla mia auto. Nel 2005 ho deciso di vendere la mia 156 e l'ho sostituita con una GTV del 2002. Successivamente, nel 2006, ho sostituito la GTV con una vettura proveniente dal sud della Germania (Monaco di Baviera).
+          <br><br>
+          Ma credo fermamente che questo sia il miglior sito dedicato all'Alfa 156 su tutto il web, per cui continuerò a mantenerlo vivo per tutti voi! Con un enorme ringraziamento ai nostri fedeli sponsor!"
+        </span>
+        <span class="lang-en">
+          "My name is Anders and I live in Bergen, Norway. This webpage was started to share info about my car. In 2005 I decided to sell my 156 and replaced it with a 2002 GTV. Then in 2006 I replaced the GTV with a car from southern Germany (München). But I believe this is the best Alfa 156 site on the net, so I am keeping it alive for you! With big thank you's to our loyal sponsors!"
+        </span>
+      </p>
+
+      <p>
+        <span class="lang-it">
+          "L'impagabile e sempre disponibile <strong>Jeff</strong> ha realizzato le guide passo-passo illustrate per la sezione Tips, è moderatore sul forum ed è colui che mantiene aggiornata la sezione con le vetture degli utenti (Your156). In precedenza ha posseduto una 156 2.5 24V V6 e una stupenda 147 GTA."
+        </span>
+        <span class="lang-en">
+          "The ever so helpfull <strong>Jeff</strong> has made step by step guides for the Tips section, is a moderator on the forum and is also keeping the Your156 section updated. He has previously owned a 156 2.5 24v V6 and a very nice 147 GTA."
+        </span>
+      </p>
+
+      <!-- The Famous Disclaimer -->
+      <div class="p-4 rounded-xl bg-alfa-red-50 dark:bg-alfa-red-950/40 border border-alfa-red-200 dark:border-alfa-red-900 text-alfa-red-900 dark:text-alfa-red-200 text-xs sm:text-sm">
+        <div class="font-bold mb-1">
+          <span class="lang-it">Nota Storica sul Supporto Tecnico:</span>
+          <span class="lang-en">Historical Technical Queries Disclaimer:</span>
         </div>
-
-        <div class="text-sm sm:text-base text-alfa-metal-700 dark:text-alfa-metal-300 leading-relaxed space-y-3 lang-en">
-          <p>
-            In the early 2000s, <strong>alfa156.net</strong> was the international gathering place for thousands of Alfa 156 owners. Founded by <strong>Anders</strong> in Bergen, Norway, and curated alongside the ever-helpful <strong>Jeff</strong> and passionate contributors worldwide, the website collected invaluable DIY guides long before modern video tutorials existed.
-          </p>
-          <p>
-            As decades passed, discontinued legacy servers and early HTML framesets put these irreplaceable maintenance archives at risk of disappearing forever.
-          </p>
-        </div>
-      </section>
-
-      <!-- Original 1999/2006 Message from Anders -->
-      <section class="p-6 rounded-2xl bg-alfa-metal-100 dark:bg-alfa-metal-900/80 border border-alfa-metal-300 dark:border-alfa-metal-700 space-y-3">
-        <div class="flex items-center justify-between border-b border-alfa-metal-200 dark:border-alfa-metal-800 pb-2">
-          <span class="font-display font-bold text-sm text-alfa-red-600 uppercase tracking-wider">
-            <span class="lang-it">Dal fondatore originale (Archivio Storico)</span>
-            <span class="lang-en">From the Original Founder (Historical Archive)</span>
-          </span>
-          <span class="text-xs font-mono text-alfa-metal-500">Anders • Bergen, Norway</span>
-        </div>
-        <blockquote class="text-xs sm:text-sm italic text-alfa-metal-700 dark:text-alfa-metal-300 leading-relaxed">
-          "My name is Anders and I live in Bergen, Norway. This webpage was started to share info about my car. I believe this is the best Alfa 156 site on the net, so I am keeping it alive for you! The ever so helpful Jeff has made step-by-step guides for the Tips section, is a moderator on the forum, and keeps the community updated. Big thanks to all the enthusiasts worldwide who documented their cars."
-        </blockquote>
-      </section>
-
-      <!-- Section 2: What We Did -->
-      <section class="p-8 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 space-y-4 shadow-sm">
-        <h3 class="font-display font-bold text-xl text-alfa-metal-900 dark:text-white">
-          <span class="lang-it">La Preservazione di 4.449 File</span>
-          <span class="lang-en">Preserving 4,449 Historical Files</span>
-        </h3>
-        <p class="text-xs sm:text-sm text-alfa-metal-600 dark:text-alfa-metal-400 leading-relaxed">
-          <span class="lang-it">Attraverso un accurato lavoro di recupero e unione tra gli archivi originali e i backup di Archive.org:</span>
-          <span class="lang-en">Through careful curation uniting original local archives with Archive.org historical backups:</span>
-        </p>
-        
-        <ul class="space-y-2 text-xs sm:text-sm text-alfa-metal-700 dark:text-alfa-metal-300 lang-it">
-          <li class="flex items-start space-x-2">
-            <span class="text-alfa-red-600 font-bold">•</span>
-            <span>Sono stati curati e puliti <strong>4.449 file (421 MB totali)</strong> eliminando file corrotti e duplicati.</span>
-          </li>
-          <li class="flex items-start space-x-2">
-            <span class="text-alfa-red-600 font-bold">•</span>
-            <span>Tutte le foto originali passo-passo sono state recuperate e collegate a nuove schede strutturate con gallerie lightbox interattive.</span>
-          </li>
-          <li class="flex items-start space-x-2">
-            <span class="text-alfa-red-600 font-bold">•</span>
-            <span>I file audio diagnostici dei variatori di fase e gli scarichi flessibili sono stati convertiti e integrati con player HTML5 nativi.</span>
-          </li>
-        </ul>
-
-        <ul class="space-y-2 text-xs sm:text-sm text-alfa-metal-700 dark:text-alfa-metal-300 lang-en">
-          <li class="flex items-start space-x-2">
-            <span class="text-alfa-red-600 font-bold">•</span>
-            <span>Carefully curated and deduplicated <strong>4,449 files (421 MB total)</strong>.</span>
-          </li>
-          <li class="flex items-start space-x-2">
-            <span class="text-alfa-red-600 font-bold">•</span>
-            <span>Recovered all high-resolution step photos and paired them with modern interactive lightbox galleries.</span>
-          </li>
-          <li class="flex items-start space-x-2">
-            <span class="text-alfa-red-600 font-bold">•</span>
-            <span>Restored diagnostic audio recordings for Twin Spark cam variators and exhaust flexi leaks with native HTML5 players.</span>
-          </li>
-        </ul>
-      </section>
-
-      <!-- Section 3: Modern Tech Stack -->
-      <section class="space-y-4">
-        <h2 class="font-display font-bold text-2xl sm:text-3xl text-alfa-metal-900 dark:text-white">
-          <span class="lang-it">Tecnologia & Prestazioni</span>
-          <span class="lang-en">Technology & Architecture</span>
-        </h2>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-          <div class="p-5 rounded-xl bg-alfa-metal-50 dark:bg-alfa-metal-950 border border-alfa-metal-200 dark:border-alfa-metal-800 space-y-1">
-            <span class="font-display font-bold text-sm text-alfa-metal-900 dark:text-white">Astro 5 SSG</span>
-            <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400">
-              <span class="lang-it">Pagine statiche pre-renderizzate per caricamenti fulminei e SEO 100/100.</span>
-              <span class="lang-en">Pre-rendered static HTML for instantaneous page loads and perfect SEO scores.</span>
-            </p>
-          </div>
-
-          <div class="p-5 rounded-xl bg-alfa-metal-50 dark:bg-alfa-metal-950 border border-alfa-metal-200 dark:border-alfa-metal-800 space-y-1">
-            <span class="font-display font-bold text-sm text-alfa-metal-900 dark:text-white">Tailwind CSS & Alfa Design</span>
-            <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400">
-              <span class="lang-it">Design ispirato al Rosso Alfa `#990000`, finiture metalliche scure e modalità chiara/scura istantanea.</span>
-              <span class="lang-en">Rosso Alfa `#990000` accents, dark metallic asphalt finishes, and smooth light/dark toggle.</span>
-            </p>
-          </div>
-
-          <div class="p-5 rounded-xl bg-alfa-metal-50 dark:bg-alfa-metal-950 border border-alfa-metal-200 dark:border-alfa-metal-800 space-y-1">
-            <span class="font-display font-bold text-sm text-alfa-metal-900 dark:text-white">
-              <span class="lang-it">Architettura Monorotta Bilingue</span>
-              <span class="lang-en">Single-Route Bilingual i18n</span>
-            </span>
-            <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400">
-              <span class="lang-it">Cambio lingua immediato senza duplicare file o rotte, con persistenza locale.</span>
-              <span class="lang-en">Instantaneous language toggle with zero route duplication and local storage memory.</span>
-            </p>
-          </div>
-
-          <div class="p-5 rounded-xl bg-alfa-metal-50 dark:bg-alfa-metal-950 border border-alfa-metal-200 dark:border-alfa-metal-800 space-y-1">
-            <span class="font-display font-bold text-sm text-alfa-metal-900 dark:text-white">Cloudflare Pages</span>
-            <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400">
-              <span class="lang-it">Deploy continuo tramite GitHub per garantire uptime globale e sicurezza SSL automatica.</span>
-              <span class="lang-en">Automated GitHub continuous deployment for high uptime and edge CDN speed.</span>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section 4: Credits & Disclaimer -->
-      <section class="pt-8 border-t border-alfa-metal-200 dark:border-alfa-metal-800 text-xs text-alfa-metal-500 space-y-3 leading-relaxed">
-        <h4 class="font-display font-bold text-sm text-alfa-metal-700 dark:text-alfa-metal-300">
-          <span class="lang-it">Note Legali e Ringraziamenti</span>
-          <span class="lang-en">Legal Disclaimer & Acknowledgements</span>
-        </h4>
         <p>
           <span class="lang-it">
-            Questo sito è un tributo indipendente senza scopi di lucro realizzato per preservare la cultura automobilistica italiana. I marchi "Alfa Romeo", "156", "GTA", "Twin Spark", "Busso", "JTD", "JTS" e i relativi loghi appartengono a Stellantis N.V. e/o alle rispettive aziende proprietarie.
+            <em>"Non sono un meccanico professionista, quindi se desiderate approfondimenti tecnici oltre a quanto ho scritto in queste pagine, utilizzate il Forum per porre le vostre domande! Non sono in grado di rispondere all'enorme mole di persone che mi chiedono consigli tecnici via email. Il forum è molto attivo ed è il luogo ideale dove confrontarsi."</em> — <strong>Anders</strong>
           </span>
           <span class="lang-en">
-            This non-profit independent tribute website preserves Italian automotive heritage. Alfa Romeo, 156, GTA, Twin Spark, Busso, JTD, JTS and related emblems are registered trademarks of Stellantis N.V. and respective holders.
+            <em>"I am not very technical skilled on cars, so if you do want to know any more tech stuff than what I have written on these pages, you should use the Forum to ask your technical question! I am not able to respond to the number of people asking me technical questions on email."</em> — <strong>Anders</strong>
           </span>
         </p>
-        <p>
-          <span class="lang-it">
-            Un ringraziamento speciale ad <strong>Anders</strong> per aver creato alfa156.net nel lontano 1999, a <strong>Jeff</strong> per i contributi tecnici e a tutti i membri storici della community che hanno fotografato e documentato i loro interventi d'officina.
-          </span>
-          <span class="lang-en">
-            Special thanks to <strong>Anders</strong> for founding alfa156.net back in 1999, to <strong>Jeff</strong> for countless technical guides, and to all community members who documented their workshop adventures.
-          </span>
-        </p>
-      </section>
+      </div>
 
+      <p class="text-xs font-mono text-alfa-metal-500">
+        <span class="lang-it">
+          "Pago personalmente i costi di hosting per mantenere questo archivio online. Sentiti libero di contribuire ai costi di gestione se apprezzi questo sito."
+        </span>
+        <span class="lang-en">
+          "I am actually paying for the serverspace for this page. Feel free to contribute to share the running costs if you are happy with this site."
+        </span>
+      </p>
     </div>
+
   </div>
-</BaseLayout>
+</Layout>

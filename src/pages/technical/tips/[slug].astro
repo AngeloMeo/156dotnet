@@ -1,0 +1,220 @@
+---
+// src/pages/technical/tips/[slug].astro
+import Layout from '../../../layouts/Layout.astro';
+import Lightbox from '../../../components/Lightbox.astro';
+import { technicalTipsData } from '../../../data/technicalTipsData';
+
+export function getStaticPaths() {
+  return technicalTipsData.map((tip, idx) => ({
+    params: { slug: tip.slug },
+    props: {
+      tip,
+      prev: idx > 0 ? technicalTipsData[idx - 1] : null,
+      next: idx < technicalTipsData.length - 1 ? technicalTipsData[idx + 1] : null,
+    }
+  }));
+}
+
+const { tip, prev, next } = Astro.props;
+---
+
+<Layout
+  title={`${tip.titleIt} | Tips Alfa 156`}
+  description={tip.summaryIt}
+  currentPath={`/technical/tips/${tip.slug}`}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex items-center space-x-2 text-xs font-mono text-alfa-metal-500 mb-6">
+      <a href="/" class="hover:text-alfa-red-600">Home</a>
+      <span>/</span>
+      <a href="/technical" class="hover:text-alfa-red-600">Technical</a>
+      <span>/</span>
+      <a href="/technical/tips" class="hover:text-alfa-red-600">Tips</a>
+      <span>/</span>
+      <span class="text-alfa-red-600 font-bold truncate max-w-xs">{tip.titleIt}</span>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="border-b border-alfa-metal-200 dark:border-alfa-metal-800 pb-6 mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-alfa-red-100 dark:bg-alfa-red-950 text-alfa-red-600 dark:text-alfa-red-400">
+          {tip.category}
+        </span>
+        <span class="text-xs font-mono text-alfa-metal-400">
+          {tip.dateOrSource}
+        </span>
+      </div>
+
+      <h1 class="font-display text-2xl sm:text-4xl font-extrabold tracking-tight text-alfa-metal-900 dark:text-white">
+        <span class="lang-it">{tip.titleIt}</span>
+        <span class="lang-en">{tip.titleEn}</span>
+      </h1>
+
+      <div class="mt-3 flex items-center space-x-3 text-xs font-mono text-alfa-metal-500 dark:text-alfa-metal-400">
+        <span>Guida redatta da:</span>
+        <span class="px-2 py-1 rounded bg-alfa-metal-100 dark:bg-alfa-metal-800 font-bold text-alfa-metal-800 dark:text-alfa-silver-200">
+          {tip.author}
+        </span>
+      </div>
+    </header>
+
+    <!-- Caution Alert if present -->
+    {tip.cautionEn && (
+      <div class="mb-8 p-4 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-800/80 text-amber-900 dark:text-amber-200 text-sm">
+        <div class="font-bold flex items-center space-x-2">
+          <svg class="w-5 h-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <span class="lang-it">Attenzione Particolare</span>
+          <span class="lang-en">Important Caution</span>
+        </div>
+        <p class="mt-1 pl-7 text-xs sm:text-sm">
+          <span class="lang-it">{tip.cautionIt}</span>
+          <span class="lang-en">{tip.cautionEn}</span>
+        </p>
+      </div>
+    )}
+
+    <!-- Audio Player if present (e.g. Variator) -->
+    {tip.audio && (
+      <div class="mb-8 p-6 rounded-2xl bg-gradient-to-r from-alfa-metal-900 via-alfa-red-950 to-alfa-metal-900 text-white shadow-xl border border-alfa-red-600/40">
+        <div class="flex items-center space-x-2 text-xs font-mono font-bold uppercase tracking-widest text-alfa-red-400 mb-3">
+          <span>🎵</span>
+          <span>Audio Archivio Storico</span>
+        </div>
+        <h3 class="font-display text-lg font-bold mb-4">
+          <span class="lang-it">Campioni Sonori Variatore Originali</span>
+          <span class="lang-en">Original Variator Audio Recordings</span>
+        </h3>
+
+        <div class="space-y-4">
+          {tip.audio.map((track) => (
+            <div class="p-3 rounded-xl bg-black/40 border border-white/10">
+              <div class="text-xs font-semibold text-alfa-silver-200 mb-2">
+                <span class="lang-it">{track.titleIt}</span>
+                <span class="lang-en">{track.titleEn}</span>
+              </div>
+              <audio controls class="w-full h-9 rounded" preload="metadata">
+                <source src={track.file} type="audio/mpeg" />
+                Il tuo browser non supporta il tag audio.
+              </audio>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Main Content Sections -->
+    <article class="prose dark:prose-invert max-w-none space-y-6 text-alfa-metal-700 dark:text-alfa-metal-300 leading-relaxed text-sm sm:text-base">
+      {tip.sections.map((section) => (
+        <div class="space-y-3">
+          {section.headingEn && (
+            <h2 class="font-display text-xl sm:text-2xl font-bold text-alfa-metal-900 dark:text-white pt-4">
+              <span class="lang-it">{section.headingIt}</span>
+              <span class="lang-en">{section.headingEn}</span>
+            </h2>
+          )}
+          {section.bodyEn.map((_, i) => (
+            <p>
+              <span class="lang-it">{section.bodyIt[i]}</span>
+              <span class="lang-en">{section.bodyEn[i]}</span>
+            </p>
+          ))}
+        </div>
+      ))}
+    </article>
+
+    <!-- Download Box if present -->
+    {tip.download && (
+      <div class="mt-8 p-4 rounded-xl bg-alfa-metal-100 dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 flex items-center justify-between">
+        <div>
+          <div class="text-xs font-mono text-alfa-metal-500 uppercase">Documento Allegato</div>
+          <div class="text-sm font-bold text-alfa-metal-900 dark:text-white">
+            <span class="lang-it">{tip.download.titleIt}</span>
+            <span class="lang-en">{tip.download.titleEn}</span>
+          </div>
+        </div>
+        <a
+          href={tip.download.file}
+          download
+          class="px-4 py-2 rounded-lg bg-alfa-red-600 hover:bg-alfa-red-700 text-white font-bold text-xs uppercase tracking-wider"
+        >
+          Download PDF
+        </a>
+      </div>
+    )}
+
+    <!-- Image Gallery with Lightbox if present -->
+    {tip.images && tip.images.length > 0 && (
+      <div class="mt-12 pt-8 border-t border-alfa-metal-200 dark:border-alfa-metal-800">
+        <h3 class="font-display text-xl font-bold text-alfa-metal-900 dark:text-white mb-4">
+          <span class="lang-it">Galleria Fotografica Documentale</span>
+          <span class="lang-en">Documentary Photo Gallery</span>
+        </h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {tip.images.map((img) => (
+            <div
+              class="group relative cursor-pointer overflow-hidden rounded-xl border border-alfa-metal-200 dark:border-alfa-metal-800 bg-white dark:bg-alfa-metal-900 shadow-xs hover:shadow-md transition-all"
+              data-lightbox-trigger
+              data-img-src={img.src}
+              data-img-title={img.captionIt}
+            >
+              <img
+                src={img.src}
+                alt={img.alt}
+                class="w-full h-56 object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+              />
+              <div class="p-3 bg-white dark:bg-alfa-metal-900 border-t border-alfa-metal-100 dark:border-alfa-metal-800">
+                <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400">
+                  <span class="lang-it">{img.captionIt}</span>
+                  <span class="lang-en">{img.captionEn}</span>
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Next / Prev Pagination -->
+    <div class="mt-12 pt-8 border-t border-alfa-metal-200 dark:border-alfa-metal-800 flex items-center justify-between text-xs font-mono">
+      {prev ? (
+        <a
+          href={`/technical/tips/${prev.slug}`}
+          class="inline-flex items-center space-x-1 text-alfa-metal-600 dark:text-alfa-metal-400 hover:text-alfa-red-600 transition-colors"
+        >
+          <span>←</span>
+          <span class="truncate max-w-[140px] sm:max-w-xs">{prev.titleIt}</span>
+        </a>
+      ) : (
+        <div></div>
+      )}
+
+      <a
+        href="/technical/tips"
+        class="px-3 py-1.5 rounded-lg bg-alfa-metal-100 dark:bg-alfa-metal-800 hover:bg-alfa-red-600 hover:text-white transition-colors text-alfa-metal-800 dark:text-alfa-silver-200 font-bold"
+      >
+        Tutte le guide
+      </a>
+
+      {next ? (
+        <a
+          href={`/technical/tips/${next.slug}`}
+          class="inline-flex items-center space-x-1 text-alfa-metal-600 dark:text-alfa-metal-400 hover:text-alfa-red-600 transition-colors text-right"
+        >
+          <span class="truncate max-w-[140px] sm:max-w-xs">{next.titleIt}</span>
+          <span>→</span>
+        </a>
+      ) : (
+        <div></div>
+      )}
+    </div>
+
+  </div>
+
+  <Lightbox />
+</Layout>

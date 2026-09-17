@@ -1,0 +1,464 @@
+---
+// src/pages/technical/tips/index.astro
+import Layout from '../../../layouts/Layout.astro';
+
+const knownProblems = [
+  {
+    slug: 'dash',
+    titleEn: 'Dashboard noise',
+    titleIt: 'Rumorosità e scricchiolii della plancia',
+    author: 'Anders & Kid van Orsouw (Alfa 156 Club NL)',
+    summaryEn: 'Rattles in cold weather from captive nuts on the front dash mounts and Magnesium carrybeam.',
+    summaryIt: 'Scricchiolii a freddo dovuti ai dadi prigionieri di fissaggio della traversa in magnesio sotto al parabrezza.',
+    tag: 'Interni'
+  },
+  {
+    slug: 'wet',
+    titleEn: 'Water leakage',
+    titleIt: 'Infiltrazioni d\'acqua nell\'abitacolo',
+    author: 'Anders & Bjarne',
+    summaryEn: 'Moisture entering carpets, bulkhead grommets and the roof channel at the top of rear doors.',
+    summaryIt: 'Ristagni d\'acqua sotto la moquette, passacavi nella paratia e canalina del tetto sopra le porte posteriori.',
+    tag: 'Carrozzeria'
+  },
+  {
+    slug: 'wipers',
+    titleEn: 'Low speed wiper intervals',
+    titleIt: 'Malfunzionamento intermittenza tergicristalli',
+    author: 'T.P. (alfaowner.com)',
+    summaryEn: 'Intervals skipping and stopping due to dried hardened grease inside the wiper motor contacts.',
+    summaryIt: 'L\'intermittenza salta e si blocca a causa del grasso lubrificante che isola i contatti del motorino.',
+    tag: 'Elettronica'
+  },
+  {
+    slug: 'wishbone',
+    titleEn: 'Front wishbone suspension',
+    titleIt: 'Cigolii bracci e gommini sospensione anteriore',
+    author: 'Anders, Antti & Peer',
+    summaryEn: 'Squeaking from upper wishbone bushes and lower ball joints over speed bumps and steering.',
+    summaryIt: 'Cigolii tipici sui dossi e in manovra provocati dalle boccole secche del quadrilatero alto.',
+    tag: 'Assetto'
+  },
+  {
+    slug: 'variator',
+    titleEn: 'Variator (Twin Spark)',
+    titleIt: 'Variatore di fase motori Twin Spark (Rumore Diesel)',
+    author: 'Anders',
+    summaryEn: 'Diesel rattling sound on cold startup, loss of low-end torque. Upgraded part 60666199 & audio test.',
+    summaryIt: 'Rumore da diesel all\'avvio a freddo e perdita di coppia sotto i 3000 giri. Modifica codice 60666199 e audio.',
+    tag: 'Motore'
+  },
+  {
+    slug: 'paint',
+    titleEn: 'Poor paint',
+    titleIt: 'Difetti e sfogliamento vernice originale',
+    author: 'Anders',
+    summaryEn: 'Paint flaking from stone chips on the plastic front bumper, bonnet and windscreen surround.',
+    summaryIt: 'Sfogliamento dello smalto su paraurti anteriore, cofano motore e cornice parabrezza.',
+    tag: 'Carrozzeria'
+  }
+];
+
+const userTips = [
+  {
+    slug: 'v6sparks',
+    titleEn: 'How to change spark plugs on the V6 24V',
+    titleIt: 'Sostituzione candele sul Busso V6 24V',
+    author: 'Jeff',
+    descEn: 'Comprehensive guide with step-by-step photos for removing the chrome inlet runners and plenum.',
+    descIt: 'Guida passo-passo con foto per smontare polmone d\'aspirazione e collettori cromati del Busso.',
+    tag: 'V6'
+  },
+  {
+    slug: 'maf',
+    titleEn: 'MAF Problem & Cleaning Guide',
+    titleIt: 'Debimetro / Sensore MAF: diagnosi e pulizia',
+    author: 'Anders & Jeff',
+    descEn: 'Understanding MAF failure symptoms, cleaning the hot-film sensor and Bosch part numbers.',
+    descIt: 'Sintomi di guasto del debimetro a filo caldo, procedura di pulizia con solvente secco e codici ricambio.',
+    tag: 'Motore'
+  },
+  {
+    slug: 'timing',
+    titleEn: 'Timing belts & Balancer belts',
+    titleIt: 'Cinghie di distribuzione e controrotanti',
+    author: 'Anders & Community',
+    descEn: 'The critical 36,000 miles (60,000 km) / 3-year replacement rule on Twin Spark 16V engines.',
+    descIt: 'La fondamentale regola dei 60.000 km o 3 anni per la salvaguardia delle valvole sui Twin Spark.',
+    tag: 'Motore'
+  },
+  {
+    slug: 'headlight',
+    titleEn: 'Headlight replacement & GTA look',
+    titleIt: 'Sostituzione fari e mascherina stile GTA',
+    author: 'Jeff & Jon',
+    descEn: 'How to remove front bumper clips, replace headlamp units and convert chrome units to dark GTA style.',
+    descIt: 'Smontaggio paraurti anteriore, rimozione gruppi ottici e conversione con cornice brunita tipo GTA.',
+    tag: 'Carrozzeria'
+  },
+  {
+    slug: 'airbox',
+    titleEn: 'Airbox filter replacement with rusty bolts',
+    titleIt: 'Sostituzione filtro aria con bulloni arrugginiti',
+    author: 'Sam & Jeff',
+    descEn: 'How to overcome seized brass nuts on the airbox without cracking the plastic housing.',
+    descIt: 'Come estrarre il filtro aria originale anche quando le viti autofilettanti e gli inserti sono bloccati.',
+    tag: 'Motore'
+  },
+  {
+    slug: 'fhandle',
+    titleEn: 'Sticking door handle button fix',
+    titleIt: 'Pulsante maniglia portiera bloccato',
+    author: 'Jeff & Pat',
+    descEn: 'Disassembling exterior front handle, cleaning oxidation and greasing push rod button mechanism.',
+    descIt: 'Smontaggio maniglia esterna anteriore, rimozione ossido e lubrificazione del pulsante a perno.',
+    tag: 'Carrozzeria'
+  },
+  {
+    slug: 'coolant',
+    titleEn: 'Coolant reservoir replacement',
+    titleIt: 'Sostituzione vaschetta liquido refrigerante',
+    author: 'Jeff',
+    descEn: 'Replacing aged, yellowed or micro-cracked coolant expansion tanks on 147 and 156.',
+    descIt: 'Guida alla sostituzione della vaschetta di espansione ingiallita o fessurata su 156 e 147.',
+    tag: 'Raffreddamento'
+  },
+  {
+    slug: 'idle',
+    titleEn: 'Erratic idle speed',
+    titleIt: 'Regime minimo irregolare e reset ECU',
+    author: 'Anders',
+    descEn: 'Stepping motor idle actuator cleaning and electronic throttle body calibration.',
+    descIt: 'Pulizia dell\'attuatore del minimo Bosch, valvola a farfalla e procedura di reset autoadattativi ECU.',
+    tag: 'Motore'
+  },
+  {
+    slug: 'powerloss',
+    titleEn: 'Engine power loss diagnosis',
+    titleIt: 'Diagnosi perdita di potenza motore',
+    author: 'Anders',
+    descEn: 'Systematic troubleshooting of lambda sensors, fuel pressure, camshaft sensor and spark plugs.',
+    descIt: 'Verifica sistematica di sonda lambda, pressione benzina, sensore di fase e candele.',
+    tag: 'Motore'
+  },
+  {
+    slug: 'temperature',
+    titleEn: 'Water temperature display & Thermostat',
+    titleIt: 'Indicatore temperatura acqua e termostato',
+    author: 'Anders',
+    descEn: 'Why the needle stays below 90°C on motorways and how a stuck-open thermostat harms fuel economy.',
+    descIt: 'Perché la lancetta scende sotto i 90°C in velocità e come il termostato bloccato aperto usura il motore.',
+    tag: 'Raffreddamento'
+  },
+  {
+    slug: 'clutch',
+    titleEn: 'Clutch return spring replacement',
+    titleIt: 'Sostituzione molla di richiamo pedale frizione',
+    author: 'Anders & Community',
+    descEn: 'Fixing a pedal that fails to return fully or feels mushy near the top of its travel.',
+    descIt: 'Come sostituire la molla a spirale sotto la pedaliera per eliminare il gioco a vuoto del pedale.',
+    tag: 'Trasmissione'
+  },
+  {
+    slug: 'ac',
+    titleEn: 'Air Conditioning troubleshooting',
+    titleIt: 'Risoluzione problemi impianto climatizzatore',
+    author: 'Anders',
+    descEn: 'Low refrigerant pressure switch cutoff, condensate drainage and blower speed resistor pack.',
+    descIt: 'Pressostato di sicurezza per bassa pressione gas, scarico condensa e resistenza ventola abitacolo.',
+    tag: 'Comfort'
+  },
+  {
+    slug: 'cold',
+    titleEn: 'Lack of power on cold engine',
+    titleIt: 'Esitazioni e vuoti a motore freddo',
+    author: 'Anders',
+    descEn: 'ECU coolant temperature sender CTS failure and cold enrichment fueling issues.',
+    descIt: 'Sensore temperatura liquido refrigerante per centralina (CTS) e mancato arricchimento a freddo.',
+    tag: 'Motore'
+  },
+  {
+    slug: 'winter',
+    titleEn: 'Winter use and freeze prevention',
+    titleIt: 'Uso invernale e prevenzione gelo',
+    author: 'Anders (Bergen, Norway)',
+    descEn: 'Anders shares real Nordic winter experience: frameless door seal care, battery health and locks.',
+    descIt: 'L\'esperienza diretta di Anders negli inverni norvegesi: trattamento guarnizioni, batteria e serrature.',
+    tag: 'Manutenzione'
+  },
+  {
+    slug: 'bonnetcatch',
+    titleEn: 'Bonnet catch safety mechanism',
+    titleIt: 'Gancio e serratura cofano motore',
+    author: 'Anders & ARDC',
+    descEn: 'Preventing dangerous bonnet fly-up by cleaning and lubricating the secondary safety latch.',
+    descIt: 'Prevenzione dell\'apertura accidentale in corsa: pulizia e lubrificazione del meccanismo di sicurezza.',
+    tag: 'Sicurezza'
+  }
+];
+---
+
+<Layout
+  title="Tips & Guide Tecniche Alfa 156 (User Tips & Known Problems) | Cuore Sportivo Archive"
+  description="L'archivio originale integrale di tips, problemi noti e guide passo-passo di alfa156.net per la manutenzione e risoluzione guasti su Alfa Romeo 156."
+  currentPath="/technical/tips"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex items-center space-x-2 text-xs font-mono text-alfa-metal-500 mb-6">
+      <a href="/" class="hover:text-alfa-red-600">Home</a>
+      <span>/</span>
+      <a href="/technical" class="hover:text-alfa-red-600">Technical</a>
+      <span>/</span>
+      <span class="text-alfa-red-600 font-bold">
+        <span class="lang-it">Tips & Guide</span>
+        <span class="lang-en">Tips & Guides</span>
+      </span>
+    </nav>
+
+    <!-- Sub-navigation Hub Bar -->
+    <div class="flex flex-wrap items-center gap-2 p-1.5 mb-8 rounded-xl bg-alfa-metal-100 dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 text-sm">
+      <a
+        href="/technical"
+        class="px-4 py-2 rounded-lg font-semibold text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-white transition-colors"
+      >
+        <span class="lang-it">Specifiche Motori & Telaio</span>
+        <span class="lang-en">Engine & Chassis Specs</span>
+      </a>
+      <a
+        href="/technical/tips"
+        class="px-4 py-2 rounded-lg font-bold bg-alfa-red-600 text-white shadow-xs"
+      >
+        <span class="lang-it">Tips & Guide Passo-Passo</span>
+        <span class="lang-en">Tips & DIY Guides</span>
+      </a>
+      <a
+        href="/technical/tuning"
+        class="px-4 py-2 rounded-lg font-semibold text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-white transition-colors"
+      >
+        <span class="lang-it">Tuning & Elaborazioni</span>
+        <span class="lang-en">Tuning & Handling</span>
+      </a>
+    </div>
+
+    <!-- Header Section with Original Intro & Service Sign -->
+    <div class="border-b border-alfa-metal-200 dark:border-alfa-metal-800 pb-8 mb-10">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 items-center">
+        <div class="lg:col-span-3">
+          <h1 class="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-alfa-metal-900 dark:text-white">
+            <span class="lang-it">Problemi Noti e Guide Tecniche</span>
+            <span class="lang-en">Known Problems & User Tips</span>
+          </h1>
+
+          <div class="mt-4 text-base sm:text-lg text-alfa-metal-600 dark:text-alfa-metal-300 space-y-3 leading-relaxed">
+            <p>
+              <span class="lang-it">
+                <em>"Possedere e guidare un'Alfa Romeo 156 è fantastico e stampa un grande sorriso sulla faccia di ogni proprietario! :) Ma ci sono alcune cose a cui devi fare attenzione. Ricorda che questi difetti non si verificano su ogni vettura! Se dovessimo stilare una lista simile per Audi o BMW, sembrerebbe altrettanto spaventosa."</em> — <strong>Anders</strong>
+              </span>
+              <span class="lang-en">
+                <em>"Owning and driving an Alfa Romeo 156 is great and puts a big smile on any owners face! :) But - there are some things you should watch out for. Remember that the problems are not happening with every car! If one should make a list for Audi and BMW, it would look scary aswell."</em> — <strong>Anders</strong>
+              </span>
+            </p>
+            <p class="text-xs sm:text-sm text-alfa-metal-500 dark:text-alfa-metal-400 font-mono">
+              <span class="lang-it">
+                Tutte le procedure e i consigli qui riportati sono redatti per fornire aiuto. Se hai dubbi su come effettuare un'operazione, affidati a meccanici professionisti.
+              </span>
+              <span class="lang-en">
+                Please note - the things featured here are only meant for help. If you are not sure about how you do things, leave it to the professionals! ;)
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center justify-center p-3 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs">
+          <img
+            src="/images/servizio.jpg"
+            alt="The Alfa Romeo Service Sign in Arma di Taggia, Italy"
+            class="w-28 sm:w-32 h-auto rounded-lg shadow-inner"
+          />
+          <span class="text-[10px] font-mono text-center text-alfa-metal-500 mt-2">
+            Insegna Servizio ad Arma di Taggia (IM)
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prominent Jump to Buyer's Guide -->
+    <div class="mb-12 p-5 rounded-xl bg-gradient-to-r from-alfa-red-950/70 via-alfa-metal-900 to-alfa-metal-950 border border-alfa-red-600/40 text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <div class="text-xs font-mono font-bold uppercase tracking-widest text-alfa-red-400">
+          Risorsa Consigliata per Futuri Proprietari
+        </div>
+        <h3 class="font-display text-lg font-bold">
+          <span class="lang-it">Stai valutando l'acquisto di una 156 usata?</span>
+          <span class="lang-en">Considering buying a used Alfa 156?</span>
+        </h3>
+        <p class="text-xs text-alfa-silver-300 mt-1">
+          <span class="lang-it">Consulta la Guida all'Acquisto dedicata con la checklist a 48 punti di Posty e le scansioni di Auto Italia.</span>
+          <span class="lang-en">Check out the dedicated Buyer's Guide with Posty's 48-point checklist and full Auto Italia scans.</span>
+        </p>
+      </div>
+      <a
+        href="/buyers-guide"
+        class="px-4 py-2.5 rounded-lg bg-alfa-red-600 hover:bg-alfa-red-700 text-white font-bold text-xs uppercase tracking-wider flex-shrink-0 transition-colors shadow-md"
+      >
+        <span class="lang-it">Vai alla Guida Acquisto →</span>
+        <span class="lang-en">Open Buyer's Guide →</span>
+      </a>
+    </div>
+
+    <!-- SECTION 1: The 6 Known Problems -->
+    <div class="mb-14">
+      <div class="flex items-center space-x-3 mb-6">
+        <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center font-bold">
+          !
+        </div>
+        <div>
+          <h2 class="font-display text-2xl font-bold text-alfa-metal-900 dark:text-white">
+            <span class="lang-it">I 6 Problemi Noti Storici (Known Problems)</span>
+            <span class="lang-en">The 6 Historical Known Problems</span>
+          </h2>
+          <p class="text-xs font-mono text-alfa-metal-500 mt-0.5">
+            <span class="lang-it">I difetti congeniti documentati e risolti dalla community di alfa156.net</span>
+            <span class="lang-en">The congenital defects documented and fixed by the alfa156.net community</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {knownProblems.map((p) => (
+          <a
+            href={`/technical/tips/${p.slug}`}
+            class="group p-5 rounded-xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-500/50 hover:shadow-lg transition-all duration-200 flex flex-col justify-between"
+          >
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-alfa-metal-100 dark:bg-alfa-metal-800 text-alfa-metal-600 dark:text-alfa-silver-300">
+                  {p.tag}
+                </span>
+                <span class="text-xs font-mono text-alfa-red-600 dark:text-alfa-red-400 group-hover:translate-x-1 transition-transform">
+                  Leggi →
+                </span>
+              </div>
+
+              <h3 class="font-display font-bold text-lg text-alfa-metal-900 dark:text-white group-hover:text-alfa-red-600 dark:group-hover:text-alfa-red-400 transition-colors">
+                <span class="lang-it">{p.titleIt}</span>
+                <span class="lang-en">{p.titleEn}</span>
+              </h3>
+
+              <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-300 mt-2 leading-relaxed">
+                <span class="lang-it">{p.summaryIt}</span>
+                <span class="lang-en">{p.summaryEn}</span>
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-alfa-metal-100 dark:border-alfa-metal-800/80 text-[11px] font-mono text-alfa-metal-400">
+              Autore: <span class="text-alfa-metal-700 dark:text-alfa-metal-300">{p.author}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- SECTION 2: User Tips & Step-by-Step DIY Guides -->
+    <div class="border-t border-alfa-metal-200 dark:border-alfa-metal-800 pt-12 mb-14">
+      <div class="flex items-center space-x-3 mb-6">
+        <div class="w-8 h-8 rounded-lg bg-alfa-red-500/10 text-alfa-red-600 dark:text-alfa-red-400 flex items-center justify-center font-bold">
+          🛠
+        </div>
+        <div>
+          <h2 class="font-display text-2xl font-bold text-alfa-metal-900 dark:text-white">
+            <span class="lang-it">Guide Passo-Passo e Consigli Utente (User Tips)</span>
+            <span class="lang-en">DIY Step-by-Step Guides & User Tips</span>
+          </h2>
+          <p class="text-xs font-mono text-alfa-metal-500 mt-0.5">
+            <span class="lang-it">I tutorial dettagliati con foto realizzati da Jeff, Anders e dagli alfisti storici</span>
+            <span class="lang-en">Detailed photo tutorials authored by Jeff, Anders and vintage Alfisti</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {userTips.map((tip) => (
+          <a
+            href={`/technical/tips/${tip.slug}`}
+            class="group p-5 rounded-xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-500/50 hover:shadow-lg transition-all duration-200 flex flex-col justify-between"
+          >
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-alfa-metal-100 dark:bg-alfa-metal-800 text-alfa-metal-600 dark:text-alfa-silver-300">
+                  {tip.tag}
+                </span>
+                <span class="text-xs font-mono text-alfa-red-600 dark:text-alfa-red-400 group-hover:translate-x-1 transition-transform">
+                  Apri Guida →
+                </span>
+              </div>
+
+              <h3 class="font-display font-bold text-base text-alfa-metal-900 dark:text-white group-hover:text-alfa-red-600 dark:group-hover:text-alfa-red-400 transition-colors">
+                <span class="lang-it">{tip.titleIt}</span>
+                <span class="lang-en">{tip.titleEn}</span>
+              </h3>
+
+              <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-300 mt-2 leading-relaxed">
+                <span class="lang-it">{tip.descIt}</span>
+                <span class="lang-en">{tip.descEn}</span>
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-alfa-metal-100 dark:border-alfa-metal-800/80 text-[11px] font-mono text-alfa-metal-400">
+              Guida di: <span class="text-alfa-metal-700 dark:text-alfa-metal-300">{tip.author}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- SECTION 3: Additional Resources (Oily Bits, Manuals) -->
+    <div class="border-t border-alfa-metal-200 dark:border-alfa-metal-800 pt-10">
+      <h3 class="font-display text-xl font-bold text-alfa-metal-900 dark:text-white mb-4">
+        <span class="lang-it">Risorse Aggiuntive & Documentazione d'Officina</span>
+        <span class="lang-en">Additional Workshop Documentation</span>
+      </h3>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <a
+          href="/downloads/cleaningthrottlebody.pdf"
+          download="cleaningthrottlebody.pdf"
+          class="p-4 rounded-xl bg-alfa-metal-50 dark:bg-alfa-metal-900/60 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-500/40 transition-colors flex items-center space-x-3"
+        >
+          <span class="text-2xl">📄</span>
+          <div>
+            <div class="text-sm font-bold text-alfa-metal-900 dark:text-white">Throttle Body Cleaning (PDF)</div>
+            <div class="text-xs text-alfa-metal-500">Procedura pulizia corpo farfallato</div>
+          </div>
+        </a>
+
+        <a
+          href="/downloads/Alfa156Brakes.pdf"
+          download="Alfa156Brakes.pdf"
+          class="p-4 rounded-xl bg-alfa-metal-50 dark:bg-alfa-metal-900/60 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-500/40 transition-colors flex items-center space-x-3"
+        >
+          <span class="text-2xl">📑</span>
+          <div>
+            <div class="text-sm font-bold text-alfa-metal-900 dark:text-white">Gary's Brake Guide (PDF)</div>
+            <div class="text-xs text-alfa-metal-500">Guida dischi e pastiglie freni</div>
+          </div>
+        </a>
+
+        <a
+          href="/downloads/buttonflipkey.pdf"
+          download="buttonflipkey.pdf"
+          class="p-4 rounded-xl bg-alfa-metal-50 dark:bg-alfa-metal-900/60 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-500/40 transition-colors flex items-center space-x-3"
+        >
+          <span class="text-2xl">🔑</span>
+          <div>
+            <div class="text-sm font-bold text-alfa-metal-900 dark:text-white">Michaeld's Button Flip Key (PDF)</div>
+            <div class="text-xs text-alfa-metal-500">Conversione chiave a scatto</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</Layout>

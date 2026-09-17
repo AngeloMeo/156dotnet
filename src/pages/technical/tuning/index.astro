@@ -1,0 +1,216 @@
+---
+// src/pages/technical/tuning/index.astro
+import Layout from '../../../layouts/Layout.astro';
+
+const tuningSections = [
+  {
+    slug: 'engine',
+    titleEn: 'Motor Tuning & Forced Induction',
+    titleIt: 'Elaborazione Motore: Turbo, Compressori & Chip',
+    descEn: 'Novitec Turbo & Superchargers (up to 348 bhp on 3.2 GTA and 208 bhp on 2.0 TS), Squadra Tuning remaps and Colombo & Bariani camshafts.',
+    descIt: 'Kit Novitec Turbo e Compressore volumetrico (fino a 348 CV su GTA e 208 CV su 2.0 TS), rimappature Squadra Tuning e alberi a camme Colombo & Bariani.',
+    tag: 'Motore',
+    link: '/technical/tuning/engine'
+  },
+  {
+    slug: 'handling',
+    titleEn: 'Road Handling & Lowering (Alfanytt Guide)',
+    titleIt: 'Assetto e Tenuta di Strada (Dossier Alfanytt)',
+    descEn: 'The definitive article by Øyvind Iversen (Chairman of Klubb Alfa Romeo Norge): factory compromises, Bilstein/Koni dampers and Eibach springs.',
+    descIt: 'Lo storico dossier di Øyvind Iversen (Presidente Club Alfa Norvegia) su Alfanytt: molle Eibach, ammortizzatori ritarati e controllo del rollio.',
+    tag: 'Assetto',
+    link: '/technical/tuning/handling'
+  },
+  {
+    slug: 'parts',
+    titleEn: 'Weight Reduction, Brakes & Strut Braces',
+    titleIt: 'Alleggerimento, Freni Maggiorati & Barre Duomi',
+    descEn: 'Weight savings, Tarox and Brembo big brake conversion kits, Momo and Sparco aluminium front strut braces.',
+    descIt: 'Riduzione masse sospese, impianti frenanti maggiorati Tarox a 6 pistoncini e Brembo, barre duomi Momo e Sparco in alluminio.',
+    tag: 'Freni & Telaio',
+    link: '/technical/tuning/parts'
+  },
+  {
+    slug: 'ragazzon',
+    titleEn: 'Ragazzon Stainless Steel Exhaust Systems',
+    titleIt: 'Impianti di Scarico Sportivi Inox Ragazzon',
+    descEn: 'Stainless steel cat-back exhaust systems, DTM twin tips, decat pipes and sound level comparisons on Twin Spark and V6.',
+    descIt: 'Silenziatori e centrali in acciaio inox 100%, terminali DTM, tubi dekat e confronto sonoro su Twin Spark e Busso V6.',
+    tag: 'Scarichi',
+    link: '/technical/tuning/ragazzon'
+  },
+  {
+    slug: 'eibach',
+    titleEn: 'Eibach Pro-Kit Springs Road Test',
+    titleIt: 'Test su Strada Molle Eibach Pro-Kit (-30mm)',
+    descEn: 'Progressive rate spring testing: lowering the centre of gravity by 30mm without ruining daily ride compliance.',
+    descIt: 'Prova approfondita delle molle progressive Eibach: abbassamento di 30 mm del baricentro salvaguardando il comfort su strada.',
+    tag: 'Assetto',
+    link: '/technical/tuning/eibach'
+  }
+];
+---
+
+<Layout
+  title="Tuning Alfa Romeo 156 | Cuore Sportivo Archive"
+  description="L'archivio originale verbatim di elaborazioni motoristiche, assetto, scarichi Ragazzon e freni per Alfa Romeo 156 da alfa156.net."
+  currentPath="/technical/tuning"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex items-center space-x-2 text-xs font-mono text-alfa-metal-500 mb-6">
+      <a href="/" class="hover:text-alfa-red-600">Home</a>
+      <span>/</span>
+      <a href="/technical" class="hover:text-alfa-red-600">Technical</a>
+      <span>/</span>
+      <span class="text-alfa-red-600 font-bold">
+        <span class="lang-it">Tuning & Elaborazioni</span>
+        <span class="lang-en">Tuning & Handling</span>
+      </span>
+    </nav>
+
+    <!-- Sub-navigation Hub Bar -->
+    <div class="flex flex-wrap items-center gap-2 p-1.5 mb-8 rounded-xl bg-alfa-metal-100 dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 text-sm">
+      <a
+        href="/technical"
+        class="px-4 py-2 rounded-lg font-semibold text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-white transition-colors"
+      >
+        <span class="lang-it">Specifiche Motori & Telaio</span>
+        <span class="lang-en">Engine & Chassis Specs</span>
+      </a>
+      <a
+        href="/technical/tips"
+        class="px-4 py-2 rounded-lg font-semibold text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-white transition-colors"
+      >
+        <span class="lang-it">Tips & Guide Passo-Passo</span>
+        <span class="lang-en">Tips & DIY Guides</span>
+      </a>
+      <a
+        href="/technical/tuning"
+        class="px-4 py-2 rounded-lg font-bold bg-alfa-red-600 text-white shadow-xs"
+      >
+        <span class="lang-it">Tuning & Elaborazioni</span>
+        <span class="lang-en">Tuning & Handling</span>
+      </a>
+    </div>
+
+    <!-- Header Section -->
+    <div class="border-b border-alfa-metal-200 dark:border-alfa-metal-800 pb-8 mb-10">
+      <h1 class="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-alfa-metal-900 dark:text-white">
+        <span class="lang-it">Tuning & Elaborazioni Alfa 156</span>
+        <span class="lang-en">Alfa Romeo 156 Tuning & Performance</span>
+      </h1>
+
+      <p class="mt-4 text-base sm:text-lg text-alfa-metal-600 dark:text-alfa-metal-300 max-w-3xl leading-relaxed">
+        <span class="lang-it">
+          <em>"Potenza. Ammettiamolo: ne abbiamo un po' — ne vogliamo sempre di più. :)"</em><br>
+          Il dossier storico integrale sulle elaborazioni per Alfa Romeo 156: dai compressori Novitec e le rimappature Squadra Tuning, all'assetto guidato dell'Alfanytt fino agli scarichi Ragazzon in inox.
+        </span>
+        <span class="lang-en">
+          <em>"Power. Let's face it: Got some - want more. :)"</em><br>
+          The comprehensive historical performance dossier for the Alfa Romeo 156: from Novitec supercharger packages and Squadra Tuning chip software, to the definitive Alfanytt handling guide and Ragazzon stainless steel exhausts.
+        </span>
+      </p>
+    </div>
+
+    <!-- Featured Engine Hero Image -->
+    <div class="mb-12 rounded-2xl overflow-hidden border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xl relative group">
+      <img
+        src="/images/tuning/gtaengine.jpg"
+        alt="Alfa Romeo 156 3.2 V6 GTA Engine"
+        class="w-full h-72 sm:h-96 object-cover object-center group-hover:scale-102 transition-transform duration-500"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-6 sm:p-8">
+        <span class="text-xs font-mono uppercase tracking-widest text-alfa-red-500 font-bold mb-1">
+          Capolavoro Meccanico di Giuseppe Busso
+        </span>
+        <h2 class="font-display text-xl sm:text-3xl font-extrabold text-white">
+          Alfa Romeo 3.2 V6 24V (GTA)
+        </h2>
+        <p class="text-xs sm:text-sm text-alfa-silver-300 font-mono mt-1">
+          Picture is courtesy of Alfa Romeo S.p.A. — Archivio storico alfa156.net
+        </p>
+      </div>
+    </div>
+
+    <!-- The 5 Core Tuning Areas -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
+      {tuningSections.map((sec, idx) => (
+        <a
+          href={sec.link}
+          class="group p-6 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 hover:border-alfa-red-500/50 hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+        >
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-alfa-red-50 dark:bg-alfa-red-950 text-alfa-red-600 dark:text-alfa-red-400">
+                {sec.tag}
+              </span>
+              <span class="text-xs font-mono text-alfa-metal-400 group-hover:text-alfa-red-600 transition-colors">
+                Dossier {idx + 1} →
+              </span>
+            </div>
+
+            <h3 class="font-display font-bold text-xl text-alfa-metal-900 dark:text-white group-hover:text-alfa-red-600 dark:group-hover:text-alfa-red-400 transition-colors">
+              <span class="lang-it">{sec.titleIt}</span>
+              <span class="lang-en">{sec.titleEn}</span>
+            </h3>
+
+            <p class="text-xs sm:text-sm text-alfa-metal-600 dark:text-alfa-metal-300 mt-2.5 leading-relaxed">
+              <span class="lang-it">{sec.descIt}</span>
+              <span class="lang-en">{sec.descEn}</span>
+            </p>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-alfa-metal-100 dark:border-alfa-metal-800/80 flex items-center justify-between text-xs font-mono font-semibold text-alfa-red-600 dark:text-alfa-red-400">
+            <span>Leggi articolo completo</span>
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- Sound of Performance Box (Audio Clips) -->
+    <div class="p-8 rounded-2xl bg-gradient-to-r from-alfa-metal-900 via-alfa-red-950 to-alfa-metal-900 text-white shadow-xl border border-alfa-red-600/40">
+      <div class="flex items-center space-x-2 text-xs font-mono font-bold uppercase tracking-widest text-alfa-red-400 mb-2">
+        <span>🔊</span>
+        <span>Il Suono dell'Aspirazione e dello Scarico</span>
+      </div>
+
+      <h3 class="font-display text-2xl font-bold mb-2">
+        <span class="lang-it">Ascolta i Campioni Audio d'Epoca di alfa156.net</span>
+        <span class="lang-en">Listen to Original Period Sound Clips from alfa156.net</span>
+      </h3>
+
+      <p class="text-sm text-alfa-silver-300 max-w-2xl mb-6">
+        <span class="lang-it">
+          Registrazioni audio storiche realizzate dai fondatori del sito per confrontare il sound del filtro sportivo K&N e del tubo centrale flessibile in acciaio.
+        </span>
+        <span class="lang-en">
+          Historical sound recordings made by the site creators comparing the intake note of the K&N performance filter and stainless flexible race pipe.
+        </span>
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="p-4 rounded-xl bg-black/40 border border-white/10">
+          <div class="text-xs font-bold text-alfa-silver-200 mb-2">
+            Alfa 156 TS con Kit Aspirazione Dinamica K&N (Audio MP3)
+          </div>
+          <audio controls class="w-full h-9 rounded" preload="metadata">
+            <source src="/audio/knfilter-alfa156-net.mp3" type="audio/mpeg" />
+          </audio>
+        </div>
+
+        <div class="p-4 rounded-xl bg-black/40 border border-white/10">
+          <div class="text-xs font-bold text-alfa-silver-200 mb-2">
+            Alfa 156 con Tubo Centrale Inox Flexipipe (Audio MP3)
+          </div>
+          <audio controls class="w-full h-9 rounded" preload="metadata">
+            <source src="/audio/flexipipe-alfa156-net.mp3" type="audio/mpeg" />
+          </audio>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</Layout>

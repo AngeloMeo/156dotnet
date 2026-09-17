@@ -1,0 +1,334 @@
+---
+// src/pages/technical/index.astro
+import Layout from '../../layouts/Layout.astro';
+
+// Engines 1997-2001 (Euro 2)
+const enginesEuro2 = [
+  { motor: '1.6 TS 16V', power: '88 (120) / 6300', ccm: '1598', torque: '144 (4500)', topSpeed: '200', accel: '10.5', weight: '1230', wheels: '185/65 R15' },
+  { motor: '1.8 TS 16V', power: '106 (144) / 6500', ccm: '1747', torque: '169 (3500)', topSpeed: '210', accel: '9.3', weight: '1230', wheels: '185/65 R15' },
+  { motor: '2.0 TS 16V', power: '114 (155) / 6400', ccm: '1970', torque: '187 (3500)', topSpeed: '216', accel: '8.6', weight: '1250', wheels: '205/60 R15' },
+  { motor: '2.5 V6 24V', power: '140 (190) / 6300', ccm: '2492', torque: '222 (5000)', topSpeed: '230', accel: '7.3', weight: '1320', wheels: '205/60 R15' },
+  { motor: '1.9 JTD', power: '77 (105) / 4000', ccm: '1910', torque: '255 (2000)', topSpeed: '188', accel: '10.4', weight: '1270', wheels: '185/65 R15' },
+  { motor: '2.4 JTD', power: '100 (136) / 4000', ccm: '2387', torque: '310 (2000)', topSpeed: '203', accel: '9.5', weight: '1350', wheels: '185/65 R15' }
+];
+
+// Engines 2001-> (Euro 3)
+const enginesEuro3 = [
+  { motor: '1.6 TS 16V', power: '88 (120) / 6200', ccm: '1598', torque: '146 (4200)', topSpeed: '200', accel: '10.5', weight: '1230', wheels: '185/65 R15' },
+  { motor: '1.8 TS 16V', power: '103 (140) / 6500', ccm: '1747', torque: '163 (3900)', topSpeed: '208', accel: '9.4', weight: '1230', wheels: '185/65 R15' },
+  { motor: '2.0 TS 16V *', power: '110 (150) / 6300', ccm: '1970', torque: '181 (3800)', topSpeed: '214', accel: '8.8', weight: '1250', wheels: '205/60 R15' },
+  { motor: '2.5 V6 24V', power: '141 (192) / 6300', ccm: '2492', torque: '218 (5000)', topSpeed: '230', accel: '7.3', weight: '1320', wheels: '205/60 R15' },
+  { motor: '1.9 JTD', power: '81 (110) / 4000', ccm: '1910', torque: '275 (1800)', topSpeed: '191', accel: '10.3', weight: '1270', wheels: '185/65 R15' },
+  { motor: '2.4 JTD *', power: '103 (140) / 4000', ccm: '2387', torque: '304 (1800)', topSpeed: '205', accel: '9.4', weight: '1350', wheels: '185/65 R15' }
+];
+
+// Facelift 2002 & GTA
+const enginesFacelift = [
+  { motor: '3.2 V6 24V GTA', power: '184 (250) / 6200', ccm: '3179', torque: '300 (4800)', topSpeed: '250', accel: '6.3', weight: '1410', wheels: '225/45 R17' },
+  { motor: '2.0 JTS 16V', power: '121 (165) / 6400', ccm: '1970', torque: '206 (3250)', topSpeed: '220', accel: '8.2', weight: '1280', wheels: '205/60 R15' },
+  { motor: '2.4 JTD 10V', power: '110 (150) / 4000', ccm: '2387', torque: '305 (1800)', topSpeed: '212', accel: '9.4', weight: '1385', wheels: '185/65 R15' },
+  { motor: '2.4 Multijet 20V (2003)', power: '129 (175) / 4000', ccm: '2387', torque: '385 (2000)', topSpeed: '225', accel: '8.3', weight: '1410', wheels: '225/45 R17' }
+];
+---
+
+<Layout
+  title="Specifiche Tecniche Alfa 156 (Technical Information) | Cuore Sportivo Archive"
+  description="Specifiche tecniche e schede motori ufficiali di alfa156.net: potenze, coppie, pesi, rapporti di trasmissione e geometrie sospensioni."
+  currentPath="/technical"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex items-center space-x-2 text-xs font-mono text-alfa-metal-500 mb-6">
+      <a href="/" class="hover:text-alfa-red-600">Home</a>
+      <span>/</span>
+      <span class="text-alfa-red-600 font-bold">Technical</span>
+      <span>/</span>
+      <span class="text-alfa-metal-900 dark:text-white font-medium">
+        <span class="lang-it">Specifiche Tecniche</span>
+        <span class="lang-en">Technical Specs</span>
+      </span>
+    </nav>
+
+    <!-- Sub-navigation Hub Bar -->
+    <div class="flex flex-wrap items-center gap-2 p-1.5 mb-8 rounded-xl bg-alfa-metal-100 dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 text-sm">
+      <a
+        href="/technical"
+        class="px-4 py-2 rounded-lg font-bold bg-alfa-red-600 text-white shadow-xs"
+      >
+        <span class="lang-it">Specifiche Motori & Telaio</span>
+        <span class="lang-en">Engine & Chassis Specs</span>
+      </a>
+      <a
+        href="/technical/tips"
+        class="px-4 py-2 rounded-lg font-semibold text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-white transition-colors"
+      >
+        <span class="lang-it">Tips & Guide Passo-Passo</span>
+        <span class="lang-en">Tips & DIY Guides</span>
+      </a>
+      <a
+        href="/technical/tuning"
+        class="px-4 py-2 rounded-lg font-semibold text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-white transition-colors"
+      >
+        <span class="lang-it">Tuning & Elaborazioni</span>
+        <span class="lang-en">Tuning & Handling</span>
+      </a>
+    </div>
+
+    <!-- Header Section -->
+    <div class="border-b border-alfa-metal-200 dark:border-alfa-metal-800 pb-8 mb-10">
+      <h1 class="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-alfa-metal-900 dark:text-white">
+        <span class="lang-it">Dati Tecnici Alfa Romeo 156</span>
+        <span class="lang-en">Alfa Romeo 156 Technical Information</span>
+      </h1>
+
+      <p class="mt-4 text-base sm:text-lg text-alfa-metal-600 dark:text-alfa-metal-300 max-w-3xl leading-relaxed">
+        <span class="lang-it">
+          Tutti i dati tecnici ufficiali di motorizzazioni Twin Spark, JTS, V6 Busso e JTD: trasmissioni, pesi, rapporti di cambio e geometrie delle sospensioni per berlina e Sportwagon.
+        </span>
+        <span class="lang-en">
+          Comprehensive technical specifications for Twin Spark, JTS, Busso V6, and JTD powertrains: gear ratios, kerb weights, chassis geometries, and factory wheel fitments for saloon and Sportwagon.
+        </span>
+      </p>
+    </div>
+
+    <!-- Table 1: Engines 1997-2001 (Euro 2) -->
+    <div class="mb-12">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="font-display text-xl sm:text-2xl font-bold text-alfa-metal-900 dark:text-white">
+            <span class="lang-it">Motori Prima Serie (1997 - 2001, Euro 2)</span>
+            <span class="lang-en">Engines (1997 - 2001, Euro 2)</span>
+          </h2>
+          <p class="text-xs font-mono text-alfa-metal-500 mt-1">
+            Twin Spark 16V con collettori d'aspirazione a geometria variabile, Busso V6 24V e JTD Unijet Common Rail
+          </p>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-alfa-metal-100 dark:bg-alfa-metal-900/90 text-alfa-metal-700 dark:text-alfa-metal-200 border-b border-alfa-metal-200 dark:border-alfa-metal-800">
+              <th class="p-3 font-bold">Motor</th>
+              <th class="p-3 font-bold">Kw (CV) / RPM</th>
+              <th class="p-3 font-bold">Ccm</th>
+              <th class="p-3 font-bold">Nm / (RPM)</th>
+              <th class="p-3 font-bold">Top Speed</th>
+              <th class="p-3 font-bold">0-100 km/h</th>
+              <th class="p-3 font-bold">Weight (Kg)</th>
+              <th class="p-3 font-bold">Wheels</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-alfa-metal-200 dark:divide-alfa-metal-800 bg-white dark:bg-alfa-metal-950 font-mono">
+            {enginesEuro2.map((e) => (
+              <tr class="hover:bg-alfa-red-50/40 dark:hover:bg-alfa-metal-900/50 transition-colors">
+                <td class="p-3 font-sans font-bold text-alfa-red-600 dark:text-alfa-red-400">{e.motor}</td>
+                <td class="p-3 text-alfa-metal-800 dark:text-alfa-silver-200">{e.power}</td>
+                <td class="p-3 text-alfa-metal-600 dark:text-alfa-metal-400">{e.ccm}</td>
+                <td class="p-3 text-alfa-metal-800 dark:text-alfa-silver-200">{e.torque}</td>
+                <td class="p-3 font-bold text-alfa-metal-900 dark:text-white">{e.topSpeed} km/h</td>
+                <td class="p-3 text-alfa-metal-800 dark:text-alfa-silver-200">{e.accel} s</td>
+                <td class="p-3 text-alfa-metal-600 dark:text-alfa-metal-400">{e.weight}</td>
+                <td class="p-3 text-alfa-metal-500 dark:text-alfa-metal-400">{e.wheels}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Table 2: Euro 3 Engines (2001->) -->
+    <div class="mb-12">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="font-display text-xl sm:text-2xl font-bold text-alfa-metal-900 dark:text-white">
+            <span class="lang-it">Motori Euro 3 (2001 in poi)</span>
+            <span class="lang-en">Euro 3 Engines (2001 onwards)</span>
+          </h2>
+          <p class="text-xs font-mono text-alfa-metal-500 mt-1">
+            Aggiornamento normative anti-inquinamento con acceleratore elettronico drive-by-wire
+          </p>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-alfa-metal-100 dark:bg-alfa-metal-900/90 text-alfa-metal-700 dark:text-alfa-metal-200 border-b border-alfa-metal-200 dark:border-alfa-metal-800">
+              <th class="p-3 font-bold">Motor</th>
+              <th class="p-3 font-bold">Kw (CV) / RPM</th>
+              <th class="p-3 font-bold">Ccm</th>
+              <th class="p-3 font-bold">Nm / (RPM)</th>
+              <th class="p-3 font-bold">Top Speed</th>
+              <th class="p-3 font-bold">0-100 km/h</th>
+              <th class="p-3 font-bold">Weight (Kg)</th>
+              <th class="p-3 font-bold">Wheels</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-alfa-metal-200 dark:divide-alfa-metal-800 bg-white dark:bg-alfa-metal-950 font-mono">
+            {enginesEuro3.map((e) => (
+              <tr class="hover:bg-alfa-red-50/40 dark:hover:bg-alfa-metal-900/50 transition-colors">
+                <td class="p-3 font-sans font-bold text-alfa-red-600 dark:text-alfa-red-400">{e.motor}</td>
+                <td class="p-3 text-alfa-metal-800 dark:text-alfa-silver-200">{e.power}</td>
+                <td class="p-3 text-alfa-metal-600 dark:text-alfa-metal-400">{e.ccm}</td>
+                <td class="p-3 text-alfa-metal-800 dark:text-alfa-silver-200">{e.torque}</td>
+                <td class="p-3 font-bold text-alfa-metal-900 dark:text-white">{e.topSpeed} km/h</td>
+                <td class="p-3 text-alfa-metal-800 dark:text-alfa-silver-200">{e.accel} s</td>
+                <td class="p-3 text-alfa-metal-600 dark:text-alfa-metal-400">{e.weight}</td>
+                <td class="p-3 text-alfa-metal-500 dark:text-alfa-metal-400">{e.wheels}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs font-mono text-alfa-metal-500 dark:text-alfa-metal-400 mt-2 italic">
+        *) Nota originale: il 2.0 TS è stato successivamente sostituito dal 2.0 JTS a iniezione diretta da 165 CV e il 2.4 JTD dalla versione 10V da 150 CV (Q2 2002).
+      </p>
+    </div>
+
+    <!-- Table 3: Facelift 2002 & GTA -->
+    <div class="mb-14">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="font-display text-xl sm:text-2xl font-bold text-alfa-metal-900 dark:text-white">
+            <span class="lang-it">Facelift 2002, GTA e Motori Multijet (2002 - 2005)</span>
+            <span class="lang-en">Facelift 2002, GTA & Multijet Engines (2002 - 2005)</span>
+          </h2>
+          <p class="text-xs font-mono text-alfa-metal-500 mt-1">
+            L'apice prestazionale: Busso 3.2 V6 GTA, JTS a iniezione diretta e l'esordio del Multijet 20V da 175 CV
+          </p>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-alfa-metal-100 dark:bg-alfa-metal-900/90 text-alfa-metal-700 dark:text-alfa-metal-200 border-b border-alfa-metal-200 dark:border-alfa-metal-800">
+              <th class="p-3 font-bold">Motor</th>
+              <th class="p-3 font-bold">Kw (CV) / RPM</th>
+              <th class="p-3 font-bold">Ccm</th>
+              <th class="p-3 font-bold">Nm / (RPM)</th>
+              <th class="p-3 font-bold">Top Speed</th>
+              <th class="p-3 font-bold">0-100 km/h</th>
+              <th class="p-3 font-bold">Weight (Kg)</th>
+              <th class="p-3 font-bold">Wheels</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-alfa-metal-200 dark:divide-alfa-metal-800 bg-white dark:bg-alfa-metal-950 font-mono">
+            {enginesFacelift.map((e) => (
+              <tr class="hover:bg-alfa-red-50/40 dark:hover:bg-alfa-metal-900/50 transition-colors">
+                <td class="p-3 font-sans font-bold text-alfa-red-600 dark:text-alfa-red-400">{e.motor}</td>
+                <td class="p-3 text-alfa-metal-800 dark:text-alfa-silver-200">{e.power}</td>
+                <td class="p-3 text-alfa-metal-600 dark:text-alfa-metal-400">{e.ccm}</td>
+                <td class="p-3 text-alfa-metal-800 dark:text-alfa-silver-200">{e.torque}</td>
+                <td class="p-3 font-bold text-alfa-metal-900 dark:text-white">{e.topSpeed} km/h</td>
+                <td class="p-3 text-alfa-metal-800 dark:text-alfa-silver-200">{e.accel} s</td>
+                <td class="p-3 text-alfa-metal-600 dark:text-alfa-metal-400">{e.weight}</td>
+                <td class="p-3 text-alfa-metal-500 dark:text-alfa-metal-400">{e.wheels}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs font-mono text-alfa-metal-500 dark:text-alfa-metal-400 mt-2 italic">
+        Nota: per le versioni Sportwagon aggiungere indicativamente 50 kg di massa a vuoto.
+      </p>
+    </div>
+
+    <!-- Chassis, Suspension & Brakes Deep Dive (verbatim from teknisk and history) -->
+    <div class="border-t border-alfa-metal-200 dark:border-alfa-metal-800 pt-10 mb-14">
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-alfa-metal-900 dark:text-white mb-6">
+        <span class="lang-it">Telaio, Geometrie Sospensioni e Impianto Frenante</span>
+        <span class="lang-en">Chassis, Suspension Geometry & Braking</span>
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card 1: Front Suspension -->
+        <div class="p-6 rounded-xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs">
+          <div class="w-10 h-10 rounded-lg bg-alfa-red-50 dark:bg-alfa-red-950 flex items-center justify-center text-alfa-red-600 mb-4 font-bold">
+            01
+          </div>
+          <h3 class="font-display font-bold text-lg text-alfa-metal-900 dark:text-white mb-2">
+            <span class="lang-it">Quadrilatero Alto Anteriore</span>
+            <span class="lang-en">High Double Wishbone Front</span>
+          </h3>
+          <p class="text-xs sm:text-sm text-alfa-metal-600 dark:text-alfa-metal-300 leading-relaxed">
+            <span class="lang-it">
+              Sospensioni anteriori a doppio triangolo sovrapposto (quadrilatero alto) con componenti in ghisa, acciaio e lega leggera. Geometria con 4° di incidenza positiva (castor) e 6-7° di kingpin angle. Garantisce massima aderenza in trazione anteriore, totale recupero di camber in curva e precisione di sterzo chirurgica (2.2 giri da battuta a battuta).
+            </span>
+            <span class="lang-en">
+              Front suspensions set up by high double triangle wishbone with cast iron, steel and light alloy components. Geometry includes 4 degrees of positive castor and 6-7 degrees of kingpin angle, providing unmatched front-wheel grip and precision steering (2.2 turns lock-to-lock).
+            </span>
+          </p>
+        </div>
+
+        <!-- Card 2: Rear Suspension -->
+        <div class="p-6 rounded-xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs">
+          <div class="w-10 h-10 rounded-lg bg-alfa-red-50 dark:bg-alfa-red-950 flex items-center justify-center text-alfa-red-600 mb-4 font-bold">
+            02
+          </div>
+          <h3 class="font-display font-bold text-lg text-alfa-metal-900 dark:text-white mb-2">
+            <span class="lang-it">McPherson Posteriore con Sterzatura Passiva</span>
+            <span class="lang-en">Rear McPherson with Passive Steering</span>
+          </h3>
+          <p class="text-xs sm:text-sm text-alfa-metal-600 dark:text-alfa-metal-300 leading-relaxed">
+            <span class="lang-it">
+              Schema McPherson evoluto con montante telescopico, due bielle trasversali di lunghezza disuguale e puntone di reazione longitudinale. Questo sistema induce una sterzatura passiva in fase delle ruote posteriori sotto carico laterale in curva, aumentando la stabilità alle alte velocità e riducendo il sottosterzo.
+            </span>
+            <span class="lang-en">
+              At the rear, McPherson struts with unequal length transverse links and longitudinal reaction rods. This setup provides same-phase passive rear wheel steering under cornering loads, stabilizing the rear axle and improving high-speed cornering agility.
+            </span>
+          </p>
+        </div>
+
+        <!-- Card 3: ABS & Brakes -->
+        <div class="p-6 rounded-xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs">
+          <div class="w-10 h-10 rounded-lg bg-alfa-red-50 dark:bg-alfa-red-950 flex items-center justify-center text-alfa-red-600 mb-4 font-bold">
+            03
+          </div>
+          <h3 class="font-display font-bold text-lg text-alfa-metal-900 dark:text-white mb-2">
+            <span class="lang-it">Impianto Frenante & ABS Bosch 5.3</span>
+            <span class="lang-en">Braking & Bosch 5.3 ABS</span>
+          </h3>
+          <p class="text-xs sm:text-sm text-alfa-metal-600 dark:text-alfa-metal-300 leading-relaxed">
+            <span class="lang-it">
+              Freni a disco su tutte le ruote (anteriori autoventilati su 1.8, 2.0, 2.5 V6 e JTD; pinze Brembo a 4 pistoncini su GTA). Centralina ABS Bosch 5.3 a 4 sensori attivi con ripartitore elettronico di frenata EBD (Electronic Brake Distribution) e sistema antincendio FPS (Fire Prevention System) di serie.
+            </span>
+            <span class="lang-en">
+              Disc brakes on all four wheels (ventilated front on 1.8, 2.0, 2.5 V6 and JTD; 4-piston Brembo radial calipers on GTA). Bosch 5.3 ABS ECU with 4 active wheel sensors, Electronic Brake Distribution (EBD) and Alfa Fire Prevention System (FPS) standard.
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dimensions & Weights -->
+    <div class="border-t border-alfa-metal-200 dark:border-alfa-metal-800 pt-10">
+      <h2 class="font-display text-2xl font-bold text-alfa-metal-900 dark:text-white mb-6">
+        <span class="lang-it">Dimensioni e Pesi Ufficiali</span>
+        <span class="lang-en">Official Dimensions & Capacities</span>
+      </h2>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono text-center">
+        <div class="p-4 rounded-xl bg-alfa-metal-50 dark:bg-alfa-metal-900/60 border border-alfa-metal-200 dark:border-alfa-metal-800">
+          <div class="text-xs text-alfa-metal-500 uppercase tracking-wider">Lunghezza</div>
+          <div class="text-lg font-bold text-alfa-metal-900 dark:text-white mt-1">4430 mm</div>
+        </div>
+        <div class="p-4 rounded-xl bg-alfa-metal-50 dark:bg-alfa-metal-900/60 border border-alfa-metal-200 dark:border-alfa-metal-800">
+          <div class="text-xs text-alfa-metal-500 uppercase tracking-wider">Larghezza</div>
+          <div class="text-lg font-bold text-alfa-metal-900 dark:text-white mt-1">1745 mm</div>
+        </div>
+        <div class="p-4 rounded-xl bg-alfa-metal-50 dark:bg-alfa-metal-900/60 border border-alfa-metal-200 dark:border-alfa-metal-800">
+          <div class="text-xs text-alfa-metal-500 uppercase tracking-wider">Altezza</div>
+          <div class="text-lg font-bold text-alfa-metal-900 dark:text-white mt-1">1415 mm <span class="text-xs text-alfa-metal-500 font-normal">(1420 SW)</span></div>
+        </div>
+        <div class="p-4 rounded-xl bg-alfa-metal-50 dark:bg-alfa-metal-900/60 border border-alfa-metal-200 dark:border-alfa-metal-800">
+          <div class="text-xs text-alfa-metal-500 uppercase tracking-wider">Passo</div>
+          <div class="text-lg font-bold text-alfa-metal-900 dark:text-white mt-1">2595 mm</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</Layout>
