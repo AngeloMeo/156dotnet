@@ -10,16 +10,18 @@ const pillars = [
     descIt: 'Tutti i dati ufficiali di motori Euro 2, Euro 3, Facelift 2002 e GTA. Rapporti cambio, pesi e geometrie del quadrilatero alto.',
     descEn: 'Factory specifications for Euro 2, Euro 3, 2002 Facelift and GTA engines. Gear ratios, kerb weights and double wishbone geometry.',
     link: '/technical',
-    badge: 'teknisk.html',
+    badgeIt: 'Motori & Assetto',
+    badgeEn: 'Engines & Chassis',
     icon: '⚡'
   },
   {
     titleIt: 'Problemi Noti & Guide Passo-Passo',
     titleEn: 'Known Problems & DIY Guides',
-    descIt: 'I 6 difetti congeniti storici (plancia, variatore, braccetti, infiltrazioni) e oltre 15 guide illustrate di Jeff e Anders.',
-    descEn: 'The 6 classic known faults (dash rattles, TS variator, wishbones, leaks) and over 15 illustrated guides by Jeff and Anders.',
+    descIt: 'I difetti congeniti storici (plancia, variatore, braccetti, infiltrazioni) e le guide fotografiche illustrate di Jeff e Anders.',
+    descEn: 'The classic known faults (dash rattles, TS variator, wishbones, leaks) and illustrated photo guides by Jeff and Anders.',
     link: '/technical/tips',
-    badge: 'info.html',
+    badgeIt: 'Guide & Tips',
+    badgeEn: 'DIY Guides',
     icon: '🔧'
   },
   {
@@ -28,7 +30,8 @@ const pillars = [
     descIt: 'La lista di controllo originale a 16 punti di Anders, la checklist stampabile a 48 punti di Posty e le scansioni di Auto Italia.',
     descEn: 'Anders\' original 16-point checklist, Posty\'s 48-point printable PDF checklist and full Auto Italia magazine buyer\'s dossiers.',
     link: '/buyers-guide',
-    badge: 'buyersg.html',
+    badgeIt: 'Guida Acquisto',
+    badgeEn: 'Buyer\'s Guide',
     icon: '📋'
   },
   {
@@ -37,7 +40,8 @@ const pillars = [
     descIt: 'Kit compressore e turbo Novitec (fino a 348 CV), rimappature Squadra Tuning, guida assetto Alfanytt e scarichi Ragazzon.',
     descEn: 'Novitec superchargers and turbos (up to 348 bhp), Squadra Tuning remaps, Alfanytt handling guide and Ragazzon exhausts.',
     link: '/technical/tuning',
-    badge: 'tuning.html',
+    badgeIt: 'Tuning & Assetto',
+    badgeEn: 'Tuning & Handling',
     icon: '🏁'
   },
   {
@@ -46,7 +50,8 @@ const pillars = [
     descIt: 'I kit estetici storici dei maggiori carrozzieri: Cadamuro Design, Novitec, Zender, Autodelta, MS Design e Lester.',
     descEn: 'The period aerodynamic packages from leading tuners: Cadamuro Design, Novitec, Zender, Autodelta, MS Design and Lester.',
     link: '/styling',
-    badge: 'styling.html',
+    badgeIt: 'Bodykit & Stile',
+    badgeEn: 'Bodykits & Styling',
     icon: '🎨'
   },
   {
@@ -55,7 +60,8 @@ const pillars = [
     descIt: 'La genesi del design di Walter de\' Silva, l\'ispirazione Nuvola, il trionfo di Auto dell\'Anno 1998 e le gare STC.',
     descEn: 'Walter de Silva\'s design genesis, Nuvola inspiration, Car of the Year 1998 triumph and European Super Touring titles.',
     link: '/storia',
-    badge: 'history.html',
+    badgeIt: 'Storia & Premi',
+    badgeEn: 'History & Heritage',
     icon: '🏆'
   }
 ];
@@ -71,7 +77,7 @@ const featuredGuides = [
 ---
 
 <Layout
-  title="Hub Alfa 156 – All Things 156 | Cuore Sportivo & Technical Heritage"
+  title="Alfa156.it"
   description="L'hub definitivo per tutti gli appassionati di Alfa Romeo 156. Storia del modello, specifiche tecniche, guide officina passo-passo, tuning e guida all'acquisto."
   currentPath="/"
 >
@@ -87,13 +93,7 @@ const featuredGuides = [
         <h1 class="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight text-alfa-metal-900 dark:text-white">
           Alfa Romeo <span class="text-transparent bg-clip-text bg-gradient-to-r from-alfa-red-600 via-alfa-red-500 to-alfa-red-700">156</span>
         </h1>
-        
-        <div class="flex items-center justify-center space-x-2 sm:space-x-3">
-          <span class="font-display font-extrabold text-2xl sm:text-3xl text-alfa-red-600 dark:text-alfa-red-500 tracking-tight">Hub Alfa 156</span>
-          <span class="text-alfa-metal-300 dark:text-alfa-metal-600 text-xl font-light">•</span>
-          <span class="font-display font-semibold text-xl sm:text-2xl text-alfa-metal-700 dark:text-alfa-metal-200">All Things 156</span>
-        </div>
-
+      
         <p class="text-base sm:text-lg text-alfa-metal-600 dark:text-alfa-metal-300 leading-relaxed max-w-2xl mx-auto">
           <span class="lang-it">
             Il capolavoro stilistico di <strong>Walter de Silva</strong> che ha salvato e rilanciato l'Alfa Romeo nel mondo. Eletta <strong>Auto dell'Anno 1998</strong>, pioniera mondiale della tecnologia <strong>Common Rail JTD</strong> e dominatrice nel motorsport. L'hub definitivo per chi guida, restaura e celebra la 156.
@@ -159,8 +159,9 @@ const featuredGuides = [
           <div>
             <div class="flex items-center justify-between mb-4">
               <span class="text-3xl p-2 rounded-xl bg-alfa-metal-100 dark:bg-alfa-metal-800">{p.icon}</span>
-              <span class="px-2 py-0.5 rounded text-[11px] font-mono text-alfa-metal-400 bg-alfa-metal-50 dark:bg-alfa-metal-950 border border-alfa-metal-200 dark:border-alfa-metal-800">
-                {p.badge}
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium text-alfa-metal-600 dark:text-alfa-silver-300 bg-alfa-metal-100 dark:bg-alfa-metal-800 border border-alfa-metal-200 dark:border-alfa-metal-700">
+                <span class="lang-it">{p.badgeIt}</span>
+                <span class="lang-en">{p.badgeEn}</span>
               </span>
             </div>
 

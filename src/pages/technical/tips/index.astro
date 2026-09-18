@@ -1,201 +1,31 @@
 ---
 // src/pages/technical/tips/index.astro
 import Layout from '../../../layouts/Layout.astro';
+import { technicalTipsData } from '../../../data/technicalTipsData';
 
-const knownProblems = [
-  {
-    slug: 'dash',
-    titleEn: 'Dashboard noise',
-    titleIt: 'Rumorosità e scricchiolii della plancia',
-    author: 'Anders & Kid van Orsouw (Alfa 156 Club NL)',
-    summaryEn: 'Rattles in cold weather from captive nuts on the front dash mounts and Magnesium carrybeam.',
-    summaryIt: 'Scricchiolii a freddo dovuti ai dadi prigionieri di fissaggio della traversa in magnesio sotto al parabrezza.',
-    tag: 'Interni'
-  },
-  {
-    slug: 'wet',
-    titleEn: 'Water leakage',
-    titleIt: 'Infiltrazioni d\'acqua nell\'abitacolo',
-    author: 'Anders & Bjarne',
-    summaryEn: 'Moisture entering carpets, bulkhead grommets and the roof channel at the top of rear doors.',
-    summaryIt: 'Ristagni d\'acqua sotto la moquette, passacavi nella paratia e canalina del tetto sopra le porte posteriori.',
-    tag: 'Carrozzeria'
-  },
-  {
-    slug: 'wipers',
-    titleEn: 'Low speed wiper intervals',
-    titleIt: 'Malfunzionamento intermittenza tergicristalli',
-    author: 'T.P. (alfaowner.com)',
-    summaryEn: 'Intervals skipping and stopping due to dried hardened grease inside the wiper motor contacts.',
-    summaryIt: 'L\'intermittenza salta e si blocca a causa del grasso lubrificante che isola i contatti del motorino.',
-    tag: 'Elettronica'
-  },
-  {
-    slug: 'wishbone',
-    titleEn: 'Front wishbone suspension',
-    titleIt: 'Cigolii bracci e gommini sospensione anteriore',
-    author: 'Anders, Antti & Peer',
-    summaryEn: 'Squeaking from upper wishbone bushes and lower ball joints over speed bumps and steering.',
-    summaryIt: 'Cigolii tipici sui dossi e in manovra provocati dalle boccole secche del quadrilatero alto.',
-    tag: 'Assetto'
-  },
-  {
-    slug: 'variator',
-    titleEn: 'Variator (Twin Spark)',
-    titleIt: 'Variatore di fase motori Twin Spark (Rumore Diesel)',
-    author: 'Anders',
-    summaryEn: 'Diesel rattling sound on cold startup, loss of low-end torque. Upgraded part 60666199 & audio test.',
-    summaryIt: 'Rumore da diesel all\'avvio a freddo e perdita di coppia sotto i 3000 giri. Modifica codice 60666199 e audio.',
-    tag: 'Motore'
-  },
-  {
-    slug: 'paint',
-    titleEn: 'Poor paint',
-    titleIt: 'Difetti e sfogliamento vernice originale',
-    author: 'Anders',
-    summaryEn: 'Paint flaking from stone chips on the plastic front bumper, bonnet and windscreen surround.',
-    summaryIt: 'Sfogliamento dello smalto su paraurti anteriore, cofano motore e cornice parabrezza.',
-    tag: 'Carrozzeria'
-  }
+// Divide into Known Problems and Step-by-Step DIY User Tips
+const knownProblemSlugs = [
+  'dash',
+  'wet',
+  'wipers',
+  'wishbone',
+  'variator',
+  'paint',
+  'fuse',
+  'swboot',
+  'swdoor',
+  'otemp',
+  'powerloss',
+  'idle',
+  'temperature',
+  'clutch',
+  'ac',
+  'cold',
+  'winter'
 ];
 
-const userTips = [
-  {
-    slug: 'v6sparks',
-    titleEn: 'How to change spark plugs on the V6 24V',
-    titleIt: 'Sostituzione candele sul Busso V6 24V',
-    author: 'Jeff',
-    descEn: 'Comprehensive guide with step-by-step photos for removing the chrome inlet runners and plenum.',
-    descIt: 'Guida passo-passo con foto per smontare polmone d\'aspirazione e collettori cromati del Busso.',
-    tag: 'V6'
-  },
-  {
-    slug: 'maf',
-    titleEn: 'MAF Problem & Cleaning Guide',
-    titleIt: 'Debimetro / Sensore MAF: diagnosi e pulizia',
-    author: 'Anders & Jeff',
-    descEn: 'Understanding MAF failure symptoms, cleaning the hot-film sensor and Bosch part numbers.',
-    descIt: 'Sintomi di guasto del debimetro a filo caldo, procedura di pulizia con solvente secco e codici ricambio.',
-    tag: 'Motore'
-  },
-  {
-    slug: 'timing',
-    titleEn: 'Timing belts & Balancer belts',
-    titleIt: 'Cinghie di distribuzione e controrotanti',
-    author: 'Anders & Community',
-    descEn: 'The critical 36,000 miles (60,000 km) / 3-year replacement rule on Twin Spark 16V engines.',
-    descIt: 'La fondamentale regola dei 60.000 km o 3 anni per la salvaguardia delle valvole sui Twin Spark.',
-    tag: 'Motore'
-  },
-  {
-    slug: 'headlight',
-    titleEn: 'Headlight replacement & GTA look',
-    titleIt: 'Sostituzione fari e mascherina stile GTA',
-    author: 'Jeff & Jon',
-    descEn: 'How to remove front bumper clips, replace headlamp units and convert chrome units to dark GTA style.',
-    descIt: 'Smontaggio paraurti anteriore, rimozione gruppi ottici e conversione con cornice brunita tipo GTA.',
-    tag: 'Carrozzeria'
-  },
-  {
-    slug: 'airbox',
-    titleEn: 'Airbox filter replacement with rusty bolts',
-    titleIt: 'Sostituzione filtro aria con bulloni arrugginiti',
-    author: 'Sam & Jeff',
-    descEn: 'How to overcome seized brass nuts on the airbox without cracking the plastic housing.',
-    descIt: 'Come estrarre il filtro aria originale anche quando le viti autofilettanti e gli inserti sono bloccati.',
-    tag: 'Motore'
-  },
-  {
-    slug: 'fhandle',
-    titleEn: 'Sticking door handle button fix',
-    titleIt: 'Pulsante maniglia portiera bloccato',
-    author: 'Jeff & Pat',
-    descEn: 'Disassembling exterior front handle, cleaning oxidation and greasing push rod button mechanism.',
-    descIt: 'Smontaggio maniglia esterna anteriore, rimozione ossido e lubrificazione del pulsante a perno.',
-    tag: 'Carrozzeria'
-  },
-  {
-    slug: 'coolant',
-    titleEn: 'Coolant reservoir replacement',
-    titleIt: 'Sostituzione vaschetta liquido refrigerante',
-    author: 'Jeff',
-    descEn: 'Replacing aged, yellowed or micro-cracked coolant expansion tanks on 147 and 156.',
-    descIt: 'Guida alla sostituzione della vaschetta di espansione ingiallita o fessurata su 156 e 147.',
-    tag: 'Raffreddamento'
-  },
-  {
-    slug: 'idle',
-    titleEn: 'Erratic idle speed',
-    titleIt: 'Regime minimo irregolare e reset ECU',
-    author: 'Anders',
-    descEn: 'Stepping motor idle actuator cleaning and electronic throttle body calibration.',
-    descIt: 'Pulizia dell\'attuatore del minimo Bosch, valvola a farfalla e procedura di reset autoadattativi ECU.',
-    tag: 'Motore'
-  },
-  {
-    slug: 'powerloss',
-    titleEn: 'Engine power loss diagnosis',
-    titleIt: 'Diagnosi perdita di potenza motore',
-    author: 'Anders',
-    descEn: 'Systematic troubleshooting of lambda sensors, fuel pressure, camshaft sensor and spark plugs.',
-    descIt: 'Verifica sistematica di sonda lambda, pressione benzina, sensore di fase e candele.',
-    tag: 'Motore'
-  },
-  {
-    slug: 'temperature',
-    titleEn: 'Water temperature display & Thermostat',
-    titleIt: 'Indicatore temperatura acqua e termostato',
-    author: 'Anders',
-    descEn: 'Why the needle stays below 90°C on motorways and how a stuck-open thermostat harms fuel economy.',
-    descIt: 'Perché la lancetta scende sotto i 90°C in velocità e come il termostato bloccato aperto usura il motore.',
-    tag: 'Raffreddamento'
-  },
-  {
-    slug: 'clutch',
-    titleEn: 'Clutch return spring replacement',
-    titleIt: 'Sostituzione molla di richiamo pedale frizione',
-    author: 'Anders & Community',
-    descEn: 'Fixing a pedal that fails to return fully or feels mushy near the top of its travel.',
-    descIt: 'Come sostituire la molla a spirale sotto la pedaliera per eliminare il gioco a vuoto del pedale.',
-    tag: 'Trasmissione'
-  },
-  {
-    slug: 'ac',
-    titleEn: 'Air Conditioning troubleshooting',
-    titleIt: 'Risoluzione problemi impianto climatizzatore',
-    author: 'Anders',
-    descEn: 'Low refrigerant pressure switch cutoff, condensate drainage and blower speed resistor pack.',
-    descIt: 'Pressostato di sicurezza per bassa pressione gas, scarico condensa e resistenza ventola abitacolo.',
-    tag: 'Comfort'
-  },
-  {
-    slug: 'cold',
-    titleEn: 'Lack of power on cold engine',
-    titleIt: 'Esitazioni e vuoti a motore freddo',
-    author: 'Anders',
-    descEn: 'ECU coolant temperature sender CTS failure and cold enrichment fueling issues.',
-    descIt: 'Sensore temperatura liquido refrigerante per centralina (CTS) e mancato arricchimento a freddo.',
-    tag: 'Motore'
-  },
-  {
-    slug: 'winter',
-    titleEn: 'Winter use and freeze prevention',
-    titleIt: 'Uso invernale e prevenzione gelo',
-    author: 'Anders (Bergen, Norway)',
-    descEn: 'Anders shares real Nordic winter experience: frameless door seal care, battery health and locks.',
-    descIt: 'L\'esperienza diretta di Anders negli inverni norvegesi: trattamento guarnizioni, batteria e serrature.',
-    tag: 'Manutenzione'
-  },
-  {
-    slug: 'bonnetcatch',
-    titleEn: 'Bonnet catch safety mechanism',
-    titleIt: 'Gancio e serratura cofano motore',
-    author: 'Anders & ARDC',
-    descEn: 'Preventing dangerous bonnet fly-up by cleaning and lubricating the secondary safety latch.',
-    descIt: 'Prevenzione dell\'apertura accidentale in corsa: pulizia e lubrificazione del meccanismo di sicurezza.',
-    tag: 'Sicurezza'
-  }
-];
+const knownProblems = technicalTipsData.filter(t => knownProblemSlugs.includes(t.slug));
+const userTips = technicalTipsData.filter(t => !knownProblemSlugs.includes(t.slug));
 ---
 
 <Layout
@@ -308,7 +138,7 @@ const userTips = [
       </a>
     </div>
 
-    <!-- SECTION 1: The 6 Known Problems -->
+    <!-- SECTION 1: The Known Problems -->
     <div class="mb-14">
       <div class="flex items-center space-x-3 mb-6">
         <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center font-bold">
@@ -316,12 +146,12 @@ const userTips = [
         </div>
         <div>
           <h2 class="font-display text-2xl font-bold text-alfa-metal-900 dark:text-white">
-            <span class="lang-it">I 6 Problemi Noti Storici (Known Problems)</span>
-            <span class="lang-en">The 6 Historical Known Problems</span>
+            <span class="lang-it">Problemi Noti e Difetti Congeniti (Known Problems)</span>
+            <span class="lang-en">Known Problems & Congenital Defects</span>
           </h2>
           <p class="text-xs font-mono text-alfa-metal-500 mt-0.5">
-            <span class="lang-it">I difetti congeniti documentati e risolti dalla community di alfa156.net</span>
-            <span class="lang-en">The congenital defects documented and fixed by the alfa156.net community</span>
+            <span class="lang-it">I difetti documentati e risolti storicamente dalla community di alfa156.net</span>
+            <span class="lang-en">The defects documented and resolved historically by the alfa156.net community</span>
           </p>
         </div>
       </div>
@@ -334,9 +164,21 @@ const userTips = [
           >
             <div>
               <div class="flex items-center justify-between mb-2">
-                <span class="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-alfa-metal-100 dark:bg-alfa-metal-800 text-alfa-metal-600 dark:text-alfa-silver-300">
-                  {p.tag}
-                </span>
+                <div class="flex items-center gap-1.5">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-alfa-metal-100 dark:bg-alfa-metal-800 text-alfa-metal-600 dark:text-alfa-silver-300">
+                    {p.category}
+                  </span>
+                  {p.images && p.images.length > 0 && (
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/10 dark:bg-amber-400/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
+                      📸 {p.images.length} foto
+                    </span>
+                  )}
+                  {p.audio && p.audio.length > 0 && (
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-purple-500/10 text-purple-600 dark:text-purple-400">
+                      🎵 Audio
+                    </span>
+                  )}
+                </div>
                 <span class="text-xs font-mono text-alfa-red-600 dark:text-alfa-red-400 group-hover:translate-x-1 transition-transform">
                   Leggi →
                 </span>
@@ -369,12 +211,12 @@ const userTips = [
         </div>
         <div>
           <h2 class="font-display text-2xl font-bold text-alfa-metal-900 dark:text-white">
-            <span class="lang-it">Guide Passo-Passo e Consigli Utente (User Tips)</span>
-            <span class="lang-en">DIY Step-by-Step Guides & User Tips</span>
+            <span class="lang-it">Guide Passo-Passo e Tutorial Fotografici (User Tips)</span>
+            <span class="lang-en">DIY Step-by-Step Guides & Photo Tutorials</span>
           </h2>
           <p class="text-xs font-mono text-alfa-metal-500 mt-0.5">
-            <span class="lang-it">I tutorial dettagliati con foto realizzati da Jeff, Anders e dagli alfisti storici</span>
-            <span class="lang-en">Detailed photo tutorials authored by Jeff, Anders and vintage Alfisti</span>
+            <span class="lang-it">I tutorial fotografici dettagliati realizzati da Jeff Porter, Anders e dagli alfisti storici</span>
+            <span class="lang-en">Detailed photo tutorials authored by Jeff Porter, Anders and vintage Alfisti</span>
           </p>
         </div>
       </div>
@@ -387,9 +229,21 @@ const userTips = [
           >
             <div>
               <div class="flex items-center justify-between mb-2">
-                <span class="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-alfa-metal-100 dark:bg-alfa-metal-800 text-alfa-metal-600 dark:text-alfa-silver-300">
-                  {tip.tag}
-                </span>
+                <div class="flex items-center gap-1.5">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-alfa-metal-100 dark:bg-alfa-metal-800 text-alfa-metal-600 dark:text-alfa-silver-300">
+                    {tip.category}
+                  </span>
+                  {tip.images && tip.images.length > 0 && (
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/10 dark:bg-amber-400/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
+                      📸 {tip.images.length} foto
+                    </span>
+                  )}
+                  {tip.download && (
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-blue-500/10 text-blue-600 dark:text-blue-400">
+                      📄 PDF
+                    </span>
+                  )}
+                </div>
                 <span class="text-xs font-mono text-alfa-red-600 dark:text-alfa-red-400 group-hover:translate-x-1 transition-transform">
                   Apri Guida →
                 </span>
@@ -401,8 +255,8 @@ const userTips = [
               </h3>
 
               <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-300 mt-2 leading-relaxed">
-                <span class="lang-it">{tip.descIt}</span>
-                <span class="lang-en">{tip.descEn}</span>
+                <span class="lang-it">{tip.summaryIt}</span>
+                <span class="lang-en">{tip.summaryEn}</span>
               </p>
             </div>
 

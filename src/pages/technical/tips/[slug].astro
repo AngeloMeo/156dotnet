@@ -149,29 +149,43 @@ const { tip, prev, next } = Astro.props;
     <!-- Image Gallery with Lightbox if present -->
     {tip.images && tip.images.length > 0 && (
       <div class="mt-12 pt-8 border-t border-alfa-metal-200 dark:border-alfa-metal-800">
-        <h3 class="font-display text-xl font-bold text-alfa-metal-900 dark:text-white mb-4">
-          <span class="lang-it">Galleria Fotografica Documentale</span>
-          <span class="lang-en">Documentary Photo Gallery</span>
-        </h3>
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="font-display text-xl sm:text-2xl font-bold text-alfa-metal-900 dark:text-white flex items-center space-x-2">
+            <span>📸</span>
+            <span class="lang-it">Galleria Fotografica Documentale ({tip.images.length} foto)</span>
+            <span class="lang-en">Documentary Photo Walkthrough ({tip.images.length} photos)</span>
+          </h3>
+          <span class="px-2.5 py-1 rounded-full text-xs font-mono bg-alfa-metal-100 dark:bg-alfa-metal-800 text-alfa-metal-600 dark:text-alfa-silver-300">
+            Lightbox HD Zoom
+          </span>
+        </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {tip.images.map((img) => (
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {tip.images.map((img, idx) => (
             <div
-              class="group relative cursor-pointer overflow-hidden rounded-xl border border-alfa-metal-200 dark:border-alfa-metal-800 bg-white dark:bg-alfa-metal-900 shadow-xs hover:shadow-md transition-all"
+              class="group relative cursor-pointer overflow-hidden rounded-xl border border-alfa-metal-200 dark:border-alfa-metal-800 bg-white dark:bg-alfa-metal-900 shadow-xs hover:shadow-md transition-all flex flex-col"
               data-lightbox-trigger
               data-img-src={img.src}
               data-img-title={img.captionIt}
             >
-              <img
-                src={img.src}
-                alt={img.alt}
-                class="w-full h-56 object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                loading="lazy"
-              />
-              <div class="p-3 bg-white dark:bg-alfa-metal-900 border-t border-alfa-metal-100 dark:border-alfa-metal-800">
-                <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400">
-                  <span class="lang-it">{img.captionIt}</span>
-                  <span class="lang-en">{img.captionEn}</span>
+              <div class="relative w-full h-60 bg-alfa-metal-100 dark:bg-alfa-metal-950 flex items-center justify-center overflow-hidden">
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  class="w-full h-full object-contain sm:object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
+                <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-black/75 text-white backdrop-blur-xs">
+                  #{idx + 1}
+                </span>
+                <span class="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded text-[10px] font-mono bg-alfa-red-600 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                  Ingrandisci ⤢
+                </span>
+              </div>
+              <div class="p-3.5 bg-white dark:bg-alfa-metal-900 border-t border-alfa-metal-100 dark:border-alfa-metal-800 flex-1">
+                <p class="text-xs text-alfa-metal-700 dark:text-alfa-metal-300 leading-snug">
+                  <span class="lang-it font-medium">{img.captionIt}</span>
+                  <span class="lang-en font-medium">{img.captionEn}</span>
                 </p>
               </div>
             </div>
