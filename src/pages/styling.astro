@@ -6,7 +6,8 @@ import Lightbox from '../components/Lightbox.astro';
 const stylingKits = [
   {
     name: 'Cadamuro Design',
-    country: 'Italia',
+    countryIt: 'Italia',
+    countryEn: 'Italy',
     descEn: 'Aggressive front spoiler with large central intake, side skirts and rear bumper diffuser.',
     descIt: 'Sotto-paraurti anteriore aggressivo con ampia presa d\'aria centrale, minigonne sagomate ed estrattore posteriore.',
     images: [
@@ -16,7 +17,8 @@ const stylingKits = [
   },
   {
     name: 'Novitec',
-    country: 'Germania',
+    countryIt: 'Germania',
+    countryEn: 'Germany',
     descEn: 'Full aerodynamic kit for Saloon and dedicated rear roof spoiler and bumper for Sportwagon.',
     descIt: 'Kit aerodinamico completo per berlina e kit specifico per Sportwagon con spoiler lunotto e paraurti.',
     images: [
@@ -27,7 +29,8 @@ const stylingKits = [
   },
   {
     name: 'Zender',
-    country: 'Germania',
+    countryIt: 'Germania',
+    countryEn: 'Germany',
     descEn: 'OEM styling partner for Alfa Romeo. Subtle front lip spoiler, side skirts and boot lid spoiler.',
     descIt: 'Partner ufficiale Alfa Romeo per gli allestimenti sportivi. Labbro anteriore discreto, minigonne e spoiler baule.',
     images: [
@@ -37,7 +40,8 @@ const stylingKits = [
   },
   {
     name: 'Autodelta',
-    country: 'Inghilterra',
+    countryIt: 'Regno Unito',
+    countryEn: 'United Kingdom',
     descEn: 'Motorsport-derived body styling with functional brake cooling ducts and touring-car style spoilers.',
     descIt: 'Kit estetico di derivazione racing con condotti per il raffreddamento freni e spoiler stile Superturismo.',
     images: [
@@ -47,7 +51,8 @@ const stylingKits = [
   },
   {
     name: 'MS Design',
-    country: 'Austria',
+    countryIt: 'Austria',
+    countryEn: 'Austria',
     descEn: 'Clean, elegant lines that complement Walter de Silva original silhouette without exaggeration.',
     descIt: 'Linee pulite ed eleganti che valorizzano la silhouette originale di Walter de\' Silva senza esagerazioni.',
     images: [
@@ -57,7 +62,8 @@ const stylingKits = [
   },
   {
     name: 'Lester',
-    country: 'Italia',
+    countryIt: 'Italia',
+    countryEn: 'Italy',
     descEn: 'Vast catalogue of polyurethane and fiberglass body components, brows, splitters and bonnets.',
     descIt: 'Vasto catalogo italiano di appendici in poliuretano e vetroresina, palpebre fari, splitter e prese d\'aria.',
     images: [
@@ -67,7 +73,8 @@ const stylingKits = [
   },
   {
     name: 'Hörmann Motorsport',
-    country: 'Germania',
+    countryIt: 'Germania',
+    countryEn: 'Germany',
     descEn: 'Historic German tuner specialized in Italian touring cars. DTM style aerodynamics and wide body parts.',
     descIt: 'Storico preparatore tedesco specializzato in vetture italiane turismo. Aerodinamica DTM e parafanghi allargati.',
     images: [
@@ -77,7 +84,8 @@ const stylingKits = [
   },
   {
     name: 'Autotecnica Design',
-    country: 'Italia',
+    countryIt: 'Italia',
+    countryEn: 'Italy',
     descEn: 'Distinctive Italian custom bodykit with pronounced lower air dam and twin exhaust cutouts.',
     descIt: 'Personalizzazione italiana con pronunciato fascione inferiore e doppio incavo per scarichi sportivi.',
     images: [
@@ -87,7 +95,8 @@ const stylingKits = [
   },
   {
     name: 'Carcept',
-    country: 'Belgio',
+    countryIt: 'Belgio',
+    countryEn: 'Belgium',
     descEn: 'Bold European show car tuning styling package with deep front bumper apron.',
     descIt: 'Kit estetico europeo ad alto impatto visivo con paraurti anteriore ribassato e prese d\'aria laterali.',
     images: [
@@ -97,7 +106,8 @@ const stylingKits = [
   },
   {
     name: 'Eurotuning / Eurolineas',
-    country: 'Spagna',
+    countryIt: 'Spagna',
+    countryEn: 'Spain',
     descEn: 'Spanish styling package featuring smoothed bumpers and integrated fog light pods.',
     descIt: 'Kit spagnolo caratterizzato da paraurti raccordati e alloggiamenti fendinebbia integrati.',
     images: [
@@ -107,7 +117,8 @@ const stylingKits = [
   },
   {
     name: 'Formula 2 Design',
-    country: 'Italia',
+    countryIt: 'Italia',
+    countryEn: 'Italy',
     descEn: 'Racing-inspired lightweight aerodynamic package.',
     descIt: 'Kit aerodinamico leggero ispirato alle competizioni formula.',
     images: [
@@ -117,7 +128,8 @@ const stylingKits = [
   },
   {
     name: 'G&S Tuning',
-    country: 'Germania',
+    countryIt: 'Germania',
+    countryEn: 'Germany',
     descEn: 'Custom German styling featuring pronounced rear wing and deep rocker extensions.',
     descIt: 'Allestimento tedesco con vistoso alettone posteriore e minigonne sottoporta.',
     images: [
@@ -166,9 +178,13 @@ const stylingKits = [
           <div>
             <div class="flex items-center justify-between mb-3">
               <span class="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-alfa-red-50 dark:bg-alfa-red-950 text-alfa-red-600 dark:text-alfa-red-400">
-                {kit.country}
+                <span class="lang-it">{kit.countryIt}</span>
+                <span class="lang-en">{kit.countryEn}</span>
               </span>
-              <span class="text-xs font-mono text-alfa-metal-400">Kit d'epoca</span>
+              <span class="text-xs font-mono text-alfa-metal-400">
+                <span class="lang-it">Kit d'epoca</span>
+                <span class="lang-en">Period kit</span>
+              </span>
             </div>
 
             <h2 class="font-display text-2xl font-bold text-alfa-metal-900 dark:text-white mb-2">
@@ -197,7 +213,10 @@ const stylingKits = [
                   loading="lazy"
                 />
                 <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span class="text-white text-xs font-mono font-bold">🔍 Ingrandisci</span>
+                  <span class="text-white text-xs font-mono font-bold">
+                    <span class="lang-it">🔍 Ingrandisci</span>
+                    <span class="lang-en">🔍 Enlarge</span>
+                  </span>
                 </div>
               </div>
             ))}

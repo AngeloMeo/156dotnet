@@ -16,6 +16,20 @@ export function getStaticPaths() {
 }
 
 const { tip, prev, next } = Astro.props;
+
+const categoryTranslations: Record<string, { it: string; en: string }> = {
+  'Interni': { it: 'Interni', en: 'Interior' },
+  'Carrozzeria': { it: 'Carrozzeria', en: 'Bodywork' },
+  'Elettronica': { it: 'Elettronica', en: 'Electrics' },
+  'Assetto': { it: 'Assetto', en: 'Handling' },
+  'Motore': { it: 'Motore', en: 'Engine' },
+  'V6': { it: 'V6', en: 'V6' },
+  'Raffreddamento': { it: 'Raffreddamento', en: 'Cooling' },
+  'Sicurezza': { it: 'Sicurezza', en: 'Safety' },
+  'Trasmissione': { it: 'Trasmissione', en: 'Transmission' },
+  'Comfort': { it: 'Comfort', en: 'Comfort' },
+  'Manutenzione': { it: 'Manutenzione', en: 'Maintenance' },
+};
 ---
 
 <Layout
@@ -33,14 +47,18 @@ const { tip, prev, next } = Astro.props;
       <span>/</span>
       <a href="/technical/tips" class="hover:text-alfa-red-600">Tips</a>
       <span>/</span>
-      <span class="text-alfa-red-600 font-bold truncate max-w-xs">{tip.titleIt}</span>
+      <span class="text-alfa-red-600 font-bold truncate max-w-xs">
+        <span class="lang-it">{tip.titleIt}</span>
+        <span class="lang-en">{tip.titleEn}</span>
+      </span>
     </nav>
 
     <!-- Header Section -->
     <header class="border-b border-alfa-metal-200 dark:border-alfa-metal-800 pb-6 mb-8">
       <div class="flex flex-wrap items-center gap-2 mb-3">
         <span class="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-alfa-red-100 dark:bg-alfa-red-950 text-alfa-red-600 dark:text-alfa-red-400">
-          {tip.category}
+          <span class="lang-it">{categoryTranslations[tip.category]?.it || tip.category}</span>
+          <span class="lang-en">{categoryTranslations[tip.category]?.en || tip.category}</span>
         </span>
         <span class="text-xs font-mono text-alfa-metal-400">
           {tip.dateOrSource}
@@ -53,7 +71,8 @@ const { tip, prev, next } = Astro.props;
       </h1>
 
       <div class="mt-3 flex items-center space-x-3 text-xs font-mono text-alfa-metal-500 dark:text-alfa-metal-400">
-        <span>Guida redatta da:</span>
+        <span class="lang-it">Guida redatta da:</span>
+        <span class="lang-en">Guide by:</span>
         <span class="px-2 py-1 rounded bg-alfa-metal-100 dark:bg-alfa-metal-800 font-bold text-alfa-metal-800 dark:text-alfa-silver-200">
           {tip.author}
         </span>
@@ -82,7 +101,8 @@ const { tip, prev, next } = Astro.props;
       <div class="mb-8 p-6 rounded-2xl bg-gradient-to-r from-alfa-metal-900 via-alfa-red-950 to-alfa-metal-900 text-white shadow-xl border border-alfa-red-600/40">
         <div class="flex items-center space-x-2 text-xs font-mono font-bold uppercase tracking-widest text-alfa-red-400 mb-3">
           <span>🎵</span>
-          <span>Audio Archivio Storico</span>
+          <span class="lang-it">Audio Archivio Storico</span>
+          <span class="lang-en">Historical Audio Archive</span>
         </div>
         <h3 class="font-display text-lg font-bold mb-4">
           <span class="lang-it">Campioni Sonori Variatore Originali</span>
@@ -98,7 +118,8 @@ const { tip, prev, next } = Astro.props;
               </div>
               <audio controls class="w-full h-9 rounded" preload="metadata">
                 <source src={track.file} type="audio/mpeg" />
-                Il tuo browser non supporta il tag audio.
+                <span class="lang-it">Il tuo browser non supporta il tag audio.</span>
+                <span class="lang-en">Your browser does not support the audio element.</span>
               </audio>
             </div>
           ))}
@@ -130,7 +151,10 @@ const { tip, prev, next } = Astro.props;
     {tip.download && (
       <div class="mt-8 p-4 rounded-xl bg-alfa-metal-100 dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 flex items-center justify-between">
         <div>
-          <div class="text-xs font-mono text-alfa-metal-500 uppercase">Documento Allegato</div>
+          <div class="text-xs font-mono text-alfa-metal-500 uppercase">
+            <span class="lang-it">Documento Allegato</span>
+            <span class="lang-en">Attached Document</span>
+          </div>
           <div class="text-sm font-bold text-alfa-metal-900 dark:text-white">
             <span class="lang-it">{tip.download.titleIt}</span>
             <span class="lang-en">{tip.download.titleEn}</span>
@@ -141,7 +165,8 @@ const { tip, prev, next } = Astro.props;
           download
           class="px-4 py-2 rounded-lg bg-alfa-red-600 hover:bg-alfa-red-700 text-white font-bold text-xs uppercase tracking-wider"
         >
-          Download PDF
+          <span class="lang-it">Scarica PDF</span>
+          <span class="lang-en">Download PDF</span>
         </a>
       </div>
     )}
@@ -179,7 +204,8 @@ const { tip, prev, next } = Astro.props;
                   #{idx + 1}
                 </span>
                 <span class="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded text-[10px] font-mono bg-alfa-red-600 text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                  Ingrandisci ⤢
+                  <span class="lang-it">Ingrandisci ⤢</span>
+                  <span class="lang-en">Enlarge ⤢</span>
                 </span>
               </div>
               <div class="p-3.5 bg-white dark:bg-alfa-metal-900 border-t border-alfa-metal-100 dark:border-alfa-metal-800 flex-1">
@@ -202,7 +228,10 @@ const { tip, prev, next } = Astro.props;
           class="inline-flex items-center space-x-1 text-alfa-metal-600 dark:text-alfa-metal-400 hover:text-alfa-red-600 transition-colors"
         >
           <span>←</span>
-          <span class="truncate max-w-[140px] sm:max-w-xs">{prev.titleIt}</span>
+          <span class="truncate max-w-[140px] sm:max-w-xs">
+            <span class="lang-it">{prev.titleIt}</span>
+            <span class="lang-en">{prev.titleEn}</span>
+          </span>
         </a>
       ) : (
         <div></div>
@@ -212,7 +241,8 @@ const { tip, prev, next } = Astro.props;
         href="/technical/tips"
         class="px-3 py-1.5 rounded-lg bg-alfa-metal-100 dark:bg-alfa-metal-800 hover:bg-alfa-red-600 hover:text-white transition-colors text-alfa-metal-800 dark:text-alfa-silver-200 font-bold"
       >
-        Tutte le guide
+        <span class="lang-it">Tutte le guide</span>
+        <span class="lang-en">All guides</span>
       </a>
 
       {next ? (
@@ -220,7 +250,10 @@ const { tip, prev, next } = Astro.props;
           href={`/technical/tips/${next.slug}`}
           class="inline-flex items-center space-x-1 text-alfa-metal-600 dark:text-alfa-metal-400 hover:text-alfa-red-600 transition-colors text-right"
         >
-          <span class="truncate max-w-[140px] sm:max-w-xs">{next.titleIt}</span>
+          <span class="truncate max-w-[140px] sm:max-w-xs">
+            <span class="lang-it">{next.titleIt}</span>
+            <span class="lang-en">{next.titleEn}</span>
+          </span>
           <span>→</span>
         </a>
       ) : (

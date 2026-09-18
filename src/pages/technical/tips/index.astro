@@ -26,6 +26,20 @@ const knownProblemSlugs = [
 
 const knownProblems = technicalTipsData.filter(t => knownProblemSlugs.includes(t.slug));
 const userTips = technicalTipsData.filter(t => !knownProblemSlugs.includes(t.slug));
+
+const categoryTranslations: Record<string, { it: string; en: string }> = {
+  'Interni': { it: 'Interni', en: 'Interior' },
+  'Carrozzeria': { it: 'Carrozzeria', en: 'Bodywork' },
+  'Elettronica': { it: 'Elettronica', en: 'Electrics' },
+  'Assetto': { it: 'Assetto', en: 'Handling' },
+  'Motore': { it: 'Motore', en: 'Engine' },
+  'V6': { it: 'V6', en: 'V6' },
+  'Raffreddamento': { it: 'Raffreddamento', en: 'Cooling' },
+  'Sicurezza': { it: 'Sicurezza', en: 'Safety' },
+  'Trasmissione': { it: 'Trasmissione', en: 'Transmission' },
+  'Comfort': { it: 'Comfort', en: 'Comfort' },
+  'Manutenzione': { it: 'Manutenzione', en: 'Maintenance' },
+};
 ---
 
 <Layout
@@ -108,7 +122,8 @@ const userTips = technicalTipsData.filter(t => !knownProblemSlugs.includes(t.slu
             class="w-28 sm:w-32 h-auto rounded-lg shadow-inner"
           />
           <span class="text-[10px] font-mono text-center text-alfa-metal-500 mt-2">
-            Insegna Servizio ad Arma di Taggia (IM)
+            <span class="lang-it">Insegna Servizio ad Arma di Taggia (IM)</span>
+            <span class="lang-en">Alfa Romeo Service Sign in Arma di Taggia, Italy</span>
           </span>
         </div>
       </div>
@@ -118,7 +133,8 @@ const userTips = technicalTipsData.filter(t => !knownProblemSlugs.includes(t.slu
     <div class="mb-12 p-5 rounded-xl bg-gradient-to-r from-alfa-red-950/70 via-alfa-metal-900 to-alfa-metal-950 border border-alfa-red-600/40 text-white flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>
         <div class="text-xs font-mono font-bold uppercase tracking-widest text-alfa-red-400">
-          Risorsa Consigliata per Futuri Proprietari
+          <span class="lang-it">Risorsa Consigliata per Futuri Proprietari</span>
+          <span class="lang-en">Recommended Resource for Prospective Buyers</span>
         </div>
         <h3 class="font-display text-lg font-bold">
           <span class="lang-it">Stai valutando l'acquisto di una 156 usata?</span>
@@ -166,11 +182,13 @@ const userTips = technicalTipsData.filter(t => !knownProblemSlugs.includes(t.slu
               <div class="flex items-center justify-between mb-2">
                 <div class="flex items-center gap-1.5">
                   <span class="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-alfa-metal-100 dark:bg-alfa-metal-800 text-alfa-metal-600 dark:text-alfa-silver-300">
-                    {p.category}
+                    <span class="lang-it">{categoryTranslations[p.category]?.it || p.category}</span>
+                    <span class="lang-en">{categoryTranslations[p.category]?.en || p.category}</span>
                   </span>
                   {p.images && p.images.length > 0 && (
                     <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/10 dark:bg-amber-400/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
-                      📸 {p.images.length} foto
+                      <span class="lang-it">📸 {p.images.length} foto</span>
+                      <span class="lang-en">📸 {p.images.length} photos</span>
                     </span>
                   )}
                   {p.audio && p.audio.length > 0 && (
@@ -180,7 +198,8 @@ const userTips = technicalTipsData.filter(t => !knownProblemSlugs.includes(t.slu
                   )}
                 </div>
                 <span class="text-xs font-mono text-alfa-red-600 dark:text-alfa-red-400 group-hover:translate-x-1 transition-transform">
-                  Leggi →
+                  <span class="lang-it">Leggi →</span>
+                  <span class="lang-en">Read →</span>
                 </span>
               </div>
 
@@ -196,7 +215,7 @@ const userTips = technicalTipsData.filter(t => !knownProblemSlugs.includes(t.slu
             </div>
 
             <div class="mt-4 pt-3 border-t border-alfa-metal-100 dark:border-alfa-metal-800/80 text-[11px] font-mono text-alfa-metal-400">
-              Autore: <span class="text-alfa-metal-700 dark:text-alfa-metal-300">{p.author}</span>
+              <span class="lang-it">Autore:</span><span class="lang-en">Author:</span> <span class="text-alfa-metal-700 dark:text-alfa-metal-300">{p.author}</span>
             </div>
           </a>
         ))}
@@ -231,11 +250,13 @@ const userTips = technicalTipsData.filter(t => !knownProblemSlugs.includes(t.slu
               <div class="flex items-center justify-between mb-2">
                 <div class="flex items-center gap-1.5">
                   <span class="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-alfa-metal-100 dark:bg-alfa-metal-800 text-alfa-metal-600 dark:text-alfa-silver-300">
-                    {tip.category}
+                    <span class="lang-it">{categoryTranslations[tip.category]?.it || tip.category}</span>
+                    <span class="lang-en">{categoryTranslations[tip.category]?.en || tip.category}</span>
                   </span>
                   {tip.images && tip.images.length > 0 && (
                     <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/10 dark:bg-amber-400/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
-                      📸 {tip.images.length} foto
+                      <span class="lang-it">📸 {tip.images.length} foto</span>
+                      <span class="lang-en">📸 {tip.images.length} photos</span>
                     </span>
                   )}
                   {tip.download && (
@@ -245,7 +266,8 @@ const userTips = technicalTipsData.filter(t => !knownProblemSlugs.includes(t.slu
                   )}
                 </div>
                 <span class="text-xs font-mono text-alfa-red-600 dark:text-alfa-red-400 group-hover:translate-x-1 transition-transform">
-                  Apri Guida →
+                  <span class="lang-it">Apri Guida →</span>
+                  <span class="lang-en">Open Guide →</span>
                 </span>
               </div>
 
@@ -261,7 +283,7 @@ const userTips = technicalTipsData.filter(t => !knownProblemSlugs.includes(t.slu
             </div>
 
             <div class="mt-4 pt-3 border-t border-alfa-metal-100 dark:border-alfa-metal-800/80 text-[11px] font-mono text-alfa-metal-400">
-              Guida di: <span class="text-alfa-metal-700 dark:text-alfa-metal-300">{tip.author}</span>
+              <span class="lang-it">Guida di:</span><span class="lang-en">Guide by:</span> <span class="text-alfa-metal-700 dark:text-alfa-metal-300">{tip.author}</span>
             </div>
           </a>
         ))}
@@ -284,7 +306,10 @@ const userTips = technicalTipsData.filter(t => !knownProblemSlugs.includes(t.slu
           <span class="text-2xl">📄</span>
           <div>
             <div class="text-sm font-bold text-alfa-metal-900 dark:text-white">Throttle Body Cleaning (PDF)</div>
-            <div class="text-xs text-alfa-metal-500">Procedura pulizia corpo farfallato</div>
+            <div class="text-xs text-alfa-metal-500">
+              <span class="lang-it">Procedura pulizia corpo farfallato</span>
+              <span class="lang-en">Throttle body cleaning procedure</span>
+            </div>
           </div>
         </a>
 
@@ -296,7 +321,10 @@ const userTips = technicalTipsData.filter(t => !knownProblemSlugs.includes(t.slu
           <span class="text-2xl">📑</span>
           <div>
             <div class="text-sm font-bold text-alfa-metal-900 dark:text-white">Gary's Brake Guide (PDF)</div>
-            <div class="text-xs text-alfa-metal-500">Guida dischi e pastiglie freni</div>
+            <div class="text-xs text-alfa-metal-500">
+              <span class="lang-it">Guida dischi e pastiglie freni</span>
+              <span class="lang-en">Brake discs & pads guide</span>
+            </div>
           </div>
         </a>
 
@@ -308,7 +336,10 @@ const userTips = technicalTipsData.filter(t => !knownProblemSlugs.includes(t.slu
           <span class="text-2xl">🔑</span>
           <div>
             <div class="text-sm font-bold text-alfa-metal-900 dark:text-white">Michaeld's Button Flip Key (PDF)</div>
-            <div class="text-xs text-alfa-metal-500">Conversione chiave a scatto</div>
+            <div class="text-xs text-alfa-metal-500">
+              <span class="lang-it">Conversione chiave a scatto</span>
+              <span class="lang-en">Flip key conversion tutorial</span>
+            </div>
           </div>
         </a>
       </div>

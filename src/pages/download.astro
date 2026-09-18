@@ -5,69 +5,89 @@ import Lightbox from '../components/Lightbox.astro';
 
 const audioDownloads = [
   {
-    title: 'Alfa 156 Twin Spark con Filtro K&N (Sound Dinamico)',
+    titleIt: 'Alfa 156 Twin Spark con Filtro K&N (Sound Dinamico)',
+    titleEn: 'Alfa 156 Twin Spark with K&N Filter (Dynamic Sound)',
     file: '/audio/knfilter-alfa156-net.mp3',
-    desc: 'Registrazione del timbro in aspirazione con filtro ad alto flusso K&N montato nell\'airbox.'
+    descIt: 'Registrazione del timbro in aspirazione con filtro ad alto flusso K&N montato nell\'airbox.',
+    descEn: 'Induction sound recording with K&N high-flow panel filter fitted in the factory airbox.'
   },
   {
-    title: 'Alfa 156 con Tubo Centrale Inox Flexipipe',
+    titleIt: 'Alfa 156 con Tubo Centrale Inox Flexipipe',
+    titleEn: 'Alfa 156 with Stainless Flexipipe Center Section',
     file: '/audio/flexipipe-alfa156-net.mp3',
-    desc: 'Registrazione del borbottio di scarico con tubo flessibile diretto in acciaio inox.'
+    descIt: 'Registrazione del borbottio di scarico con tubo flessibile diretto in acciaio inox.',
+    descEn: 'Exhaust sound recording with direct stainless steel flexible center pipe.'
   },
   {
-    title: 'Twin Spark — Variatore di Fase Usurato (Rumore Diesel)',
+    titleIt: 'Twin Spark — Variatore di Fase Usurato (Rumore Diesel)',
+    titleEn: 'Twin Spark — Worn Cam Variator (Diesel Sound)',
     file: '/audio/badvariator-alfa156-net.mp3',
-    desc: 'Il tipico ticchettio da diesel all\'avviamento a freddo quando il variatore è da sostituire.'
+    descIt: 'Il tipico ticchettio da diesel all\'avviamento a freddo quando il variatore è da sostituire.',
+    descEn: 'The classic diesel-like ticking at cold start when the variator needs replacement.'
   },
   {
-    title: 'Twin Spark — Variatore Nuovo Aggiornato 60666199',
+    titleIt: 'Twin Spark — Variatore Nuovo Aggiornato 60666199',
+    titleEn: 'Twin Spark — New Updated Variator 60666199',
     file: '/audio/goodvariator-alfa156-net.mp3',
-    desc: 'Avviamento pulito, silenzioso e istantaneo con variatore originale modificato.'
+    descIt: 'Avviamento pulito, silenzioso e istantaneo con variatore originale modificato.',
+    descEn: 'Clean, quiet, and instantaneous startup with the modified factory variator.'
   }
 ];
 
 const pdfDownloads = [
   {
-    title: 'Checklist di Ispezione a 48 Punti per Alfa 156 (PDF)',
+    titleIt: 'Checklist di Ispezione a 48 Punti per Alfa 156 (PDF)',
+    titleEn: 'Alfa 156 48-Point Inspection Checklist (PDF)',
     file: '/downloads/buyersguide.pdf',
     author: 'Posty (ARDC)',
     size: '73 KB',
-    desc: 'La scheda di controllo definitiva da stampare e portare con sé durante la visione di una 156 usata.'
+    descIt: 'La scheda di controllo definitiva da stampare e portare con sé durante la visione di una 156 usata.',
+    descEn: 'The definitive checklist to print and take along when inspecting a used Alfa 156.'
   },
   {
-    title: 'Guida Sostituzione Dischi e Pastiglie Freni (PDF)',
+    titleIt: 'Guida Sostituzione Dischi e Pastiglie Freni (PDF)',
+    titleEn: 'Brake Discs & Pads Replacement Guide (PDF)',
     file: '/downloads/Alfa156Brakes.pdf',
     author: 'Gary',
     size: '1.0 MB',
-    desc: 'Manuale passo-passo illustrato per lo smontaggio e revisione freni anteriori e posteriori.'
+    descIt: 'Manuale passo-passo illustrato per lo smontaggio e revisione freni anteriori e posteriori.',
+    descEn: 'Step-by-step illustrated manual for front and rear brake overhaul.'
   },
   {
-    title: 'Installazione Filtro Aria K&N nel Box Originale (PDF)',
+    titleIt: 'Installazione Filtro Aria K&N nel Box Originale (PDF)',
+    titleEn: 'K&N Air Filter Installation in Factory Box (PDF)',
     file: '/downloads/Alfa156AirFilter.pdf',
     author: 'Wilson',
     size: '980 KB',
-    desc: 'Tutorial per l\'inserimento di un elemento filtrante a pannello K&N nell\'airbox di serie.'
+    descIt: 'Tutorial per l\'inserimento di un elemento filtrante a pannello K&N nell\'airbox di serie.',
+    descEn: 'Tutorial on fitting a K&N replacement panel filter into the original airbox.'
   },
   {
-    title: 'Conversione Chiave a Scatto Button Flip Key (PDF)',
+    titleIt: 'Conversione Chiave a Scatto Button Flip Key (PDF)',
+    titleEn: 'Button Flip Key Conversion Guide (PDF)',
     file: '/downloads/buttonflipkey.pdf',
     author: 'Michaeld',
     size: '268 KB',
-    desc: 'Guida fai-da-te per trasferire transponder immobilizer e telecomando in guscio a scatto.'
+    descIt: 'Guida fai-da-te per trasferire transponder immobilizer e telecomando in guscio a scatto.',
+    descEn: 'DIY guide to transfer immobilizer transponder and remote PCB into a flip key casing.'
   },
   {
-    title: 'Manutenzione Gancio Sicurezza Cofano Motore (PDF)',
+    titleIt: 'Manutenzione Gancio Sicurezza Cofano Motore (PDF)',
+    titleEn: 'Bonnet Safety Catch Maintenance (PDF)',
     file: '/downloads/bonnetcatch.pdf',
     author: 'ARDC',
     size: '3.1 MB',
-    desc: 'Istruzioni e schema di lubrificazione per prevenire l\'apertura accidentale del cofano.'
+    descIt: 'Istruzioni e schema di lubrificazione per prevenire l\'apertura accidentale del cofano.',
+    descEn: 'Lubrication instructions and schematics to prevent accidental bonnet release.'
   },
   {
-    title: 'Procedura Pulizia Corpo Farfallato Bosch (PDF)',
+    titleIt: 'Procedura Pulizia Corpo Farfallato Bosch (PDF)',
+    titleEn: 'Bosch Throttle Body Cleaning Procedure (PDF)',
     file: '/downloads/cleaningthrottlebody.pdf',
     author: 'Community',
     size: '156 KB',
-    desc: 'Smontaggio valvola a farfalla, pulizia morchie e ripristino battuta minima.'
+    descIt: 'Smontaggio valvola a farfalla, pulizia morchie e ripristino battuta minima.',
+    descEn: 'Throttle body removal, sludge cleaning, and idle position reset.'
   }
 ];
 
@@ -75,19 +95,22 @@ const wallpapers = [
   {
     src: '/images/desktop/BERNAR31.jpg',
     thumb: '/images/desktop/BERNAR31-s.jpg',
-    title: 'Alfa 156 in Pista — Curva Veloce',
+    titleIt: 'Alfa 156 in Pista — Curva Veloce',
+    titleEn: 'Alfa 156 on Track — High Speed Corner',
     res: 'Originale / 1152x864 / 800x600'
   },
   {
     src: '/images/desktop/GIOVAN21.jpg',
     thumb: '/images/desktop/GIOVAN21-s.jpg',
-    title: 'Alfa 156 V6 24V — Vista Dinamica',
+    titleIt: 'Alfa 156 V6 24V — Vista Dinamica',
+    titleEn: 'Alfa 156 V6 24V — Dynamic View',
     res: 'Originale / 800x600'
   },
   {
     src: '/images/desktop/GIOVAN22.jpg',
     thumb: '/images/desktop/GIOVAN22-s.jpg',
-    title: 'Alfa 156 Dettaglio Scudetto & Fari',
+    titleIt: 'Alfa 156 Dettaglio Scudetto & Fari',
+    titleEn: 'Alfa 156 Grille & Headlights Detail',
     res: 'Originale / 800x600'
   }
 ];
@@ -145,10 +168,12 @@ const games = [
           <div class="p-5 rounded-xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-xs flex flex-col justify-between">
             <div>
               <h3 class="font-display font-bold text-base text-alfa-metal-900 dark:text-white mb-1">
-                {item.title}
+                <span class="lang-it">{item.titleIt}</span>
+                <span class="lang-en">{item.titleEn}</span>
               </h3>
               <p class="text-xs text-alfa-metal-500 dark:text-alfa-metal-400 mb-3">
-                {item.desc}
+                <span class="lang-it">{item.descIt}</span>
+                <span class="lang-en">{item.descEn}</span>
               </p>
             </div>
             <div class="pt-2 border-t border-alfa-metal-100 dark:border-alfa-metal-800">
@@ -161,7 +186,8 @@ const games = [
                   download
                   class="text-[11px] font-mono font-bold text-alfa-red-600 dark:text-alfa-red-400 hover:underline"
                 >
-                  Scarica file MP3 ↓
+                  <span class="lang-it">Scarica file MP3 ↓</span>
+                  <span class="lang-en">Download MP3 file ↓</span>
                 </a>
               </div>
             </div>
@@ -189,10 +215,12 @@ const games = [
                 <span class="font-bold text-alfa-red-600">{pdf.size}</span>
               </div>
               <h3 class="font-display font-bold text-base text-alfa-metal-900 dark:text-white mb-2">
-                {pdf.title}
+                <span class="lang-it">{pdf.titleIt}</span>
+                <span class="lang-en">{pdf.titleEn}</span>
               </h3>
               <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400 leading-relaxed mb-4">
-                {pdf.desc}
+                <span class="lang-it">{pdf.descIt}</span>
+                <span class="lang-en">{pdf.descEn}</span>
               </p>
             </div>
             <a
@@ -200,7 +228,8 @@ const games = [
               download
               class="w-full text-center px-4 py-2 rounded-lg bg-alfa-metal-100 dark:bg-alfa-metal-800 hover:bg-alfa-red-600 hover:text-white text-xs font-mono font-bold text-alfa-metal-800 dark:text-alfa-silver-200 transition-colors"
             >
-              Scarica Documento PDF ↓
+              <span class="lang-it">Scarica Documento PDF ↓</span>
+              <span class="lang-en">Download PDF Document ↓</span>
             </a>
           </div>
         ))}
@@ -224,32 +253,36 @@ const games = [
               class="group relative cursor-pointer overflow-hidden rounded-lg border border-alfa-metal-200 dark:border-alfa-metal-700 mb-3"
               data-lightbox-trigger
               data-img-src={wp.src}
-              data-img-title={wp.title}
+              data-img-title={wp.titleIt}
             >
               <img
                 src={wp.src}
-                alt={wp.title}
+                alt={wp.titleEn}
                 class="w-full h-44 object-cover object-center group-hover:scale-105 transition-transform duration-300"
                 loading="lazy"
               />
               <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-mono font-bold">
-                🔍 Anteprima
+                <span class="lang-it">🔍 Anteprima</span>
+                <span class="lang-en">🔍 Preview</span>
               </div>
             </div>
 
             <div>
               <h3 class="font-semibold text-sm text-alfa-metal-900 dark:text-white mb-1">
-                {wp.title}
+                <span class="lang-it">{wp.titleIt}</span>
+                <span class="lang-en">{wp.titleEn}</span>
               </h3>
               <span class="text-[11px] font-mono text-alfa-metal-400 block mb-3">
-                Risoluzione: {wp.res}
+                <span class="lang-it">Risoluzione:</span>
+                <span class="lang-en">Resolution:</span> {wp.res}
               </span>
               <a
                 href={wp.src}
                 download
                 class="block text-center px-3 py-1.5 rounded-lg bg-alfa-metal-100 dark:bg-alfa-metal-800 hover:bg-alfa-red-600 hover:text-white text-xs font-mono font-bold transition-colors"
               >
-                Download Sfondo ↓
+                <span class="lang-it">Download Sfondo ↓</span>
+                <span class="lang-en">Download Wallpaper ↓</span>
               </a>
             </div>
           </div>

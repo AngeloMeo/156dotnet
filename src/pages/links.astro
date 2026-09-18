@@ -3,32 +3,32 @@
 import Layout from '../layouts/Layout.astro';
 
 const clubLinks = [
-  { name: 'KARN (Klubb Alfa Romeo Norge)', desc: 'Lo storico club Alfa Romeo norvegese, patria del creatore di alfa156.net.', url: 'http://www.klubbalfaromeo.no' },
-  { name: 'AROC UK (Alfa Romeo Owners Club)', desc: 'Il club ufficiale dei proprietari Alfa Romeo nel Regno Unito.', url: 'http://www.aroc-uk.com' },
-  { name: 'Club Alfa Romeo Svezia', desc: 'La vivace community svedese per gli appassionati del Biscione.', url: 'http://www.alfaromeo.org' },
-  { name: 'Alfaowner.com', desc: 'Uno dei forum di lingua inglese più grandi e attivi al mondo dedicato ad ogni modello Alfa.', url: 'http://www.alfaowner.com' },
-  { name: 'Cuore Sportivo UK', desc: 'Pagine storiche e documentazione tecnica a cura di Catman.', url: 'http://www.cuore-sportivo.co.uk' },
-  { name: 'Italiaspeed', desc: 'Lo storico portale di notizie aggiornato quotidianamente sull\'automobilismo italiano.', url: 'http://www.italiaspeed.com' },
-  { name: 'Cars From Italy', desc: 'La banca dati documentale più completa sul web dedicata a tutte le automobili italiane.', url: 'http://www.carsfromitaly.com' },
-  { name: 'Auto Italia Magazine', desc: 'La rivista britannica leader mondiale per l\'approfondimento e la storia dei veicoli italiani.', url: 'http://www.auto-italia.co.uk' }
+  { name: 'KARN (Klubb Alfa Romeo Norge)', descIt: 'Lo storico club Alfa Romeo norvegese, patria del creatore di alfa156.net.', descEn: 'The historic Norwegian Alfa Romeo club, home country of alfa156.net creator.', url: 'http://www.klubbalfaromeo.no' },
+  { name: 'AROC UK (Alfa Romeo Owners Club)', descIt: 'Il club ufficiale dei proprietari Alfa Romeo nel Regno Unito.', descEn: 'The official Alfa Romeo Owners Club in the United Kingdom.', url: 'http://www.aroc-uk.com' },
+  { name: 'Club Alfa Romeo Svezia', descIt: 'La vivace community svedese per gli appassionati del Biscione.', descEn: 'The lively Swedish community for Alfa Romeo enthusiasts.', url: 'http://www.alfaromeo.org' },
+  { name: 'Alfaowner.com', descIt: 'Uno dei forum di lingua inglese più grandi e attivi al mondo dedicato ad ogni modello Alfa.', descEn: 'One of the largest and most active English-language Alfa Romeo forums worldwide.', url: 'http://www.alfaowner.com' },
+  { name: 'Cuore Sportivo UK', descIt: 'Pagine storiche e documentazione tecnica a cura di Catman.', descEn: 'Historic pages and technical documentation curated by Catman.', url: 'http://www.cuore-sportivo.co.uk' },
+  { name: 'Italiaspeed', descIt: 'Lo storico portale di notizie aggiornato quotidianamente sull\'automobilismo italiano.', descEn: 'The historic daily news portal dedicated to Italian motoring.', url: 'http://www.italiaspeed.com' },
+  { name: 'Cars From Italy', descIt: 'La banca dati documentale più completa sul web dedicata a tutte le automobili italiane.', descEn: 'The most comprehensive web database dedicated to all Italian motor cars.', url: 'http://www.carsfromitaly.com' },
+  { name: 'Auto Italia Magazine', descIt: 'La rivista britannica leader mondiale per l\'approfondimento e la storia dei veicoli italiani.', descEn: 'The premier British magazine dedicated to Italian performance and classic cars.', url: 'http://www.auto-italia.co.uk' }
 ];
 
 const tunerLinks = [
-  { name: 'Novitec (Germania)', desc: 'Specialista in sovralimentazione, kit aerodinamici e scarichi per Alfa Romeo.', url: 'http://www.novitec.com' },
-  { name: 'Squadra Tuning (Olanda)', desc: 'Le rimappature centralina Bosch più raffinate e studiate su banco prova.', url: 'http://www.squadra-tuning.com' },
-  { name: 'Autodelta (Londra, UK)', desc: 'Creazioni motorsport, kit volumetrico e conversioni 3.7 V6 per 156 GTA.', url: 'http://www.autodelta.co.uk' },
-  { name: 'Cadamuro Design (Italia)', desc: 'Design italiano e kit estetici sportivi aerodinamici per berlina e SW.', url: 'http://www.cadamurodesign.it' },
-  { name: 'Zender (Germania)', desc: 'Accessori sportivi e partner estetico ufficiale Alfa Romeo.', url: 'http://www.zender.de' },
-  { name: 'Ragazzon (Italia)', desc: 'Fabbrica di impianti di scarico sportivi al 100% in acciaio inox.', url: 'http://www.ragazzon.it' },
-  { name: 'Tarox (Italia)', desc: 'Impianti frenanti maggiorati da corsa a 6 e 10 pompanti e dischi speciali.', url: 'http://www.tarox.com' },
-  { name: 'Madeno Racing (Olanda)', desc: 'Assetti racing, cambi ravvicinati e conversioni motore V6.', url: 'http://www.madeno.nl' }
+  { name: 'Novitec (Germania)', descIt: 'Specialista in sovralimentazione, kit aerodinamici e scarichi per Alfa Romeo.', descEn: 'Specialist in superchargers, aerodynamic bodykits, and exhausts for Alfa Romeo.', url: 'http://www.novitec.com' },
+  { name: 'Squadra Tuning (Olanda)', descIt: 'Le rimappature centralina Bosch più raffinate e studiate su banco prova.', descEn: 'Dyno-developed bespoke Bosch ECU remaps and chip upgrades.', url: 'http://www.squadra-tuning.com' },
+  { name: 'Autodelta (Londra, UK)', descIt: 'Creazioni motorsport, kit volumetrico e conversioni 3.7 V6 per 156 GTA.', descEn: 'Motorsport tuning, supercharger kits, and 3.7 V6 conversions for 156 GTA.', url: 'http://www.autodelta.co.uk' },
+  { name: 'Cadamuro Design (Italia)', descIt: 'Design italiano e kit estetici sportivi aerodinamici per berlina e SW.', descEn: 'Italian styling and aerodynamic styling kits for saloon and Sportwagon.', url: 'http://www.cadamurodesign.it' },
+  { name: 'Zender (Germania)', descIt: 'Accessori sportivi e partner estetico ufficiale Alfa Romeo.', descEn: 'Sporting styling accessories and official styling partner to Alfa Romeo.', url: 'http://www.zender.de' },
+  { name: 'Ragazzon (Italia)', descIt: 'Fabbrica di impianti di scarico sportivi al 100% in acciaio inox.', descEn: 'Manufacturer of 100% stainless steel high-performance exhaust systems.', url: 'http://www.ragazzon.it' },
+  { name: 'Tarox (Italia)', descIt: 'Impianti frenanti maggiorati da corsa a 6 e 10 pompanti e dischi speciali.', descEn: 'Competition big brake kits with 6 and 10-piston calipers and bespoke discs.', url: 'http://www.tarox.com' },
+  { name: 'Madeno Racing (Olanda)', descIt: 'Assetti racing, cambi ravvicinati e conversioni motore V6.', descEn: 'Racing suspension setups, close-ratio gearboxes, and V6 engine builds.', url: 'http://www.madeno.nl' }
 ];
 
 const partsLinks = [
-  { name: 'Alternative Autos (UK)', desc: 'Fornitore storico di ricambi originali e OEM per vetture italiane.', url: 'http://www.alternativeautos.com' },
-  { name: 'EB Spares (UK)', desc: 'Specialisti in ricambi d\'epoca e moderni Alfa Romeo dal 1969.', url: 'http://www.ebspares.co.uk' },
-  { name: 'The Alfa Workshop (UK)', desc: 'Officina specializzata e vasto catalogo guide di manutenzione a cura di Jamie Porter.', url: 'http://www.alfaworkshop.co.uk' },
-  { name: 'Gazzella Racing (UK)', desc: 'Store internazionale per componenti racing, scarichi e parti speciali italiane.', url: 'http://www.gazzella.cc' }
+  { name: 'Alternative Autos (UK)', descIt: 'Fornitore storico di ricambi originali e OEM per vetture italiane.', descEn: 'Long-standing supplier of genuine and OEM spare parts for Italian cars.', url: 'http://www.alternativeautos.com' },
+  { name: 'EB Spares (UK)', descIt: 'Specialisti in ricambi d\'epoca e moderni Alfa Romeo dal 1969.', descEn: 'Specialists in classic and modern Alfa Romeo spare parts since 1969.', url: 'http://www.ebspares.co.uk' },
+  { name: 'The Alfa Workshop (UK)', descIt: 'Officina specializzata e vasto catalogo guide di manutenzione a cura di Jamie Porter.', descEn: 'Independent specialist garage and extensive DIY guides curated by Jamie Porter.', url: 'http://www.alfaworkshop.co.uk' },
+  { name: 'Gazzella Racing (UK)', descIt: 'Store internazionale per componenti racing, scarichi e parti speciali italiane.', descEn: 'International retailer for performance parts, exhausts, and motorsport upgrades.', url: 'http://www.gazzella.cc' }
 ];
 ---
 
@@ -89,7 +89,8 @@ const partsLinks = [
                 <span class="text-xs text-alfa-metal-400 group-hover:translate-x-1 transition-transform">↗</span>
               </div>
               <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400 leading-relaxed">
-                {item.desc}
+                <span class="lang-it">{item.descIt}</span>
+                <span class="lang-en">{item.descEn}</span>
               </p>
             </div>
             <span class="text-[11px] font-mono text-alfa-metal-400 dark:text-alfa-metal-500 mt-3 truncate block">
@@ -126,7 +127,8 @@ const partsLinks = [
                 <span class="text-xs text-alfa-metal-400 group-hover:translate-x-1 transition-transform">↗</span>
               </div>
               <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400 leading-relaxed">
-                {item.desc}
+                <span class="lang-it">{item.descIt}</span>
+                <span class="lang-en">{item.descEn}</span>
               </p>
             </div>
             <span class="text-[11px] font-mono text-alfa-metal-400 dark:text-alfa-metal-500 mt-3 truncate block">
@@ -163,7 +165,8 @@ const partsLinks = [
                 <span class="text-xs text-alfa-metal-400 group-hover:translate-x-1 transition-transform">↗</span>
               </div>
               <p class="text-xs text-alfa-metal-600 dark:text-alfa-metal-400 leading-relaxed">
-                {item.desc}
+                <span class="lang-it">{item.descIt}</span>
+                <span class="lang-en">{item.descEn}</span>
               </p>
             </div>
             <span class="text-[11px] font-mono text-alfa-metal-400 dark:text-alfa-metal-500 mt-3 truncate block">

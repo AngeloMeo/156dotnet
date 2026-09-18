@@ -18,7 +18,10 @@ import Layout from '../../../layouts/Layout.astro';
       <span>/</span>
       <a href="/technical/tuning" class="hover:text-alfa-red-600">Tuning</a>
       <span>/</span>
-      <span class="text-alfa-red-600 font-bold">Assetto & Tenuta</span>
+      <span class="text-alfa-red-600 font-bold">
+        <span class="lang-it">Assetto & Tenuta</span>
+        <span class="lang-en">Handling & Suspension</span>
+      </span>
     </nav>
 
     <!-- Header Section -->
@@ -29,9 +32,17 @@ import Layout from '../../../layouts/Layout.astro';
       </h1>
 
       <div class="mt-4 flex flex-wrap items-center gap-2 text-xs font-mono text-alfa-metal-500">
-        <span>Articolo di: <strong class="text-alfa-metal-800 dark:text-alfa-silver-200">Øyvind Iversen</strong> (Presidente Klubb Alfa Romeo Norge)</span>
+        <span>
+          <span class="lang-it">Articolo di:</span>
+          <span class="lang-en">Article by:</span>
+          <strong class="text-alfa-metal-800 dark:text-alfa-silver-200">Øyvind Iversen</strong> (<span class="lang-it">Presidente Klubb Alfa Romeo Norge</span><span class="lang-en">Chairman Klubb Alfa Romeo Norge</span>)
+        </span>
         <span>•</span>
-        <span>Traduzione: <strong class="text-alfa-metal-800 dark:text-alfa-silver-200">Anders Bull</strong></span>
+        <span>
+          <span class="lang-it">Traduzione:</span>
+          <span class="lang-en">Translation:</span>
+          <strong class="text-alfa-metal-800 dark:text-alfa-silver-200">Anders Bull</strong>
+        </span>
       </div>
     </div>
 
@@ -126,10 +137,12 @@ import Layout from '../../../layouts/Layout.astro';
     <!-- Back to Hub -->
     <div class="border-t border-alfa-metal-200 dark:border-alfa-metal-800 pt-6 mt-10 flex justify-between items-center text-xs font-mono">
       <a href="/technical/tuning" class="text-alfa-red-600 dark:text-alfa-red-400 font-bold hover:underline">
-        ← Torna all'indice Tuning
+        <span class="lang-it">← Torna all'indice Tuning</span>
+        <span class="lang-en">← Back to Tuning Index</span>
       </a>
       <a href="/technical/tuning/parts" class="text-alfa-metal-700 dark:text-alfa-metal-300 hover:text-alfa-red-600 transition-colors">
-        Prossimo dossier: Freni Tarox/Brembo & Barre Duomi →
+        <span class="lang-it">Prossimo dossier: Freni Tarox/Brembo & Barre Duomi →</span>
+        <span class="lang-en">Next dossier: Tarox/Brembo Brakes & Strut Braces →</span>
       </a>
     </div>
 
