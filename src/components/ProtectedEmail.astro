@@ -1,0 +1,64 @@
+---
+// src/components/ProtectedEmail.astro
+interface Props {
+  user: string;
+  domain: string;
+  class?: string;
+}
+
+const { user, domain, class: className = 'text-alfa-red-600 dark:text-alfa-red-400 underline hover:no-underline font-semibold' } = Astro.props;
+const encoded = Buffer.from(`${user}@${domain}`, 'utf8').toString('base64');
+const fallbackText = `${user} [at] ${domain}`;
+---
+
+<span class={`protected-email ${className}`} data-e={encoded}>{fallbackText}</span>
+
+<script>
+  const COPY_ICON =
+    '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+  const CHECK_ICON =
+    '<svg class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+
+  document.querySelectorAll('.protected-email[data-e]').forEach((el) => {
+    if (el.getAttribute('data-bound')) return;
+    el.setAttribute('data-bound', '1');
+    try {
+      const encoded = el.getAttribute('data-e') || '';
+      const addr = atob(encoded);
+
+      const wrapper = document.createElement('span');
+      wrapper.className = 'inline-flex items-center gap-1.5 align-baseline';
+
+      const link = document.createElement('a');
+      link.href = ['mai', 'lto', ':'].join('') + addr;
+      link.textContent = addr;
+      link.className = el.className.replace('protected-email', '').trim();
+
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.title = 'Copia / Copy';
+      btn.setAttribute('aria-label', 'Copia email / Copy email');
+      btn.className =
+        'inline-flex items-center justify-center p-1 rounded border border-alfa-metal-300 dark:border-alfa-metal-700 bg-alfa-metal-100 dark:bg-alfa-metal-800 text-alfa-metal-600 dark:text-alfa-metal-300 hover:text-alfa-red-600 dark:hover:text-alfa-red-400 hover:border-alfa-red-400 transition-colors cursor-pointer';
+      btn.innerHTML = COPY_ICON;
+
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(addr);
+          btn.innerHTML = CHECK_ICON;
+          setTimeout(() => {
+            btn.innerHTML = COPY_ICON;
+          }, 1500);
+        } catch {
+          // Fallback ignored if clipboard permission is denied
+        }
+      });
+
+      wrapper.appendChild(link);
+      wrapper.appendChild(btn);
+      el.replaceWith(wrapper);
+    } catch {
+      // Keep fallback text if decoding fails
+    }
+  });
+</script>

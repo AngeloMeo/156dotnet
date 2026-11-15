@@ -1,0 +1,198 @@
+---
+// src/pages/cookie-policy.astro
+import Layout from '../layouts/Layout.astro';
+import ProtectedEmail from '../components/ProtectedEmail.astro';
+---
+
+<Layout
+  title="Cookie Policy | alfa156.it"
+  description="Cookie Policy di alfa156.it: informazioni su localStorage tecnico per tema e lingua, cookie di sicurezza e cookie pubblicitari Google AdSense / CMP."
+  currentPath="/cookie-policy"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center space-x-2 text-xs font-mono text-alfa-metal-500 mb-6">
+      <a href="/" class="hover:text-alfa-red-600">Home</a>
+      <span>/</span>
+      <span class="text-alfa-red-600 font-bold">Cookie Policy</span>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="border-b border-alfa-metal-200 dark:border-alfa-metal-800 pb-8 mb-10">
+      <h1 class="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-alfa-metal-900 dark:text-white">
+        <span class="lang-it">Cookie Policy</span>
+        <span class="lang-en">Cookie Policy</span>
+      </h1>
+      <p class="mt-4 text-sm sm:text-base text-alfa-metal-600 dark:text-alfa-metal-300 leading-relaxed">
+        <span class="lang-it">
+          Informazioni sull'uso di cookie e tecnologie di archiviazione locale (<code>localStorage</code>) su <strong>alfa156.it</strong>.
+        </span>
+        <span class="lang-en">
+          Information about the use of cookies and local storage technologies (<code>localStorage</code>) on <strong>alfa156.it</strong>.
+        </span>
+      </p>
+      <p class="mt-2 text-xs font-mono text-alfa-metal-500">
+        <span class="lang-it">Ultimo aggiornamento: [INSERIRE DATA DI AGGIORNAMENTO]</span>
+        <span class="lang-en">Last updated: [INSERT UPDATE DATE]</span>
+      </p>
+    </div>
+
+    <div class="space-y-8 text-sm sm:text-base text-alfa-metal-700 dark:text-alfa-metal-300 leading-relaxed">
+
+      <!-- 1. Cosa sono i cookie -->
+      <section class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-sm space-y-3">
+        <h2 class="font-display text-xl sm:text-2xl font-bold text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">1. Cosa sono i cookie e il localStorage</span>
+          <span class="lang-en">1. What are Cookies and localStorage</span>
+        </h2>
+        <p>
+          <span class="lang-it">
+            I cookie sono piccoli file di testo che i siti web visitati inviano al browser dell'utente, dove vengono memorizzati per essere poi ritrasmessi agli stessi siti alla visita successiva. Tecnologie simili, come il <code>localStorage</code> del browser, consentono di salvare localmente preferenze di interfaccia senza inviarle automaticamente a server remoti.
+          </span>
+          <span class="lang-en">
+            Cookies are small text files sent by visited websites to the user's browser, where they are stored and sent back on subsequent visits. Similar technologies, such as browser <code>localStorage</code>, allow interface preferences to be saved locally without automatically sending them to remote servers.
+          </span>
+        </p>
+      </section>
+
+      <!-- 2. Cookie e storage tecnici -->
+      <section class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-sm space-y-4">
+        <h2 class="font-display text-xl sm:text-2xl font-bold text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">2. Tecnologie tecniche e funzionali (necessarie)</span>
+          <span class="lang-en">2. Technical & Functional Storage (Strictly Necessary)</span>
+        </h2>
+        <p>
+          <span class="lang-it">
+            Queste risorse sono strettamente necessarie per il funzionamento del sito e per ricordare le tue scelte di visualizzazione. Non richiedono consenso preventivo.
+          </span>
+          <span class="lang-en">
+            These technologies are strictly necessary for the website to function and to remember your display preferences. They do not require prior consent.
+          </span>
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs sm:text-sm border-collapse">
+            <thead>
+              <tr class="border-b border-alfa-metal-200 dark:border-alfa-metal-800 text-alfa-metal-900 dark:text-white">
+                <th class="py-2 pr-4 font-mono">Chiave / Nome</th>
+                <th class="py-2 pr-4">Tipo</th>
+                <th class="py-2">
+                  <span class="lang-it">Finalità</span>
+                  <span class="lang-en">Purpose</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-alfa-metal-100 dark:divide-alfa-metal-800">
+              <tr>
+                <td class="py-2.5 pr-4 font-mono text-alfa-red-600 dark:text-alfa-red-400">theme</td>
+                <td class="py-2.5 pr-4">localStorage</td>
+                <td class="py-2.5">
+                  <span class="lang-it">Memorizza la preferenza del tema grafico (chiaro o scuro).</span>
+                  <span class="lang-en">Stores the selected color theme preference (light or dark).</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-2.5 pr-4 font-mono text-alfa-red-600 dark:text-alfa-red-400">lang</td>
+                <td class="py-2.5 pr-4">localStorage</td>
+                <td class="py-2.5">
+                  <span class="lang-it">Memorizza la lingua selezionata dall'utente (<code>it</code> o <code>en</code>).</span>
+                  <span class="lang-en">Stores the user's selected language (<code>it</code> or <code>en</code>).</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-2.5 pr-4 font-mono text-alfa-red-600 dark:text-alfa-red-400">Cloudflare (__cf_bm, ecc.)</td>
+                <td class="py-2.5 pr-4">
+                  <span class="lang-it">Cookie tecnico</span>
+                  <span class="lang-en">Technical cookie</span>
+                </td>
+                <td class="py-2.5">
+                  <span class="lang-it">Eventuali cookie tecnici di sicurezza e protezione anti-bot impostati dalla rete CDN Cloudflare.</span>
+                  <span class="lang-en">Optional technical security and bot-mitigation cookies set by the Cloudflare CDN network.</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Cookie pubblicitari e CMP -->
+      <section class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-sm space-y-4">
+        <h2 class="font-display text-xl sm:text-2xl font-bold text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">3. Cookie pubblicitari di terze parti (Google AdSense) e CMP</span>
+          <span class="lang-en">3. Third-Party Advertising Cookies (Google AdSense) & CMP</span>
+        </h2>
+        <p>
+          <span class="lang-it">
+            Per contribuire a sostenere i costi di gestione del sito, <strong>alfa156.it</strong> può ospitare annunci tramite <strong>Google AdSense</strong>. Google e i suoi partner pubblicitari utilizzano cookie e identificatori per:
+          </span>
+          <span class="lang-en">
+            To help cover site maintenance and hosting costs, <strong>alfa156.it</strong> may display advertisements via <strong>Google AdSense</strong>. Google and its advertising partners use cookies and identifiers to:
+          </span>
+        </p>
+        <ul class="list-disc list-inside space-y-1.5">
+          <li>
+            <span class="lang-it">mostrare annunci personalizzati in base agli interessi o annunci contestuali non personalizzati;</span>
+            <span class="lang-en">serve personalized interest-based ads or non-personalized contextual ads;</span>
+          </li>
+          <li>
+            <span class="lang-it">limitare il numero di volte in cui un annuncio viene visualizzato dallo stesso utente (frequency capping);</span>
+            <span class="lang-en">limit the number of times an ad is shown to the same user (frequency capping);</span>
+          </li>
+          <li>
+            <span class="lang-it">misurare l'efficacia delle campagne pubblicitarie e prevenire frodi o traffico non valido.</span>
+            <span class="lang-en">measure advertising campaign performance and prevent fraud or invalid traffic.</span>
+          </li>
+        </ul>
+        <p>
+          <span class="lang-it">
+            <strong>Gestione del consenso (CMP):</strong> al primo accesso dallo Spazio Economico Europeo (SEE), Regno Unito o Svizzera, viene mostrato un banner tramite Consent Management Platform (CMP certificata Google / IAB TCF) che ti consente di accettare, rifiutare o personalizzare i cookie pubblicitari. Le preferenze espresse vengono salvate per evitare di riproporre il banner a ogni visita e possono essere modificate in qualsiasi momento.
+          </span>
+          <span class="lang-en">
+            <strong>Consent Management Platform (CMP):</strong> upon your first visit from the European Economic Area (EEA), UK, or Switzerland, a CMP banner (Google-certified / IAB TCF) allows you to accept, reject, or customize advertising cookies. Your choices are stored so the banner is not shown on every page load and can be updated at any time.
+          </span>
+        </p>
+        <p class="text-xs text-alfa-metal-500">
+          <span class="lang-it">
+            Maggiori informazioni sull'uso dei dati da parte di Google: <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" class="text-alfa-red-600 dark:text-alfa-red-400 underline hover:no-underline">Modalità di utilizzo dei dati da parte di Google quando si utilizzano siti o app dei nostri partner</a>.
+          </span>
+          <span class="lang-en">
+            Learn more about how Google uses data: <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" class="text-alfa-red-600 dark:text-alfa-red-400 underline hover:no-underline">How Google uses information from sites or apps that use our services</a>.
+          </span>
+        </p>
+      </section>
+
+      <!-- 4. Come gestire o disabilitare i cookie -->
+      <section class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-sm space-y-3">
+        <h2 class="font-display text-xl sm:text-2xl font-bold text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">4. Come gestire o disabilitare i cookie</span>
+          <span class="lang-en">4. How to Manage or Disable Cookies</span>
+        </h2>
+        <p>
+          <span class="lang-it">
+            Oltre al pannello di consenso sul sito, puoi gestire o eliminare cookie e dati di archiviazione locale direttamente dalle impostazioni del tuo browser (Chrome, Firefox, Safari, Edge). Puoi inoltre disattivare la personalizzazione degli annunci su <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" class="text-alfa-red-600 dark:text-alfa-red-400 underline hover:no-underline">Impostazioni annunci Google</a> o tramite <a href="https://www.youronlinechoices.eu/" target="_blank" rel="noopener noreferrer" class="text-alfa-red-600 dark:text-alfa-red-400 underline hover:no-underline">YourOnlineChoices</a>.
+          </span>
+          <span class="lang-en">
+            In addition to the on-site consent panel, you can manage or delete cookies and local storage directly through your browser settings (Chrome, Firefox, Safari, Edge). You can also opt out of personalized ads at <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" class="text-alfa-red-600 dark:text-alfa-red-400 underline hover:no-underline">Google Ads Settings</a> or via <a href="https://www.youronlinechoices.eu/" target="_blank" rel="noopener noreferrer" class="text-alfa-red-600 dark:text-alfa-red-400 underline hover:no-underline">YourOnlineChoices</a>.
+          </span>
+        </p>
+      </section>
+
+      <!-- 5. Contatti -->
+      <section class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-sm space-y-3">
+        <h2 class="font-display text-xl sm:text-2xl font-bold text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">5. Contatti e ulteriori informazioni</span>
+          <span class="lang-en">5. Contact & Further Information</span>
+        </h2>
+        <p>
+          <span class="lang-it">
+            Per domande relative a questa Cookie Policy puoi contattare il Titolare del trattamento all'indirizzo <ProtectedEmail user="privacy" domain="alfa156.it" /> o consultare la nostra <a href="/privacy" class="text-alfa-red-600 dark:text-alfa-red-400 underline hover:no-underline">Privacy Policy</a>.
+          </span>
+          <span class="lang-en">
+            For questions regarding this Cookie Policy, please contact the Data Controller at <ProtectedEmail user="privacy" domain="alfa156.it" /> or read our <a href="/privacy" class="text-alfa-red-600 dark:text-alfa-red-400 underline hover:no-underline">Privacy Policy</a>.
+          </span>
+        </p>
+      </section>
+
+    </div>
+  </div>
+</Layout>

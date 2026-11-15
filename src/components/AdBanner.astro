@@ -1,0 +1,45 @@
+---
+// src/components/AdBanner.astro
+interface Props {
+  slot?: string;
+  format?: 'auto' | 'rectangle' | 'horizontal' | 'vertical';
+  class?: string;
+}
+
+const {
+  slot,
+  format = 'auto',
+  class: className = '',
+} = Astro.props;
+---
+
+<aside
+  aria-label="Pubblicità / Advertisement"
+  class={`w-full my-8 flex flex-col items-center justify-center ${className}`}
+>
+  <div class="w-full max-w-4xl mx-auto rounded-xl border border-alfa-metal-200/80 dark:border-alfa-metal-800/80 bg-alfa-metal-100/50 dark:bg-alfa-metal-900/40 px-4 py-3 flex flex-col items-center justify-center">
+    <span class="text-[10px] font-mono uppercase tracking-widest text-alfa-metal-400 dark:text-alfa-metal-500 mb-2 select-none">
+      Pubblicità / Advertisement
+    </span>
+
+    <!-- Reserved min-height container to prevent CLS on mobile & desktop -->
+    <div class="w-full min-h-[100px] sm:min-h-[120px] flex items-center justify-center overflow-hidden">
+      <ins
+        class="adsbygoogle block w-full"
+        style="display:block"
+        data-ad-client="ca-pub-5049723222541038"
+        data-ad-format={format}
+        data-full-width-responsive="true"
+        {...(slot ? { 'data-ad-slot': slot } : {})}
+      ></ins>
+    </div>
+  </div>
+</aside>
+
+<script is:inline>
+  try {
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
+  } catch {
+    // Ignore errors if ad script is blocked by client
+  }
+</script>

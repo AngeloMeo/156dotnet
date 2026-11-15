@@ -1,0 +1,11 @@
+{
+  "name": "156dotnet",
+  "compatibility_date": "2026-11-14",
+  "build": {
+    "command": "npm run build"
+  },
+  "assets": {
+    "directory": "./dist"
+  },
+  "previews": {}
+}
