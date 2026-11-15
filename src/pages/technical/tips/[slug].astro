@@ -2,6 +2,7 @@
 // src/pages/technical/tips/[slug].astro
 import Layout from '../../../layouts/Layout.astro';
 import Lightbox from '../../../components/Lightbox.astro';
+import AdBanner from '../../../components/AdBanner.astro';
 import { technicalTipsData } from '../../../data/technicalTipsData';
 
 export function getStaticPaths() {
@@ -219,6 +220,9 @@ const categoryTranslations: Record<string, { it: string; en: string }> = {
         </div>
       </div>
     )}
+
+    <!-- Non-invasive Ad Banner at end of guide -->
+    <AdBanner />
 
     <!-- Next / Prev Pagination -->
     <div class="mt-12 pt-8 border-t border-alfa-metal-200 dark:border-alfa-metal-800 flex items-center justify-between text-xs font-mono">
