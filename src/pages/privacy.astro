@@ -1,0 +1,295 @@
+---
+// src/pages/privacy.astro
+import Layout from '../layouts/Layout.astro';
+import ProtectedEmail from '../components/ProtectedEmail.astro';
+---
+
+<Layout
+  title="Privacy Policy | alfa156.it"
+  description="Informativa sulla privacy di alfa156.it ai sensi del GDPR (Regolamento UE 2016/679), con dettagli su Google AdSense, cookie di terze parti e diritti dell'utente."
+  currentPath="/privacy"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center space-x-2 text-xs font-mono text-alfa-metal-500 mb-6">
+      <a href="/" class="hover:text-alfa-red-600">Home</a>
+      <span>/</span>
+      <span class="text-alfa-red-600 font-bold">Privacy Policy</span>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="border-b border-alfa-metal-200 dark:border-alfa-metal-800 pb-8 mb-10">
+      <h1 class="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-alfa-metal-900 dark:text-white">
+        <span class="lang-it">Privacy Policy</span>
+        <span class="lang-en">Privacy Policy</span>
+      </h1>
+      <p class="mt-4 text-sm sm:text-base text-alfa-metal-600 dark:text-alfa-metal-300 leading-relaxed">
+        <span class="lang-it">
+          Informativa sul trattamento dei dati personali ai sensi dell'art. 13 del Regolamento (UE) 2016/679 (GDPR) per il sito <strong>alfa156.it</strong>.
+        </span>
+        <span class="lang-en">
+          Information on the processing of personal data pursuant to Article 13 of Regulation (EU) 2016/679 (GDPR) for <strong>alfa156.it</strong>.
+        </span>
+      </p>
+      <p class="mt-2 text-xs font-mono text-alfa-metal-500">
+        <span class="lang-it">Ultimo aggiornamento: [INSERIRE DATA DI AGGIORNAMENTO]</span>
+        <span class="lang-en">Last updated: [INSERT UPDATE DATE]</span>
+      </p>
+    </div>
+
+    <div class="space-y-8 text-sm sm:text-base text-alfa-metal-700 dark:text-alfa-metal-300 leading-relaxed">
+
+      <!-- 1. Titolare del trattamento -->
+      <section class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-sm space-y-3">
+        <h2 class="font-display text-xl sm:text-2xl font-bold text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">1. Titolare del trattamento</span>
+          <span class="lang-en">1. Data Controller</span>
+        </h2>
+        <p>
+          <span class="lang-it">
+            Il Titolare del trattamento dei dati personali raccolti tramite il sito <strong>alfa156.it</strong> è:
+          </span>
+          <span class="lang-en">
+            The Data Controller for personal data collected through <strong>alfa156.it</strong> is:
+          </span>
+        </p>
+        <ul class="list-disc list-inside space-y-1 text-sm font-mono bg-alfa-metal-50 dark:bg-alfa-metal-950 p-4 rounded-xl border border-alfa-metal-200 dark:border-alfa-metal-800">
+          <li>
+            <span class="lang-it">Titolare: <strong>[INSERIRE NOME E COGNOME / TITOLARE]</strong></span>
+            <span class="lang-en">Controller: <strong>[INSERT FULL NAME / OWNER]</strong></span>
+          </li>
+          <li>
+            <span class="lang-it">Sede / Località: <strong>[INSERIRE CITTÀ / INDIRIZZO]</strong></span>
+            <span class="lang-en">Location / Address: <strong>[INSERT CITY / ADDRESS]</strong></span>
+          </li>
+          <li>
+            <span class="lang-it">Email di contatto: <ProtectedEmail user="privacy" domain="alfa156.it" /></span>
+            <span class="lang-en">Contact email: <ProtectedEmail user="privacy" domain="alfa156.it" /></span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 2. Tipologie di dati trattati -->
+      <section class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-sm space-y-3">
+        <h2 class="font-display text-xl sm:text-2xl font-bold text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">2. Tipologie di dati trattati</span>
+          <span class="lang-en">2. Types of Data Collected</span>
+        </h2>
+        <p>
+          <span class="lang-it">
+            <strong>alfa156.it</strong> è un sito statico informativo che non richiede registrazione né moduli di iscrizione. Durante la navigazione possono essere trattati:
+          </span>
+          <span class="lang-en">
+            <strong>alfa156.it</strong> is a static informational website that does not require registration or sign-up forms. While browsing, the following data may be processed:
+          </span>
+        </p>
+        <ul class="list-disc list-inside space-y-2">
+          <li>
+            <span class="lang-it">
+              <strong>Dati di navigazione e log tecnici:</strong> indirizzi IP, tipo di browser, sistema operativo, orari di accesso e pagine richieste, trattati automaticamente dall'infrastruttura di hosting e sicurezza (Cloudflare Pages) per garantire l'erogazione e la protezione del sito.
+            </span>
+            <span class="lang-en">
+              <strong>Browsing data and technical logs:</strong> IP addresses, browser type, operating system, access timestamps, and requested pages, automatically processed by our hosting and security infrastructure (Cloudflare Pages) to deliver and protect the website.
+            </span>
+          </li>
+          <li>
+            <span class="lang-it">
+              <strong>Preferenze locali (localStorage):</strong> il sito salva localmente nel browser le preferenze di lingua (<code>lang</code>) e tema grafico (<code>theme</code>). Questi dati non vengono trasmessi ai nostri server.
+            </span>
+            <span class="lang-en">
+              <strong>Local preferences (localStorage):</strong> the website stores your language (<code>lang</code>) and color theme (<code>theme</code>) preferences locally in your browser. This data is not transmitted to our servers.
+            </span>
+          </li>
+          <li>
+            <span class="lang-it">
+              <strong>Dati raccolti tramite cookie di terze parti (pubblicità):</strong> previo consenso dell'utente, partner pubblicitari come Google AdSense possono raccogliere identificatori di cookie, indirizzo IP e informazioni sull'interazione con gli annunci.
+            </span>
+            <span class="lang-en">
+              <strong>Data collected via third-party cookies (advertising):</strong> subject to user consent, advertising partners such as Google AdSense may collect cookie identifiers, IP addresses, and ad interaction data.
+            </span>
+          </li>
+          <li>
+            <span class="lang-it">
+              <strong>Comunicazioni volontarie:</strong> qualora l'utente contatti il Titolare via email all'indirizzo indicato, l'indirizzo email e il contenuto del messaggio saranno trattati esclusivamente per rispondere alla richiesta.
+            </span>
+            <span class="lang-en">
+              <strong>Voluntary communications:</strong> if you contact the Controller via email, your email address and message content will be processed solely to respond to your inquiry.
+            </span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 3. Finalità e base giuridica -->
+      <section class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-sm space-y-3">
+        <h2 class="font-display text-xl sm:text-2xl font-bold text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">3. Finalità e base giuridica del trattamento</span>
+          <span class="lang-en">3. Purposes and Legal Basis for Processing</span>
+        </h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>
+            <span class="lang-it">
+              <strong>Erogazione del sito, sicurezza e prevenzione abusi:</strong> basata sul legittimo interesse del Titolare (art. 6, par. 1, lett. f, GDPR) a mantenere il sito sicuro, veloce e accessibile.
+            </span>
+            <span class="lang-en">
+              <strong>Website delivery, security, and abuse prevention:</strong> based on the Controller's legitimate interest (Art. 6(1)(f) GDPR) in keeping the website secure, fast, and accessible.
+            </span>
+          </li>
+          <li>
+            <span class="lang-it">
+              <strong>Pubblicità e monetizzazione tramite Google AdSense:</strong> basata sul <strong>consenso esplicito dell'utente</strong> (art. 6, par. 1, lett. a, GDPR) espresso tramite il banner di gestione del consenso (CMP) per i cookie pubblicitari personalizzati o non personalizzati ove richiesto.
+            </span>
+            <span class="lang-en">
+              <strong>Advertising and monetization via Google AdSense:</strong> based on the <strong>user's explicit consent</strong> (Art. 6(1)(a) GDPR) given through the Consent Management Platform (CMP) banner for personalized or non-personalized advertising cookies where required.
+            </span>
+          </li>
+          <li>
+            <span class="lang-it">
+              <strong>Risposta a richieste via email:</strong> esecuzione di misure precontrattuali o riscontro a richieste dell'interessato (art. 6, par. 1, lett. b o f, GDPR).
+            </span>
+            <span class="lang-en">
+              <strong>Responding to email inquiries:</strong> performance of steps requested by the data subject or legitimate interest (Art. 6(1)(b) or (f) GDPR).
+            </span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 4. Google AdSense e cookie pubblicitari -->
+      <section class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-sm space-y-4">
+        <h2 class="font-display text-xl sm:text-2xl font-bold text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">4. Google AdSense e pubblicità di terze parti</span>
+          <span class="lang-en">4. Google AdSense & Third-Party Advertising</span>
+        </h2>
+        <p>
+          <span class="lang-it">
+            Questo sito utilizza <strong>Google AdSense</strong>, un servizio pubblicitario fornito da Google LLC / Google Ireland Limited ("Google"), per visualizzare annunci utili a sostenere i costi di dominio, hosting e manutenzione dell'archivio.
+          </span>
+          <span class="lang-en">
+            This website uses <strong>Google AdSense</strong>, an advertising service provided by Google LLC / Google Ireland Limited ("Google"), to display ads that help cover domain, hosting, and archive maintenance costs.
+          </span>
+        </p>
+        <ul class="list-disc list-inside space-y-2">
+          <li>
+            <span class="lang-it">
+              Fornitori terzi, tra cui Google, utilizzano cookie per pubblicare annunci basati sulle precedenti visite dell'utente a questo sito web o ad altri siti web.
+            </span>
+            <span class="lang-en">
+              Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites.
+            </span>
+          </li>
+          <li>
+            <span class="lang-it">
+              L'utilizzo dei cookie per la pubblicità da parte di Google consente a Google e ai suoi partner di pubblicare annunci per gli utenti in base alla loro visita a questo sito e/o ad altri siti su Internet.
+            </span>
+            <span class="lang-en">
+              Google's use of advertising cookies enables it and its partners to serve ads to users based on their visit to this site and/or other sites on the Internet.
+            </span>
+          </li>
+          <li>
+            <span class="lang-it">
+              Gli utenti dello Spazio Economico Europeo (SEE), Regno Unito e Svizzera possono gestire, personalizzare o revocare il proprio consenso in qualsiasi momento tramite la piattaforma di gestione del consenso (CMP) presente sul sito.
+            </span>
+            <span class="lang-en">
+              Users in the European Economic Area (EEA), UK, and Switzerland can manage, customize, or withdraw their consent at any time via the Consent Management Platform (CMP) available on this site.
+            </span>
+          </li>
+          <li>
+            <span class="lang-it">
+              È inoltre possibile disattivare la pubblicità personalizzata visitando le <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" class="text-alfa-red-600 dark:text-alfa-red-400 underline hover:no-underline">Impostazioni annunci di Google</a>, consultare le <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" class="text-alfa-red-600 dark:text-alfa-red-400 underline hover:no-underline">Norme di Google sulla pubblicità</a> o disattivare i cookie di terze parti tramite <a href="https://www.youronlinechoices.eu/" target="_blank" rel="noopener noreferrer" class="text-alfa-red-600 dark:text-alfa-red-400 underline hover:no-underline">YourOnlineChoices</a> / <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" class="text-alfa-red-600 dark:text-alfa-red-400 underline hover:no-underline">AboutAds</a>.
+            </span>
+            <span class="lang-en">
+              You may also opt out of personalized advertising by visiting <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" class="text-alfa-red-600 dark:text-alfa-red-400 underline hover:no-underline">Google Ads Settings</a>, review <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" class="text-alfa-red-600 dark:text-alfa-red-400 underline hover:no-underline">Google's Advertising Policies</a>, or opt out of third-party cookies via <a href="https://www.youronlinechoices.eu/" target="_blank" rel="noopener noreferrer" class="text-alfa-red-600 dark:text-alfa-red-400 underline hover:no-underline">YourOnlineChoices</a> / <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" class="text-alfa-red-600 dark:text-alfa-red-400 underline hover:no-underline">AboutAds</a>.
+            </span>
+          </li>
+        </ul>
+        <p class="text-xs text-alfa-metal-500">
+          <span class="lang-it">
+            Per ulteriori dettagli sui cookie utilizzati, consulta la nostra <a href="/cookie-policy" class="text-alfa-red-600 dark:text-alfa-red-400 underline hover:no-underline">Cookie Policy</a>.
+          </span>
+          <span class="lang-en">
+            For more details on the cookies used, please see our <a href="/cookie-policy" class="text-alfa-red-600 dark:text-alfa-red-400 underline hover:no-underline">Cookie Policy</a>.
+          </span>
+        </p>
+      </section>
+
+      <!-- 5. Hosting, destinatari e trasferimenti extra-UE -->
+      <section class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-sm space-y-3">
+        <h2 class="font-display text-xl sm:text-2xl font-bold text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">5. Infrastruttura, destinatari e trasferimenti extra-UE</span>
+          <span class="lang-en">5. Infrastructure, Recipients & International Transfers</span>
+        </h2>
+        <p>
+          <span class="lang-it">
+            Il sito è distribuito tramite <strong>Cloudflare Pages</strong> (Cloudflare, Inc.). I fornitori tecnici e pubblicitari (Cloudflare, Google) possono trattare dati al di fuori dello Spazio Economico Europeo (es. Stati Uniti) nel rispetto delle garanzie previste dal GDPR, tra cui il Data Privacy Framework UE-USA e le Clausole Contrattuali Standard (SCC) approvate dalla Commissione Europea.
+          </span>
+          <span class="lang-en">
+            This website is hosted and delivered via <strong>Cloudflare Pages</strong> (Cloudflare, Inc.). Technical and advertising providers (Cloudflare, Google) may process data outside the European Economic Area (e.g., in the United States) in compliance with GDPR safeguards, including the EU-US Data Privacy Framework and European Commission Standard Contractual Clauses (SCCs).
+          </span>
+        </p>
+      </section>
+
+      <!-- 6. Conservazione dei dati -->
+      <section class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-sm space-y-3">
+        <h2 class="font-display text-xl sm:text-2xl font-bold text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">6. Periodo di conservazione</span>
+          <span class="lang-en">6. Data Retention</span>
+        </h2>
+        <p>
+          <span class="lang-it">
+            Le preferenze salvate in <code>localStorage</code> restano nel dispositivo dell'utente fino alla cancellazione manuale dei dati del browser. I log tecnici di sicurezza sono conservati per il tempo strettamente necessario alla tutela dell'infrastruttura. I dati relativi ai cookie di terze parti seguono i tempi di conservazione indicati dai rispettivi fornitori (es. Google).
+          </span>
+          <span class="lang-en">
+            Preferences stored in <code>localStorage</code> remain on your device until you clear your browser data. Technical security logs are retained only as long as necessary to protect the infrastructure. Third-party cookie data follows the retention periods set by their respective providers (e.g., Google).
+          </span>
+        </p>
+      </section>
+
+      <!-- 7. Diritti dell'interessato -->
+      <section class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-alfa-metal-900 border border-alfa-metal-200 dark:border-alfa-metal-800 shadow-sm space-y-3">
+        <h2 class="font-display text-xl sm:text-2xl font-bold text-alfa-metal-900 dark:text-white">
+          <span class="lang-it">7. Diritti dell'interessato (GDPR)</span>
+          <span class="lang-en">7. Data Subject Rights (GDPR)</span>
+        </h2>
+        <p>
+          <span class="lang-it">
+            Ai sensi degli articoli 15-22 del Regolamento (UE) 2016/679, hai il diritto di chiedere in qualsiasi momento:
+          </span>
+          <span class="lang-en">
+            Under Articles 15-22 of Regulation (EU) 2016/679, you have the right at any time to request:
+          </span>
+        </p>
+        <ul class="list-disc list-inside space-y-1">
+          <li>
+            <span class="lang-it">l'accesso ai tuoi dati personali, la rettifica o la cancellazione degli stessi;</span>
+            <span class="lang-en">access to, rectification of, or erasure of your personal data;</span>
+          </li>
+          <li>
+            <span class="lang-it">la limitazione del trattamento o l'opposizione al trattamento;</span>
+            <span class="lang-en">restriction of processing or objection to processing;</span>
+          </li>
+          <li>
+            <span class="lang-it">la portabilità dei dati, ove applicabile;</span>
+            <span class="lang-en">data portability, where applicable;</span>
+          </li>
+          <li>
+            <span class="lang-it">la revoca del consenso prestato in qualsiasi momento, senza pregiudicare la liceità del trattamento basata sul consenso prima della revoca;</span>
+            <span class="lang-en">withdrawal of consent at any time, without affecting the lawfulness of processing based on consent before its withdrawal;</span>
+          </li>
+          <li>
+            <span class="lang-it">di proporre reclamo all'Autorità di controllo competente (in Italia, il <strong>Garante per la protezione dei dati personali</strong>).</span>
+            <span class="lang-en">to lodge a complaint with a supervisory authority (in Italy, the <strong>Garante per la protezione dei dati personali</strong>).</span>
+          </li>
+        </ul>
+        <p class="pt-2">
+          <span class="lang-it">
+            Per esercitare i tuoi diritti puoi scrivere al Titolare del trattamento all'indirizzo: <ProtectedEmail user="privacy" domain="alfa156.it" />.
+          </span>
+          <span class="lang-en">
+            To exercise your rights, please contact the Data Controller at: <ProtectedEmail user="privacy" domain="alfa156.it" />.
+          </span>
+        </p>
+      </section>
+
+    </div>
+  </div>
+</Layout>

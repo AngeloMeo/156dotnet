@@ -1,0 +1,32 @@
+---
+// src/components/ProtectedEmail.astro
+interface Props {
+  user: string;
+  domain: string;
+  class?: string;
+}
+
+const { user, domain, class: className = 'text-alfa-red-600 dark:text-alfa-red-400 underline hover:no-underline font-semibold' } = Astro.props;
+const encoded = Buffer.from(`${user}@${domain}`, 'utf8').toString('base64');
+const fallbackText = `${user} [at] ${domain}`;
+---
+
+<span class={`protected-email ${className}`} data-e={encoded}>{fallbackText}</span>
+
+<script>
+  document.querySelectorAll('.protected-email[data-e]').forEach((el) => {
+    if (el.getAttribute('data-bound')) return;
+    el.setAttribute('data-bound', '1');
+    try {
+      const encoded = el.getAttribute('data-e') || '';
+      const addr = atob(encoded);
+      const link = document.createElement('a');
+      link.href = ['mai', 'lto', ':'].join('') + addr;
+      link.textContent = addr;
+      link.className = el.className.replace('protected-email', '').trim();
+      el.replaceWith(link);
+    } catch {
+      // Keep fallback text if decoding fails
+    }
+  });
+</script>
