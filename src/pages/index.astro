@@ -2,6 +2,7 @@
 // src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
 import Lightbox from '../components/Lightbox.astro';
+import AdBanner from '../components/AdBanner.astro';
 
 const pillars = [
   {
@@ -136,6 +137,11 @@ const featuredGuides = [
       </div>
     </div>
   </section>
+
+  <!-- AdSense Banner below Hero -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+    <AdBanner slot="9078984402" class="my-0" />
+  </div>
 
   <!-- The 6 Pillars Section -->
   <section class="py-16 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
